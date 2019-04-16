@@ -7,100 +7,63 @@
 @section('content')
 
     <div class="row clearfix">
-        <div class="col-xl-6 col-lg-7 col-md-12">
-            <div class="card profile-header">
-                <div class="body">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-12">
-                            <div class="profile-image float-md-right">
-                                <img
-                                    src="{{asset( App\Model\Umkm::where('user_id',Auth::user()->id)->firstOrFail()->avatar )}}"
-                                    alt=""></div>
-                        </div>
-                        <div class="col-lg-8 col-md-8 col-12">
-                            <h4 class="m-t-0 m-b-0"><strong>{{ Auth::user()->username }}</strong></h4>
-                            <span class="job_post">{{ App\Model\Role::find(Auth::user()->role_id)->role_name }}</span>
-                            <p>795 Folsom Ave, Suite 600<br> San Francisco, CADGE 94107</p>
-                            <div>
-                                @if(App\Model\Umkm::where('user_id',Auth::user()->id)->firstOrFail()->is_verified == true)
-                                    <button class="btn btn-primary btn-round" readonly><i class="zmdi zmdi-check-all"></i>Usaha
-                                        anda telah terverifikasi
-                                    </button>
-                                @else
-                                    <button class="btn btn-danger btn-round" readonly><span class="zmdi zmdi-close"></span> Usaha
-                                        anda belum terverifikasi
-                                    </button>
-                                @endif
-
-                            </div>
-                            <p class="social-icon m-t-5 m-b-0">
-                                <a title="Twitter" href="javascript:void(0);"><i class="zmdi zmdi-twitter"></i></a>
-                                <a title="Facebook" href="javascript:void(0);"><i
-                                        class="zmdi zmdi-facebook"></i></a>
-                                <a title="Google-plus" href="javascript:void(0);"><i class="zmdi zmdi-twitter"></i></a>
-                                <a title="Behance" href="javascript:void(0);"><i class="zmdi zmdi-behance"></i></a>
-                                <a title="Instagram" href="javascript:void(0);"><i class="zmdi zmdi-instagram "></i></a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-xl-6 col-lg-5 col-md-12">
-            <div class="card">
-                <ul class="row profile_state list-unstyled">
-                    <li class="col-lg-4 col-md-4 col-6">
-                        <div class="body">
-                            <i class="zmdi zmdi-case-check col-amber"></i>
-                            <h5 class="m-b-0 number count-to" data-from="0" data-to="2365" data-speed="1000"
-                                data-fresh-interval="700">2365</h5>
-                            <small>Shots View</small>
-                        </div>
-                    </li>
-                    <li class="col-lg-4 col-md-4 col-6">
-                        <div class="body">
-                            <i class="zmdi zmdi-thumb-up col-blue"></i>
-                            <h5 class="m-b-0 number count-to" data-from="0" data-to="1203" data-speed="1000"
-                                data-fresh-interval="700">1203</h5>
-                            <small>Likes</small>
-                        </div>
-                    </li>
-                    <li class="col-lg-4 col-md-4 col-6">
-                        <div class="body">
-                            <i class="zmdi zmdi-comment-text col-red"></i>
-                            <h5 class="m-b-0 number count-to" data-from="0" data-to="324" data-speed="1000"
-                                data-fresh-interval="700">324</h5>
-                            <small>Comments</small>
-                        </div>
-                    </li>
-                    <li class="col-lg-4 col-md-4 col-6">
-                        <div class="body">
-                            <i class="zmdi zmdi-account text-success"></i>
-                            <h5 class="m-b-0 number count-to" data-from="0" data-to="1980" data-speed="1000"
-                                data-fresh-interval="700">1980</h5>
-                            <small>Profile Views</small>
-                        </div>
-                    </li>
-                    <li class="col-lg-4 col-md-4 col-6">
-                        <div class="body">
-                            <i class="zmdi zmdi-desktop-mac text-info"></i>
-                            <h5 class="m-b-0 number count-to" data-from="0" data-to="251" data-speed="1000"
-                                data-fresh-interval="700">251</h5>
-                            <small>Website View</small>
-                        </div>
-                    </li>
-                    <li class="col-lg-4 col-md-4 col-6">
-                        <div class="body">
-                            <i class="zmdi zmdi-attachment text-warning"></i>
-                            <h5 class="m-b-0 number count-to" data-from="0" data-to="52" data-speed="1000"
-                                data-fresh-interval="700">52</h5>
-                            <small>Attachment</small>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+        <div class="col-lg-4">
+            <button type="button" data-color="light-blue" class="btn bg-indigo waves-effect">
+                <span class="zmdi zmdi-format-playlist-add"></span>
+               <b>Tambah Produk</b>
+            </button>
         </div>
     </div>
 
+    <div class="row clearfix">
+        <div class="col-lg-12">
+            <div class="card product_item_list">
+                <div class="body table-responsive">
+                    <table class="table table-hover m-b-0">
+                        <thead>
+                        <tr>
+                            <th>Gambar</th>
+                            <th>Product Name</th>
+                            <th data-breakpoints="sm xs">Detail</th>
+                            <th data-breakpoints="xs">Amount</th>
+                            <th data-breakpoints="xs md">Stock</th>
+                            <th data-breakpoints="sm xs md">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><img src="../assets/images/ecommerce/1.png" width="48" alt="Product img"></td>
+                            <td><h5>Simple Black Clock</h5></td>
+                            <td><span class="text-muted">randomised words even slightly believable</span></td>
+                            <td>$16.00</td>
+                            <td><span class="col-green">In Stock</span></td>
+                            <td>
+                                <a href="javascript:void(0);" class="btn btn-default waves-effect waves-float waves-cyan"
+                                   data-toggle="tooltip" title="lihat hasil"><i class="zmdi zmdi-view-web"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-default waves-effect waves-float waves-green"
+                                   data-toggle="tooltip" title="edit data"><i class="zmdi zmdi-edit"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-default waves-effect waves-float waves-red"
+                                   data-toggle="tooltip" title="Hapus data"><i class="zmdi zmdi-delete"></i></a>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card">
+                <div class="body">
+                    <ul class="pagination pagination-primary m-b-0">
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="zmdi zmdi-arrow-left"></i></a></li>
+                        <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);">4</a></li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);"><i class="zmdi zmdi-arrow-right"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection

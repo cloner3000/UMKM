@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{asset('template/assets/css/main.css')}}">
     <link rel="stylesheet" href="{{asset('template/assets/css/timeline.css')}}">
     <link rel="stylesheet" href="{{asset('template/assets/css/color_skins.css')}}">
+    <link rel="stylesheet" href="{{asset('template/assets/css/ecommerce.css')}}">
 </head>
 <body class="theme-purple">
 <!-- Page Loader -->
@@ -675,6 +676,12 @@
     </div>
 </section>
 <!-- Jquery Core Js -->
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
 <script src="{{asset('template/assets/bundles/libscripts.bundle.js')}}"></script> <!-- Lib Scripts Plugin Js -->
 <script src="{{asset('template/assets/bundles/vendorscripts.bundle.js')}}"></script> <!-- Lib Scripts Plugin Js -->
 
