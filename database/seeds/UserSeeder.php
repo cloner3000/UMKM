@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Model\Role;
-use App\Model\User;
+use App\User;
 use Faker\Factory;
 use App\Model\DetailUser;
 use App\Model\Umkm;
@@ -25,13 +25,13 @@ class UserSeeder extends Seeder
 
         foreach ($akses as $data) {
             $role = Role::create([
-                'name' => $data,
+                'role_name' => $data,
                 'status' => true
             ]);
             if ($data == 'root') {
                 User::create([
                     'username' => 'ROOT',
-                    'email' => $faker->unique()->safeEmail,
+                    'email' => 'system@root.com',
                     'password' => bcrypt('secret'),
                     'remember_token' => str_random(60),
                     'isDiskop' => true,
@@ -48,8 +48,8 @@ class UserSeeder extends Seeder
                 ]);
                 DetailUser::create([
                     'user_id' => $user->id,
-                    'firstname' => $faker->firstNameMale,
-                    'lastname' => $faker->lastName,
+                    'first_name' => $faker->firstNameMale,
+                    'last_name' => $faker->lastName,
                     'gender' => 'Pria',
                     'date_of_birth' => $faker->dateTimeThisCentury,
                     'status' => 'Terverifikasi'
@@ -57,7 +57,7 @@ class UserSeeder extends Seeder
             } elseif ($data == 'umkm') {
                 $user = User::create([
                     'username' => $faker->name,
-                    'email' => $faker->unique()->safeEmail,
+                    'email' => 'umkm@gmail.com',
                     'password' => bcrypt('secret'),
                     'remember_token' => str_random(60),
                     'isUmkm' => true,
@@ -65,6 +65,7 @@ class UserSeeder extends Seeder
                 ]);
                 Umkm::create([
                     'user_id' => $user->id,
+                    'avatar' => 'images/shop.png',
                     'nama' => $faker->company,
                     'desc' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ligula quam, porttitor
                      quis nisl eget, maximus consectetur dolor. Vestibulum venenatis nibh sit amet dui iaculis finibus. Cras laoreet venenatis aliquet. Donec maximus dui eget quam dignissim, in facilisis justo molestie. 
@@ -82,7 +83,7 @@ class UserSeeder extends Seeder
                     'tgl_siup_exp' => $faker->date('Y-m-d','now'),
                     'npwp' => $faker->numerify('###########'),
                     'tdp' => $faker->numerify('###########'),
-                    'tgl_siup' => $faker->date('Y-m-d','now'),
+                    'tgl_tdp' => $faker->date('Y-m-d','now'),
                     'izin_ganguan' => 'NIHIl',
                     'tgl_izin_ganguan' => $faker->date('Y-m-d','now'),
                     'akta_notaris' => 'asdasdasdasdasasdas',
@@ -98,8 +99,8 @@ class UserSeeder extends Seeder
                 ]);
                 DetailUser::create([
                     'user_id' => $user->id,
-                    'firstname' => $faker->firstNameMale,
-                    'lastname' => $faker->lastName,
+                    'first_name' => $faker->firstNameMale,
+                    'last_name' => $faker->lastName,
                     'gender' => 'Pria',
                     'date_of_birth' => $faker->dateTimeThisCentury,
                     'status' => 'Terverifikasi'

@@ -18,6 +18,7 @@ class CreateUmkmsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign( 'user_id')->references('id')
                 ->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->string('avatar');
             $table->string('nama');
             $table->text('desc');
             $table->date('tgl_berdiri');
@@ -33,6 +34,7 @@ class CreateUmkmsTable extends Migration
             $table->date('tgl_siup_exp');
             $table->string('npwp');
             $table->string('tdp');
+            $table->boolean('is_verified')->default(false);
             $table->date('tgl_tdp');
             $table->string('izin_ganguan');
             $table->date('tgl_izin_ganguan');
