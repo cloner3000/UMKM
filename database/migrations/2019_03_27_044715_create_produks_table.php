@@ -24,12 +24,11 @@ class CreateProduksTable extends Migration
             $table->string('keyword');
             $table->string('kategori_ids');
             $table->double('harga');
-            $table->string('bahan_baku');
             $table->boolean('purchase_order');
-            $table->text('pic1');
+            $table->text('pic1')->nullable();
             $table->text('pic2')->nullable();
             $table->string('status');
-            $table->double('rating');
+            $table->double('rating')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
