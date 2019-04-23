@@ -15,6 +15,11 @@
     <link rel="stylesheet" href="{{asset('template/assets/css/timeline.css')}}">
     <link rel="stylesheet" href="{{asset('template/assets/css/color_skins.css')}}">
     <link rel="stylesheet" href="{{asset('template/assets/css/ecommerce.css')}}">
+    <link rel="stylesheet" href="{{asset('template/sweetalert/sweetalert.css')}}" >
+    <link rel="stylesheet"  href="{{asset('template/bootstrap-select/css/bootstrap-select.css')}}" />
+    <link rel="stylesheet"  href="{{asset('template/select2/select2-bootstrap.css')}}"/>
+    <link rel="stylesheet"  href="{{asset('template/select2/select2.css')}}"/>
+    @stack('css')
 </head>
 <body class="theme-purple">
 <!-- Page Loader -->
@@ -661,7 +666,7 @@
 <!-- Chat-launcher -->
 
 
-<section class="content profile-page">
+<section class="content">
 
     <div class="block-header">
         <div class="row">
@@ -682,12 +687,21 @@
     });
 </script>
 
+
+
 <script src="{{asset('template/assets/bundles/libscripts.bundle.js')}}"></script> <!-- Lib Scripts Plugin Js -->
+
+<script src="{{asset('template/jquery/jquery-v3.3.1.min.js')}}"></script>
 <script src="{{asset('template/assets/bundles/vendorscripts.bundle.js')}}"></script> <!-- Lib Scripts Plugin Js -->
 
+<script  src="{{asset('template/bootstrap-select/js/bootstrap-select.js')}}"></script>
 <script src="{{asset('template/assets/bundles/knob.bundle.js')}}"></script> <!-- Jquery Knob Plugin Js -->
 
 <script src="{{asset('template/assets/bundles/mainscripts.bundle.js')}}"></script><!-- Custom Js -->
 <script src="{{asset('template/assets/js/pages/charts/jquery-knob.js')}}"></script>
+<script src="{{asset('template/sweetalert/sweetalert.min.js')}}"></script>
+<script src="{{asset('template/select2/select2.min.js')}}"></script>
+<script src="{{asset('template/tinymce/tinymce.js')}}"></script>
+@stack('script')
 </body>
 </html>
