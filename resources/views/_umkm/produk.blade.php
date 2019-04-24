@@ -87,7 +87,7 @@
         @if(Session::has('success'))
         swal({
             title: 'Data Produk',
-            text: 'Data Berhasil Di hapus',
+            text: '{{Session('success')}}',
             type: 'success',
             timer: '3500'
         })

@@ -44,7 +44,7 @@ class ProductController extends Controller
             ]);
 
         }
-        return back();
+        return redirect()->route('umkm.produk')->with('success','Data Berhasil Ditambah');
     }
 
     public function update(Request $request)
@@ -77,10 +77,15 @@ class ProductController extends Controller
                 'pic1' => $img
             ]);
 
+            $base_path = "upload/product/";
             if($request->has('temp_photos')){
                 foreach ($request->temp_photos as $item){
                     $key = array_search($item,$img);
                     array_splice($img,$key,1);
+                    //deleting Image
+                    if(File::exists($base_path.$item)){
+                        File::delete($base_path.$item);
+                    }
                 }
                 $produk->update([
                     'pic1' => $img
@@ -90,12 +95,49 @@ class ProductController extends Controller
 
             return redirect()->route('umkm.produk')->with('success','Data Berhasil Diperbarui');
         }
+            $umkm_id = Umkm::where('user_id', Auth::user()->id)->first();
+            $produk = Produk::findOrFail($request->id);
+            $produk->update([
+                'nama' => $request->nama,
+                'umkm_id' => $umkm_id->id,
+                'short_desc' => $request->short_desc,
+                'long_desc' => $request->description,
+                'keyword' => $request->key,
+                'kategori_ids' => $request->kategori,
+                'harga' => $request->harga,
+                'purchase_order' => $request->po,
+                'status' => 'ensf'
+            ]);
+
+            $img = $produk->pic1;
+            $base_path = "upload/product/";
+            if($request->has('temp_photos')){
+                foreach ($request->temp_photos as $item){
+                    $key = array_search($item,$img);
+                    array_splice($img,$key,1);
+                    //deleting Image
+                    if(File::exists($base_path.$item)){
+                        File::delete($base_path.$item);
+                    }
+                }
+                $produk->update([
+                    'pic1' => $img
+                ]);
+                return redirect()->route('umkm.produk')->with('success','Data Berhasil Diperbarui');
+            }
+        return redirect()->route('umkm.produk')->with('success','Data Berhasil Diperbarui');
     }
 
     public function destroy(Request $request)
     {
         try{
             $item = Produk::findOrfail($request->id);
+            $base_path = "upload/product/";
+            foreach ($item->pic1 as $photo){
+                if(File::exists($base_path.$photo)){
+                    File::delete($base_path.$photo);
+                }
+            }
             $item->delete();
             return redirect()->route('umkm.produk')->with('success','Data Berhasil Di hapus');
         }catch (ModelNotFoundException $exception){
