@@ -42,7 +42,7 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="bars"></a>
                 <a class="navbar-brand" href="index.html"><img src="../assets/images/logo.svg" width="30"
-                                                               alt="Oreo"><span class="m-l-10">E-UMKKM</span></a>
+                                                               alt="Oreo"><span class="m-l-10">E-UMKM</span></a>
             </div>
         </li>
         <li><a href="javascript:void(0);" class="ls-toggle-btn" data-close="false"><i class="zmdi zmdi-swap"></i></a>

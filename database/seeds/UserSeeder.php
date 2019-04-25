@@ -56,7 +56,7 @@ class UserSeeder extends Seeder
                 ]);
             } elseif ($data == 'umkm') {
                 $user = User::create([
-                    'username' => $faker->name,
+                    'username' => $faker->company,
                     'email' => 'umkm@gmail.com',
                     'password' => bcrypt('secret'),
                     'remember_token' => str_random(60),
@@ -66,7 +66,7 @@ class UserSeeder extends Seeder
                 Umkm::create([
                     'user_id' => $user->id,
                     'avatar' => 'images/shop.png',
-                    'nama' => $faker->company,
+                    'nama' => $user->username,
                     'desc' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ligula quam, porttitor
                      quis nisl eget, maximus consectetur dolor. Vestibulum venenatis nibh sit amet dui iaculis finibus. Cras laoreet venenatis aliquet. Donec maximus dui eget quam dignissim, in facilisis justo molestie. 
                      Sed sollicitudin, purus sed sollicitudin dictum, justo quam euismod dolor, eget rhoncus lacus neque eu ipsum. Pellentesque 

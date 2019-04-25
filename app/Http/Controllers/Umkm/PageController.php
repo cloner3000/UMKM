@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Umkm;
 
 use App\Model\Kategori;
+use App\Model\Like;
 use App\Model\Produk;
 use App\Model\Umkm;
 use Illuminate\Http\Request;
@@ -13,7 +14,11 @@ class PageController extends Controller
 {
     public function index()
     {
-        return view('_umkm.main');
+        $umkm = Umkm::where('user_id',Auth::user()->id)->first();
+        return view('_umkm.main',[
+            'produk' => count(Produk::where('umkm_id',$umkm->id)->get()),
+            'like' => Like::where('produk_id',(Produk::where('umkm_id',$umkm->id)->first()))->get()
+        ]);
     }
 
     public function produk()

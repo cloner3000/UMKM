@@ -21,5 +21,5 @@
     </ul>
 </li>
 
-<a href="javascript:void(0);"><i class="zmdi zmdi-settings"></i><span>Setting</span></a>
+<a href="{{route('umkm.show.akun')}}"><i class="zmdi zmdi-settings"></i><span>Setting</span></a>
 

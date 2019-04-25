@@ -46,5 +46,23 @@ Route::group(['prefix' => 'umkm/'], function () {
         ]);
     });
 
+    Route::group(['prefix' => 'akun/'], function () {
+
+        Route::get('/', [
+            'uses' => 'Umkm\UmkmController@show',
+            'as' => 'umkm.show.akun'
+        ]);
+
+        Route::get('/update', [
+            'uses' => 'Umkm\UmkmController@show',
+            'as' => 'umkm.show.update'
+        ]);
+
+        Route::post('/general/update', [
+            'uses' => 'Umkm\UmkmController@show',
+            'as' => 'umkm.general.update'
+        ]);
+    });
+
 });
 

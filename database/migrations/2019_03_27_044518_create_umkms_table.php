@@ -24,9 +24,7 @@ class CreateUmkmsTable extends Migration
             $table->date('tgl_berdiri');
             $table->string('nama_pemilik');
             $table->string('nik_pemilik');
-            $table->integer('jenis_id')->unsigned();
-            $table->foreign( 'jenis_id')->references('id')
-                ->on('jenis_umkms')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->string('jenis_id');
             $table->string('aset');
             $table->string('omset');
             $table->string('no_siup');
