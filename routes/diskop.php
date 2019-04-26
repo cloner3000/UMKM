@@ -7,4 +7,11 @@ Route::group(['prefix' => 'diskop/'], function () {
         'uses' => 'Dinskop\PageController@index',
         'as' => 'diskop.home'
     ]);
+
+    Route::group(['prefix' => 'akun/'], function () {
+        Route::get('/', [
+            'uses' => 'Dinskop\DiskopController@show',
+            'as' => 'diskop.show.akun'
+        ]);
+    });
 });

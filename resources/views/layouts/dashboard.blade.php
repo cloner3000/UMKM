@@ -232,6 +232,7 @@
                     <ul class="list">
                         @if(Auth::user()->role_id == 1)
                         @elseif(Auth::user()->role_id == 2)
+                            @include('layouts.sidemenu._diskopside')
                         @elseif(Auth::user()->role_id == 3)
                             @include('layouts.sidemenu._umkmside')
                         @endif
