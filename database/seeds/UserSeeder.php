@@ -55,39 +55,44 @@ class UserSeeder extends Seeder
                     'status' => 'Terverifikasi'
                 ]);
             } elseif ($data == 'umkm') {
-                $user = User::create([
-                    'username' => $faker->company,
-                    'email' => 'umkm@gmail.com',
-                    'password' => bcrypt('secret'),
-                    'remember_token' => str_random(60),
-                    'isUmkm' => true,
-                    'role_id' => $role->id
-                ]);
-                Umkm::create([
-                    'user_id' => $user->id,
-                    'avatar' => 'images/shop.png',
-                    'nama' => $user->username,
-                    'desc' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ligula quam, porttitor
+                for ($i = 0; $i < 6; $i++) {
+                    $user = User::create([
+                        'username' => $faker->company,
+                        'email' => $faker->safeEmail,
+                        'password' => bcrypt('secret'),
+                        'remember_token' => str_random(60),
+                        'isUmkm' => true,
+                        'role_id' => $role->id
+                    ]);
+                    Umkm::create([
+                        'user_id' => $user->id,
+                        'avatar' => 'images/shop.png',
+                        'nama' => $user->username,
+                        'desc' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur ligula quam, porttitor
                      quis nisl eget, maximus consectetur dolor. Vestibulum venenatis nibh sit amet dui iaculis finibus. Cras laoreet venenatis aliquet. Donec maximus dui eget quam dignissim, in facilisis justo molestie. 
                      Sed sollicitudin, purus sed sollicitudin dictum, justo quam euismod dolor, eget rhoncus lacus neque eu ipsum. Pellentesque 
                      in pellentesque velit. Praesent eget turpis sem. Etiam aliquam a nisi sit amet elementum. Phasellus semper luctus ex, eu faucibus risus imperdiet id. Donec finibus leo felis, at vehicula lacus 
                      pretium id. Nulla scelerisque enim eget eros iaculis rhoncus. Morbi quis magna vitae libero pulvinar ultrices et non enim. Maecenas at tempus nisi. Cras convallis nunc vitae velit vehicula, faucibus finibus enim dignissim.',
-                    'tgl_berdiri' => $faker->dateTimeThisCentury,
-                    'nama_pemilik' => $faker->name,
-                    'nik_pemilik' => $faker->randomNumber($nbDigits = NULL),
-                    'jenis_id' => rand(JenisUmkm::min('id'),JenisUmkm::max('id')),
-                    'aset' => $faker->numerify('###########'),
-                    'omset' => $faker->numerify('########'),
-                    'no_siup' => $faker->randomNumber($nbDigits = NULL),
-                    'tgl_siup' => $faker->date('Y-m-d','now'),
-                    'tgl_siup_exp' => $faker->date('Y-m-d','now'),
-                    'npwp' => $faker->numerify('###########'),
-                    'tdp' => $faker->numerify('###########'),
-                    'tgl_tdp' => $faker->date('Y-m-d','now'),
-                    'izin_ganguan' => 'NIHIl',
-                    'tgl_izin_ganguan' => $faker->date('Y-m-d','now'),
-                    'akta_notaris' => 'asdasdasdasdasasdas',
-                ]);
+                        'tgl_berdiri' => $faker->dateTimeThisCentury,
+                        'nama_pemilik' => $faker->name,
+                        'nik_pemilik' => $faker->randomNumber($nbDigits = NULL),
+                        'alamat' => $faker->address,
+                        'lat' => $faker->latitude,
+                        'long' => $faker->longitude,
+                        'jenis_id' => rand(JenisUmkm::min('id'), JenisUmkm::max('id')),
+                        'aset' => $faker->numerify('###########'),
+                        'omset' => $faker->numerify('########'),
+                        'no_siup' => $faker->randomNumber($nbDigits = NULL),
+                        'tgl_siup' => $faker->date('Y-m-d', 'now'),
+                        'tgl_siup_exp' => $faker->date('Y-m-d', 'now'),
+                        'npwp' => $faker->numerify('###########'),
+                        'tdp' => $faker->numerify('###########'),
+                        'tgl_tdp' => $faker->date('Y-m-d', 'now'),
+                        'izin_ganguan' => 'NIHIl',
+                        'tgl_izin_ganguan' => $faker->date('Y-m-d', 'now'),
+                        'akta_notaris' => 'asdasdasdasdasasdas',
+                    ]);
+                }
             } elseif ($data == 'pembeli') {
                 $user = User::create([
                     'username' => $faker->name,

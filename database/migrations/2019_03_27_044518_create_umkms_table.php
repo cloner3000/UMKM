@@ -24,6 +24,9 @@ class CreateUmkmsTable extends Migration
             $table->date('tgl_berdiri');
             $table->string('nama_pemilik');
             $table->string('nik_pemilik');
+            $table->string('alamat');
+            $table->string('lat');
+            $table->string('long');
             $table->string('jenis_id');
             $table->string('aset');
             $table->string('omset');
