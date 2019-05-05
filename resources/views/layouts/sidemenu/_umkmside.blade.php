@@ -11,7 +11,7 @@
     </ul>
 </li>
 
-<li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Order</span>
+<li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Pesanan</span>
     </a>
     <ul class="ml-menu">
         <li><a href="ec-dashboard.html">Dashboard</a></li>
@@ -21,5 +21,5 @@
     </ul>
 </li>
 
-<a href="{{route('umkm.show.akun')}}"><i class="zmdi zmdi-settings"></i><span>Setting</span></a>
+<a href="{{route('umkm.show.akun')}}"><i class="zmdi zmdi-settings"></i><span>Pengaturan</span></a>
 

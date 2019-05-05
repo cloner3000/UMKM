@@ -48,9 +48,7 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
         try{
-
             $user = User::where('email', $request->email)->firstOrFail();
-
             if(!Hash::check($request->password, $user->password)) {
                 return back()->with([
                     'error' => 'Email Atau Password Anda Salah!!.'

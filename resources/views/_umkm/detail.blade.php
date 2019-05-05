@@ -41,7 +41,7 @@
                                 <span class="m-l-10">41 reviews</span>
                             </div>
                             <hr>
-                            <p class="product-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                            <p class="product-description">{{$data->short_desc}}</p>
                             <p class="vote"><strong>78%</strong> of buyers enjoyed this product! <strong>(23 votes)</strong></p>
                             <h5 class="sizes">sizes:
                                 <span class="size" title="small">s</span>

@@ -15,7 +15,7 @@ class UmkmController extends Controller
         $umkm = Umkm::where('user_id', Auth::user()->id)->first();
         return view('_umkm.umkm',[
             'umkm' => $umkm,
-            'jenis' => JenisUmkm::findOrFail($umkm->id),
+            'jenis' => JenisUmkm::findOrFail($umkm->jenis_id),
             'jenis_all' => JenisUmkm::all()
         ]);
     }

@@ -84,33 +84,29 @@
 @endsection
 @push('script')
     <script>
-        @if(Session::has('success'))
-        swal({
-            title: 'Data Produk',
-            text: '{{Session('success')}}',
-            type: 'success',
-            timer: '3500'
-        })
-        @elseif(Session::has('error'))
-        swal({
-            title: 'Oops!!',
-            text: 'Terjadi Kesalahan, Silahkan Coba Lagi',
-            type: 'error',
-            timer: '3500'
-        })
-        @endif
-
         function dele(id) {
-           if(confirm('Apakah Anda Yakin??') == true){
-               event.preventDefault();
-               document.getElementById('delete-form-'+id).submit()
-           }else{
-               swal({
-                   title: "Dibatalkan",
-                   type: "error",
-                   text: "Data anda sekarang aman :) ",
-               })
-           }
+            swal({
+                title: 'Apakah Anda Yakin?',
+                text: "Anda tidak dapat mengembalikan data ini!",
+                icon: 'warning',
+                showLoaderOnConfirm: true,
+                closeOnClickOutside: false,
+                buttons :{
+                    cancel: {
+                        text: "Batalkan",
+                        closeModal: true,
+                        visible: true
+                    },
+                    confirm: {
+                        text: "Hapus",
+                        backgroundcolor: "#fa5555"
+                    }
+                }
+            }).then((confirm)=> {
+                if (confirm) {
+                    document.getElementById('delete-form-'+id).submit()
+                }
+            });
         }
     </script>
 @endpush

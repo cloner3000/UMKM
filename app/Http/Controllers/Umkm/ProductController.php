@@ -44,7 +44,7 @@ class ProductController extends Controller
             ]);
 
         }
-        return redirect()->route('umkm.produk')->with('success','Data Berhasil Ditambah');
+        return redirect()->route('umkm.produk')->with('success_products_product','Data Berhasil Ditambah');
     }
 
     public function update(Request $request)
@@ -90,10 +90,10 @@ class ProductController extends Controller
                 $produk->update([
                     'pic1' => $img
                 ]);
-                return redirect()->route('umkm.produk')->with('success','Data Berhasil Diperbarui');
+                return redirect()->route('umkm.produk')->with('success_products','Data Berhasil Diperbarui');
             }
 
-            return redirect()->route('umkm.produk')->with('success','Data Berhasil Diperbarui');
+            return redirect()->route('umkm.produk')->with('success_products','Data Berhasil Diperbarui');
         }
             $umkm_id = Umkm::where('user_id', Auth::user()->id)->first();
             $produk = Produk::findOrFail($request->id);
@@ -123,9 +123,9 @@ class ProductController extends Controller
                 $produk->update([
                     'pic1' => $img
                 ]);
-                return redirect()->route('umkm.produk')->with('success','Data Berhasil Diperbarui');
+                return redirect()->route('umkm.produk')->with('success_products','Data Berhasil Diperbarui');
             }
-        return redirect()->route('umkm.produk')->with('success','Data Berhasil Diperbarui');
+        return redirect()->route('umkm.produk')->with('success_products','Data Berhasil Diperbarui');
     }
 
     public function destroy(Request $request)
@@ -139,10 +139,9 @@ class ProductController extends Controller
                 }
             }
             $item->delete();
-            return redirect()->route('umkm.produk')->with('success','Data Berhasil Di hapus');
+            return redirect()->route('umkm.produk')->with('success_products','Data Berhasil Di hapus');
         }catch (ModelNotFoundException $exception){
             return redirect()->route('umkm.produk')->with('error',$exception);
         }
-
     }
 }

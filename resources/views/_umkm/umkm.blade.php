@@ -5,6 +5,14 @@
         <small>sunting informasi Umkm</small>
     </h2>
 @endsection
+@push('css')
+    <style>
+        #map {
+            height: 1000px;
+            width: 100%;
+        }
+    </style>
+@endpush
 @section('content')
 
     <div class="row clearfix">
@@ -14,16 +22,15 @@
                     <div class="row">
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="profile-image float-md-right">
-                                <img
-                                    src="{{asset( App\Model\Umkm::where('user_id',Auth::user()->id)->firstOrFail()->avatar )}}"
-                                    alt=""></div>
+                                <img  src="{{asset( App\Model\Umkm::where('user_id',Auth::user()->id)->firstOrFail()->avatar )}}"  alt="">
+                            </div>
                         </div>
                         <div class="col-lg-8 col-md-8 col-12">
                             <h4 class="m-t-0 m-b-0"><strong>{{ Auth::user()->username }} </strong></h4>
                             <span class="job_post">{{$umkm->nama_pemilik }}</span>
                             <br>
-                            <p><span
-                                    class="badge badge-info">{{ App\Model\Role::find(Auth::user()->role_id)->role_name }}</span>
+                            <p><spanu
+                                    class="badge badge-info">{{ App\Model\Role::find(Auth::user()->role_id)->role_name }}</spanu>
                                 <span class="badge badge-info">{{$jenis->name}}</span></p>
                             <div>
                                 @if(App\Model\Umkm::where('user_id',Auth::user()->id)->firstOrFail()->is_verified == true)
@@ -118,17 +125,18 @@
                                 <div class="form-group">
                                     <label>Logo UMKM</label>
                                     <div class="row">
-                                        <div class="col-md-11">
+                                        <div class="col-md-12">
                                             <input type="file" class="form-control">
                                         </div>
-                                        <div class="col-md-1">
-                                            <button class="btn btn-primary btn-icon  btn-icon-mini btn-round"
-                                                    onclick="return swalImage()" type="button">
-                                                <i class="zmdi zmdi-image-alt"></i>
-                                            </button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">Alamat UMKM</label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="map"></div>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
@@ -268,11 +276,6 @@
             $('.select2').select2();
         });
 
-        function swalImage() {
-            swal({
-                title: 'Logo UMKM saat ini',
-                imageUrl: '{{asset($umkm->avatar)}}',
-            })
-        }
+
     </script>
 @endpush

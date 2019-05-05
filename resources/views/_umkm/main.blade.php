@@ -15,8 +15,7 @@
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="profile-image float-md-right">
                                 <img
-                                    src="{{asset( App\Model\Umkm::where('user_id',Auth::user()->id)->firstOrFail()->avatar )}}"
-                                    alt=""></div>
+                                    src="{{asset( App\Model\Umkm::where('user_id',Auth::user()->id)->firstOrFail()->avatar )}}"></div>
                         </div>
                         <div class="col-lg-8 col-md-8 col-12">
                             <h4 class="m-t-0 m-b-0"><strong>{{ Auth::user()->username }}</strong></h4>
@@ -61,7 +60,7 @@
                     <li class="col-lg-4 col-md-4 col-6">
                         <div class="body">
                             <i class="zmdi zmdi-thumb-up col-blue"></i>
-                            <h5 class="m-b-0 number count-to" data-from="0" data-to="{{count($like)}}" data-speed="1000"
+                            <h5 class="m-b-0 number count-to" data-from="0" data-to="0" data-speed="1000"
                                 data-fresh-interval="700">1203</h5>
                             <small>Likes</small>
                         </div>
@@ -69,7 +68,7 @@
                     <li class="col-lg-4 col-md-4 col-6">
                         <div class="body">
                             <i class="zmdi zmdi-comment-text col-red"></i>
-                            <h5 class="m-b-0 number count-to" data-from="0" data-to="324" data-speed="1000"
+                            <h5 class="m-b-0 number count-to" data-from="0" data-to="0" data-speed="1000"
                                 data-fresh-interval="700">324</h5>
                             <small>Comments</small>
                         </div>
@@ -79,7 +78,7 @@
                             <i class="zmdi zmdi-account text-success"></i>
                             <h5 class="m-b-0 number count-to" data-from="0" data-to="1980" data-speed="1000"
                                 data-fresh-interval="700">1980</h5>
-                            <small>Profile Views</small>
+                            <small>Review</small>
                         </div>
                     </li>
                     <li class="col-lg-4 col-md-4 col-6">
@@ -230,60 +229,9 @@
                                 <small class="comment-date float-sm-right">Dec 18, 2017</small>
                             </div>
                         </li>
-
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="col-xl-4 col-lg-5 col-md-12">
-            <div class="card member-card">
-                <div class="header l-parpl">
-                    <h4 class="m-t-0">Matthew Deo</h4>
-                </div>
-                <div class="member-img">
-                    <a href="profile.html" class="">
-                        <img class="rounded-circle" src="../assets/images/lg/avatar3.jpg"  alt="profile-image">
-                    </a>
-                </div>
-                <div class="body">
-                    <div class="col-12">
-                        <ul class="social-links list-unstyled">
-                            <li>
-                                <a title="facebook" href="javascript:void(0);">
-                                    <i class="zmdi zmdi-facebook"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a title="twitter" href="javascript:void(0);">
-                                    <i class="zmdi zmdi-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a title="instagram" href="javascript:void(0);">
-                                    <i class="zmdi zmdi-instagram"></i>
-                                </a>
-                            </li>
-                        </ul>
-                        <p class="text-muted">795 Folsom Ave, Suite 600 San Francisco, CADGE 94107</p>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-4">
-                            <h5>98</h5>
-                            <small>Item Buy</small>
-                        </div>
-                        <div class="col-4">
-                            <h5>78</h5>
-                            <small>Mobile</small>
-                        </div>
-                        <div class="col-4">
-                            <h5>2,046$</h5>
-                            <small>Spent</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-
 @endsection

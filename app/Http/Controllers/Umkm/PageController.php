@@ -15,9 +15,9 @@ class PageController extends Controller
     public function index()
     {
         $umkm = Umkm::where('user_id',Auth::user()->id)->first();
+
         return view('_umkm.main',[
             'produk' => count(Produk::where('umkm_id',$umkm->id)->get()),
-            'like' => Like::where('produk_id',(Produk::where('umkm_id',$umkm->id)->first()))->get()
         ]);
     }
 
