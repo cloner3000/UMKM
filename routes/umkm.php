@@ -2,7 +2,7 @@
 /**
  * Routing for UMKM
  */
-Route::group(['prefix' => 'umkm/'], function () {
+Route::group(['prefix' => 'umkm/','middleware' => ['auth','umkm']], function () {
     Route::get('dashboard', [
         'uses' => 'Umkm\PageController@index',
         'as' => 'umkm.home'

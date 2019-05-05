@@ -2,7 +2,7 @@
 /**
  * Routing for dinas koperasi
  */
-Route::group(['prefix' => 'diskop/'], function () {
+Route::group(['prefix' => 'diskop/','middleware' => ['auth','diskop']], function () {
     Route::get('dashboard', [
         'uses' => 'Dinskop\PageController@index',
         'as' => 'diskop.home'
