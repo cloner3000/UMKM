@@ -1,8 +1,10 @@
 <script>
-    $(document).ready(function(){
-        openLoginModal();
+    $(function() {
+        @if(session('error_login'))
+            $("#loginModal").modal('show');
+            shakeModal();
+        @endif
     });
-
 
     /*
      *
@@ -47,7 +49,6 @@
         setTimeout(function(){
             $('#loginModal').modal('show');
         }, 230);
-
     }
 
     function loginAjax(){
@@ -67,7 +68,7 @@
 
     function shakeModal(){
         $('#loginModal .modal-dialog').addClass('shake');
-        $('.error').addClass('alert alert-danger').html("Invalid email/password combination");
+        $('.error').addClass('alert alert-danger').html("Kombinasi email dan password salah");
         $('input[type="password"]').val('');
         setTimeout( function(){
             $('#loginModal .modal-dialog').removeClass('shake');

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="icon" href="{{asset('images/shop.ico')}}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -17,14 +17,20 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('onetech/styles/bootstrap4/bootstrap.min.css') }}" rel="stylesheet">
+    <style>
+
+        .bg-custom {
+            background-color:#60bafd!important;
+        }
+    </style>
 </head>
-<body>
-    <div id="app">
+<body style="background-color: #F6F6F6" >
+    <div id="app" >
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    E-UMKM
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -72,9 +78,11 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4" style="background-color: #F6F6F6">
             @yield('content')
         </main>
     </div>
 </body>
+<script src="{{asset('onetech/js/jquery-3.3.1.min.js')}}"></script>
+<script src="{{asset('onetech/styles/bootstrap4/bootstrap.min.js')}}"></script>
 </html>

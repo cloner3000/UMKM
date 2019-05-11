@@ -27,16 +27,17 @@
                         </div>
                         <div class="error"></div>
                         <div class="form loginBox">
-                            <form method="post" action="/login" accept-charset="UTF-8">
-                                <input id="email" class="form-control" type="text" placeholder="Email" name="email">
+                            <form method="POST" action="{{ route('login') }}" accept-charset="UTF-8">
+                                @csrf
+                                <input id="email" class="form-control" type="text" placeholder="Email" name="email" required>
                                 <input id="password" class="form-control" type="password" placeholder="Password"
-                                       name="password">
-                                <input class="btn btn-default btn-login" type="button" value="Login"
-                                       onclick="loginAjax()">
+                                       name="password" required>
+                                <input class="btn btn-default btn-login" type="submit" value="Login">
                             </form>
                         </div>
                     </div>
                 </div>
+
                 <div class="box">
                     <div class="content registerBox" style="display:none;">
                         <div class="form">

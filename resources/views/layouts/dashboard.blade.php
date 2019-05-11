@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
-
+    <link rel="icon" href="{{asset('images/shop.ico')}}">
     <title>@yield('title')</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
     <!-- Favicon-->
     <link rel="stylesheet" href="{{asset('template/bootstrap/css/bootstrap.min.css')}}">
     <!-- Custom Css -->
