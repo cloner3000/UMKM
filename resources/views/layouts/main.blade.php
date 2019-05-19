@@ -14,7 +14,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('onetech/plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('onetech/plugins/OwlCarousel2-2.2.1/animate.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('onetech/plugins/slick-1.8.0/slick.css')}}">
-
+    <!-- Sweet Alert v2 -->
+    <script src="{{ asset('js/sweetalert/sweetalert.min.js') }}"></script>
     @stack('main_css')
     <style>
         /*
@@ -62,27 +63,51 @@
         }
 
         @-webkit-keyframes shake {
-            0%, 100% {-webkit-transform: translateX(0);}
-            10%, 30%, 50%, 70%, 90% {-webkit-transform: translateX(-10px);}
-            20%, 40%, 60%, 80% {-webkit-transform: translateX(10px);}
+            0%, 100% {
+                -webkit-transform: translateX(0);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                -webkit-transform: translateX(-10px);
+            }
+            20%, 40%, 60%, 80% {
+                -webkit-transform: translateX(10px);
+            }
         }
 
         @-moz-keyframes shake {
-            0%, 100% {-moz-transform: translateX(0);}
-            10%, 30%, 50%, 70%, 90% {-moz-transform: translateX(-10px);}
-            20%, 40%, 60%, 80% {-moz-transform: translateX(10px);}
+            0%, 100% {
+                -moz-transform: translateX(0);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                -moz-transform: translateX(-10px);
+            }
+            20%, 40%, 60%, 80% {
+                -moz-transform: translateX(10px);
+            }
         }
 
         @-o-keyframes shake {
-            0%, 100% {-o-transform: translateX(0);}
-            10%, 30%, 50%, 70%, 90% {-o-transform: translateX(-10px);}
-            20%, 40%, 60%, 80% {-o-transform: translateX(10px);}
+            0%, 100% {
+                -o-transform: translateX(0);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                -o-transform: translateX(-10px);
+            }
+            20%, 40%, 60%, 80% {
+                -o-transform: translateX(10px);
+            }
         }
 
         @keyframes shake {
-            0%, 100% {transform: translateX(0);}
-            10%, 30%, 50%, 70%, 90% {transform: translateX(-10px);}
-            20%, 40%, 60%, 80% {transform: translateX(10px);}
+            0%, 100% {
+                transform: translateX(0);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                transform: translateX(-10px);
+            }
+            20%, 40%, 60%, 80% {
+                transform: translateX(10px);
+            }
         }
 
         .shake {
@@ -92,22 +117,26 @@
             animation-name: shake;
         }
 
-        .login .modal-dialog{
+        .login .modal-dialog {
             width: 350px;
         }
-        .login .modal-footer{
+
+        .login .modal-footer {
             border-top: 0;
             margin-top: 0px;
             padding: 10px 20px 20px;
         }
+
         .login .modal-header {
             border: 0 none;
             padding: 15px 15px 15px;
             /*     padding: 11px 15px; */
         }
-        .login .modal-body{
+
+        .login .modal-body {
             /*     background-color: #eeeeee; */
         }
+
         .login .division {
             float: none;
             margin: 0 auto 18px;
@@ -116,29 +145,34 @@
             text-align: center;
             width: 100%;
         }
+
         .login .division .line {
             border-top: 1px solid #DFDFDF;
             position: absolute;
             top: 10px;
             width: 34%;
         }
+
         .login .division .line.l {
             left: 0;
         }
+
         .login .division .line.r {
             right: 0;
         }
+
         .login .division span {
             color: #424242;
             font-size: 17px;
         }
+
         .login .box .social {
             float: none;
             margin: 0 auto 30px;
             text-align: center;
         }
 
-        .login .social .circle{
+        .login .social .circle {
             background-color: #EEEEEE;
             color: #FFFFFF;
             border-radius: 100px;
@@ -146,28 +180,36 @@
             margin: 0 17px;
             padding: 15px;
         }
-        .login .social .circle .fa{
+
+        .login .social .circle .fa {
             font-size: 16px;
         }
-        .login .social .facebook{
+
+        .login .social .facebook {
             background-color: #455CA8;
             color: #FFFFFF;
         }
-        .login .social .google{
+
+        .login .social .google {
             background-color: #F74933;
         }
-        .login .social .github{
+
+        .login .social .github {
             background-color: #403A3A;
         }
-        .login .facebook:hover{
+
+        .login .facebook:hover {
             background-color: #6E83CD;
         }
-        .login .google:hover{
+
+        .login .google:hover {
             background-color: #FF7566;
         }
-        .login .github:hover{
+
+        .login .github:hover {
             background-color: #4D4D4d;;
         }
+
         .login .forgot {
             color: #797979;
             margin-left: 0;
@@ -175,7 +217,8 @@
             text-align: center;
             width: 100%;
         }
-        .login .btn-login, .registerBox .btn-register{
+
+        .login .btn-login, .registerBox .btn-register {
             background-color: #60bafd;
             border-color: #60bafd;
             border-width: 0;
@@ -186,24 +229,29 @@
             text-transform: uppercase;
             width: 100%;
         }
-        .login .btn-login:hover, .registerBox .btn-register:hover{
+
+        .login .btn-login:hover, .registerBox .btn-register:hover {
             background-color: #00A4E4;
             color: #FFFFFF;
         }
-        .login .form-control{
+
+        .login .form-control {
             border-radius: 3px;
             background-color: rgba(0, 0, 0, 0.09);
             box-shadow: 0 1px 0px 0px rgba(0, 0, 0, 0.09) inset;
             color: #FFFFFF;
         }
-        .login .form-control:hover{
-            background-color: rgba(0,0,0,.16);
+
+        .login .form-control:hover {
+            background-color: rgba(0, 0, 0, .16);
         }
-        .login .form-control:focus{
+
+        .login .form-control:focus {
             box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.04) inset;
-            background-color: rgba(0,0,0,0.23);
+            background-color: rgba(0, 0, 0, 0.23);
             color: #FFFFFF;
         }
+
         .login .box .form input[type="text"], .login .box .form input[type="password"] {
             border-radius: 3px;
             border: none;
@@ -216,13 +264,13 @@
         }
 
 
-        @media (max-width:400px){
-            .login .modal-dialog{
+        @media (max-width: 400px) {
+            .login .modal-dialog {
                 width: 100%;
             }
         }
 
-        .big-login, .big-register{
+        .big-login, .big-register {
             background-color: #00bbff;
             color: #FFFFFF;
             border-radius: 7px;
@@ -234,18 +282,21 @@
             text-transform: uppercase;
             transition: all 0.3s ease 0s;
         }
-        .big-login:hover{
+
+        .big-login:hover {
             background-color: #00A4E4;
             color: #FFFFFF;
         }
-        .big-register{
-            background-color: rgba(0,0,0,.0);
+
+        .big-register {
+            background-color: rgba(0, 0, 0, .0);
             color: #00bbff;
             border-color: #00bbff;
         }
-        .big-register:hover{
+
+        .big-register:hover {
             border-color: #00A4E4;
-            color:  #00A4E4;
+            color: #00A4E4;
         }
     </style>
 </head>
@@ -272,7 +323,7 @@
                     </div>
 
                     <!-- Search -->
-                    <div class="col-lg-7 col-12 order-lg-2 order-3 text-lg-left text-right">
+                    <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
                         <div class="header_search">
                             <div class="header_search_content">
                                 <div class="header_search_form_container">
@@ -302,9 +353,10 @@
                     </div>
 
                     <!-- Wishlist -->
-                    <div class="col-lg-3 col-8 order-lg-2 order-2 text-lg-left text-right">
+                    <div class="col-lg-4 col-12 order-lg-12 order-2 text-lg-left text-right">
                         <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                             @guest
+
                                 <div class="wishlist d-flex flex-row align-items-center justify-content-end">
                                     <div class="wishlist_content">
                                         <div class="row">
@@ -324,24 +376,43 @@
                                 </div>
 
                             @else
-                                <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                                    <div class="wishlist_icon"><img src="images/heart.png" alt=""></div>
-                                    <div class="wishlist_content">
-                                        <div class="wishlist_text"><a href="#">Wishlist</a></div>
-                                        <div class="wishlist_count">115</div>
-                                    </div>
-                                </div>
-
-                                <!-- Cart -->
-                                <div class="cart">
-                                    <div class="cart_container d-flex flex-row align-items-center justify-content-end">
-                                        <div class="cart_icon">
-                                            <img src="images/cart.png" alt="">
-                                            <div class="cart_count"><span>10</span></div>
+                                <div class="row">
+                                    <div class="col-lg-3 offset-3">
+                                        <div class="wishlist d-flex flex-row align-items-center justify-content-end">
+                                            <span class="fa fa-heart" style="font-size: 36px;color: lightslategrey"></span>
+                                            <div class="wishlist_content">
+                                                <div class="wishlist_text"><a href="#">Wishlist</a></div>
+                                                <div class="wishlist_count">115</div>
+                                            </div>
                                         </div>
-                                        <div class="cart_content">
-                                            <div class="cart_text"><a href="#">Cart</a></div>
-                                            <div class="cart_price">$85</div>
+                                    </div>
+                                    <div class="col-lg-3 offset-1">
+                                        <div class="cart">
+                                            <div class="cart_container d-flex flex-row align-items-center justify-content-end">
+                                                <div class="cart_icon">
+                                                    <span id="cart" class="fa fa-shopping-cart" style="font-size: 36px;color: lightslategrey"></span>
+                                                    <div class="cart_count"><span>10</span></div>
+                                                </div>
+                                                <div class="cart_content">
+                                                    <div class="cart_text"><a href="#">Keranjang</a></div>
+                                                    <div class="cart_price">$85</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary ">{{Auth::user()->username}}</button>
+                                            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="#">Action</a>
+                                                <a class="dropdown-item" href="#">Another action</a>
+                                                <a class="dropdown-item" href="#">Something else here</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Separated link</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -370,7 +441,8 @@
                                 </div>
 
                                 <ul class="cat_menu">
-                                    <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
+                                    <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a>
+                                    </li>
                                     <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
                                     <li class="hassubs">
                                         <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
@@ -378,10 +450,14 @@
                                             <li class="hassubs">
                                                 <a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
                                                 <ul>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
+                                                    </li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
+                                                    </li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
+                                                    </li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
+                                                    </li>
                                                 </ul>
                                             </li>
                                             <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
@@ -409,9 +485,12 @@
                                             <li>
                                                 <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
                                                 <ul>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
+                                                    </li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
+                                                    </li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
+                                                    </li>
                                                 </ul>
                                             </li>
                                             <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
@@ -425,9 +504,12 @@
                                             <li>
                                                 <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
                                                 <ul>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
+                                                    </li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
+                                                    </li>
+                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
+                                                    </li>
                                                 </ul>
                                             </li>
                                             <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
@@ -439,12 +521,16 @@
                                         <a href="#">Pages<i class="fas fa-chevron-down"></i></a>
                                         <ul>
                                             <li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a></li>
+                                            <li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a>
+                                            </li>
                                             <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="regular.html">Regular Post<i class="fas fa-chevron-down"></i></a></li>
+                                            <li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a>
+                                            </li>
+                                            <li><a href="regular.html">Regular Post<i
+                                                        class="fas fa-chevron-down"></i></a></li>
                                             <li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
+                                            <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
@@ -458,7 +544,8 @@
                                 <div class="menu_trigger d-flex flex-row align-items-center justify-content-end">
                                     <div class="menu_burger">
                                         <div class="menu_trigger_text">menu</div>
-                                        <div class="cat_burger menu_burger_inner"><span></span><span></span><span></span></div>
+                                        <div class="cat_burger menu_burger_inner">
+                                            <span></span><span></span><span></span></div>
                                     </div>
                                 </div>
                             </div>
@@ -480,7 +567,8 @@
 
                             <div class="page_menu_search">
                                 <form action="#">
-                                    <input type="search" required="required" class="page_menu_search_input" placeholder="Search for products...">
+                                    <input type="search" required="required" class="page_menu_search_input"
+                                           placeholder="Search for products...">
                                 </form>
                             </div>
                             <ul class="page_menu_nav">
@@ -541,13 +629,20 @@
                                         <li><a href="#">Menu Item<i class="fa fa-angle-down"></i></a></li>
                                     </ul>
                                 </li>
-                                <li class="page_menu_item"><a href="blog.html">blog<i class="fa fa-angle-down"></i></a></li>
-                                <li class="page_menu_item"><a href="contact.html">contact<i class="fa fa-angle-down"></i></a></li>
+                                <li class="page_menu_item"><a href="blog.html">blog<i class="fa fa-angle-down"></i></a>
+                                </li>
+                                <li class="page_menu_item"><a href="contact.html">contact<i
+                                            class="fa fa-angle-down"></i></a></li>
                             </ul>
 
                             <div class="menu_contact">
-                                <div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/phone_white.png" alt=""></div>+38 068 005 3570</div>
-                                <div class="menu_contact_item"><div class="menu_contact_icon"><img src="images/mail_white.png" alt=""></div><a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                                <div class="menu_contact_item">
+                                    <div class="menu_contact_icon"><img src="images/phone_white.png" alt=""></div>
+                                    +38 068 005 3570
+                                </div>
+                                <div class="menu_contact_item">
+                                    <div class="menu_contact_icon"><img src="images/mail_white.png" alt=""></div>
+                                    <a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
                             </div>
                         </div>
                     </div>
@@ -559,140 +654,143 @@
 
     <!-- Banner -->
 
-        <div class="banner">
-            <div class="banner_background" style="background-image:url({{asset('onetech/images/banner_background.jpg')}})"></div>
-            <div class="container fill_height">
-                <div class="row fill_height">
-                    <div class="banner_product_image"><img src="{{asset('onetech/images/banner_product.png')}}" alt=""></div>
-                    <div class="col-lg-5 offset-lg-4 fill_height">
-                        <div class="banner_content">
-                            <h1 class="banner_text">Segera Daftarkan UMKM Anda</h1>
-                            <div class="banner_product_name">Kami Bantu Wujudkan Lapak Impianmu</div>
-                            <br>
-                            <div class="button banner_button"><a href="{{route('register')}}">Daftar Sekarang</a></div>
+    <div class="banner">
+        <div class="banner_background"
+             style="background-image:url({{asset('onetech/images/banner_background.jpg')}})"></div>
+        <div class="container fill_height">
+            <div class="row fill_height">
+                <div class="banner_product_image"><img src="{{asset('onetech/images/banner_product.png')}}" alt="">
+                </div>
+                <div class="col-lg-5 offset-lg-4 fill_height">
+                    <div class="banner_content">
+                        <h1 class="banner_text">Segera Daftarkan UMKM Anda</h1>
+                        <div class="banner_product_name">Kami Bantu Wujudkan Lapak Impianmu</div>
+                        <br>
+                        <div class="button banner_button"><a href="{{route('register')}}">Daftar Sekarang</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@yield('main_content')
+@include('layouts.partial.modal_login')
+<!-- Characteristics -->
+
+
+    <!-- Footer -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 footer_col">
+                    <div class="footer_column footer_contact">
+                        <div class="logo_container">
+                            <div class="logo"><a href="#">OneTech</a></div>
+                        </div>
+                        <div class="footer_title">Got Question? Call Us 24/7</div>
+                        <div class="footer_phone">+38 068 005 3570</div>
+                        <div class="footer_contact_text">
+                            <p>17 Princess Road, London</p>
+                            <p>Grester London NW18JR, UK</p>
+                        </div>
+                        <div class="footer_social">
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google"></i></a></li>
+                                <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 offset-lg-2">
+                    <div class="footer_column">
+                        <div class="footer_title">Find it Fast</div>
+                        <ul class="footer_list">
+                            <li><a href="#">Computers & Laptops</a></li>
+                            <li><a href="#">Cameras & Photos</a></li>
+                            <li><a href="#">Hardware</a></li>
+                            <li><a href="#">Smartphones & Tablets</a></li>
+                            <li><a href="#">TV & Audio</a></li>
+                        </ul>
+                        <div class="footer_subtitle">Gadgets</div>
+                        <ul class="footer_list">
+                            <li><a href="#">Car Electronics</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+                    <div class="footer_column">
+                        <ul class="footer_list footer_list_2">
+                            <li><a href="#">Video Games & Consoles</a></li>
+                            <li><a href="#">Accessories</a></li>
+                            <li><a href="#">Cameras & Photos</a></li>
+                            <li><a href="#">Hardware</a></li>
+                            <li><a href="#">Computers & Laptops</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-2">
+                    <div class="footer_column">
+                        <div class="footer_title">Customer Care</div>
+                        <ul class="footer_list">
+                            <li><a href="#">My Account</a></li>
+                            <li><a href="#">Order Tracking</a></li>
+                            <li><a href="#">Wish List</a></li>
+                            <li><a href="#">Customer Services</a></li>
+                            <li><a href="#">Returns / Exchange</a></li>
+                            <li><a href="#">FAQs</a></li>
+                            <li><a href="#">Product Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Copyright -->
+
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+
+                    <div
+                        class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
+                        <div class="copyright_content">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                            All rights reserved | This template is made with <i class="fa fa-heart"
+                                                                                aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </div>
+                        <div class="logos ml-sm-auto">
+                            <ul class="logos_list">
+                                <li><a href="#"><img src="images/logos_1.png" alt=""></a></li>
+                                <li><a href="#"><img src="images/logos_2.png" alt=""></a></li>
+                                <li><a href="#"><img src="images/logos_3.png" alt=""></a></li>
+                                <li><a href="#"><img src="images/logos_4.png" alt=""></a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        @yield('main_content')
-        @include('layouts.partial.modal_login')
-    <!-- Characteristics -->
-
-
-        <!-- Footer -->
-
-        <footer class="footer">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-lg-3 footer_col">
-                        <div class="footer_column footer_contact">
-                            <div class="logo_container">
-                                <div class="logo"><a href="#">OneTech</a></div>
-                            </div>
-                            <div class="footer_title">Got Question? Call Us 24/7</div>
-                            <div class="footer_phone">+38 068 005 3570</div>
-                            <div class="footer_contact_text">
-                                <p>17 Princess Road, London</p>
-                                <p>Grester London NW18JR, UK</p>
-                            </div>
-                            <div class="footer_social">
-                                <ul>
-                                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-google"></i></a></li>
-                                    <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-2 offset-lg-2">
-                        <div class="footer_column">
-                            <div class="footer_title">Find it Fast</div>
-                            <ul class="footer_list">
-                                <li><a href="#">Computers & Laptops</a></li>
-                                <li><a href="#">Cameras & Photos</a></li>
-                                <li><a href="#">Hardware</a></li>
-                                <li><a href="#">Smartphones & Tablets</a></li>
-                                <li><a href="#">TV & Audio</a></li>
-                            </ul>
-                            <div class="footer_subtitle">Gadgets</div>
-                            <ul class="footer_list">
-                                <li><a href="#">Car Electronics</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-2">
-                        <div class="footer_column">
-                            <ul class="footer_list footer_list_2">
-                                <li><a href="#">Video Games & Consoles</a></li>
-                                <li><a href="#">Accessories</a></li>
-                                <li><a href="#">Cameras & Photos</a></li>
-                                <li><a href="#">Hardware</a></li>
-                                <li><a href="#">Computers & Laptops</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-2">
-                        <div class="footer_column">
-                            <div class="footer_title">Customer Care</div>
-                            <ul class="footer_list">
-                                <li><a href="#">My Account</a></li>
-                                <li><a href="#">Order Tracking</a></li>
-                                <li><a href="#">Wish List</a></li>
-                                <li><a href="#">Customer Services</a></li>
-                                <li><a href="#">Returns / Exchange</a></li>
-                                <li><a href="#">FAQs</a></li>
-                                <li><a href="#">Product Support</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </footer>
-
-        <!-- Copyright -->
-
-        <div class="copyright">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-
-                        <div
-                            class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
-                            <div class="copyright_content">
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                                All rights reserved | This template is made with <i class="fa fa-heart"
-                                                                                    aria-hidden="true"></i> by <a
-                                    href="https://colorlib.com" target="_blank">Colorlib</a>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                            </div>
-                            <div class="logos ml-sm-auto">
-                                <ul class="logos_list">
-                                    <li><a href="#"><img src="images/logos_1.png" alt=""></a></li>
-                                    <li><a href="#"><img src="images/logos_2.png" alt=""></a></li>
-                                    <li><a href="#"><img src="images/logos_3.png" alt=""></a></li>
-                                    <li><a href="#"><img src="images/logos_4.png" alt=""></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    </div>
 
 </div>
 
 <script src="{{asset('onetech/js/jquery-3.3.1.min.js')}}"></script>
 
 @include('layouts.partial._script')
+@include('layouts.partial.alert')
 @push('main_scipt')
     <script src="{{asset('onetech/styles/bootstrap4/popper.js')}}"></script>
     <script src="{{asset('onetech/styles/bootstrap4/bootstrap.min.js')}}"></script>

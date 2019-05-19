@@ -17,6 +17,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::post('guest/auth',[
+    'uses' => 'Auth\GuestRegisterController@register',
+    'as' => 'auth.guest'
+]);
+
+Route::post('umkm/auth',[
+    'uses' => 'Auth\UmkmRegisterController@register',
+    'as' => 'auth.umkm'
+]);
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'user/'], function () {

@@ -3,6 +3,18 @@
         @if(session('error_login'))
             $("#loginModal").modal('show');
             shakeModal();
+            @elseif(session('error_register'))
+            $('.loginBox').fadeOut('fast',function(){
+                $('.registerBox').fadeIn('fast');
+                $('.login-footer').fadeOut('fast',function(){
+                    $('.register-footer').fadeIn('fast');
+                });
+                $('.modal-title').html('Register with');
+            });
+        $('.errorRegister').addClass('alert alert-danger').html('{{session('error_register')}}');
+            setTimeout(function(){
+                $('#loginModal').modal('show');
+            }, 230);
         @endif
     });
 

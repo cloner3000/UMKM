@@ -14,7 +14,7 @@
                                 <i class="fa fa-github fa-fw"></i>
                             </a>
                             <a id="google_login" class="circle google" href="/auth/google_oauth2">
-                                <i class="fa fa-google-plus fa-fw"></i>
+                                <i class="fa fa-google"></i>
                             </a>
                             <a id="facebook_login" class="circle facebook" href="/auth/facebook">
                                 <i class="fa fa-facebook fa-fw"></i>
@@ -40,12 +40,15 @@
 
                 <div class="box">
                     <div class="content registerBox" style="display:none;">
+                        <div class="errorRegister"></div>
                         <div class="form">
-                            <form method="post" html="{:multipart=>true}" data-remote="true" action="/register"
-                                  accept-charset="UTF-8">
+                            <form method="post" data-remote="true" action="{{route('auth.guest')}}">
+                                @csrf
+                                <input id="email" class="form-control" type="text" placeholder="Username" name="username">
                                 <input id="email" class="form-control" type="text" placeholder="Email" name="email">
                                 <input id="password" class="form-control" type="password" placeholder="Password"
                                        name="password">
+                                <input type="hidden" name="isGuest" value="true">
                                 <input id="password_confirmation" class="form-control" type="password"
                                        placeholder="Repeat Password" name="password_confirmation">
                                 <input class="btn btn-default btn-register" type="submit" value="Create account"
