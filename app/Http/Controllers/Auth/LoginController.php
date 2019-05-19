@@ -48,10 +48,16 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
         try{
-            $user = User::where('email', $request->email)->firstOrFail();
+            $user = User::where('email', $request->email)->first();
+            if(empty($user)){
+                return back()->with([
+                    'error_login' => 'Email Atau Password Anda Salah!!.'
+                ]);
+            }
+
             if(!Hash::check($request->password, $user->password)) {
                 return back()->with([
-                    'error' => 'Email Atau Password Anda Salah!!.'
+                    'error_login' => 'Email Atau Password Anda Salah!!.'
                 ]);
             }
             Auth::login($user);
@@ -62,7 +68,7 @@ class LoginController extends Controller
             }elseif ($role == 3) {
                 return redirect()->route('umkm.home');
             }elseif ($role == 4){
-                return redirect('/home');
+                return redirect('/')->with('login','Anda masuk sebagai '.Auth::user()->username);
             }
         }catch (ModelNotFoundException $exception){
             return back()->with([

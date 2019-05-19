@@ -18,10 +18,10 @@ class DiskopMiddleware
     {
         if(Auth::check()){
             if(Auth::user()->role_id == 2){
-                return $next($request);
+                return $next($request); //lanjur ke prosess berikutnya
             }
         } else{
-            return $next($request);
+            return $next($request); //lanjut ke halaman Login
         }
         return response()->view('error.403');
     }
