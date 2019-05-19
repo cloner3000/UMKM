@@ -88,6 +88,7 @@ class UserSeeder extends Seeder
                         'npwp' => $faker->numerify('###########'),
                         'tdp' => $faker->numerify('###########'),
                         'tgl_tdp' => $faker->date('Y-m-d', 'now'),
+                        'tgl_tdp_exp' => $faker->date('Y-m-d', 'now'),
                         'izin_ganguan' => 'NIHIl',
                         'tgl_izin_ganguan' => $faker->date('Y-m-d', 'now'),
                         'akta_notaris' => 'asdasdasdasdasasdas',
