@@ -40,7 +40,7 @@ class UserSeeder extends Seeder
             } elseif ($data == 'dinskop') {
                 $user = User::create([
                     'username' => $faker->name,
-                    'email' => $faker->unique()->safeEmail,
+                    'email' => 'petugasdiskop@opd.com',
                     'password' => bcrypt('secret'),
                     'remember_token' => str_random(60),
                     'isDiskop' => true,

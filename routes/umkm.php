@@ -59,8 +59,13 @@ Route::group(['prefix' => 'umkm/','middleware' => ['auth','umkm']], function () 
         ]);
 
         Route::post('/general/update', [
-            'uses' => 'Umkm\UmkmController@show',
+            'uses' => 'Umkm\UmkmController@update_general',
             'as' => 'umkm.general.update'
+        ]);
+
+        Route::post('/izin/update', [
+            'uses' => 'Umkm\UmkmController@update_izin',
+            'as' => 'umkm.izin.update'
         ]);
     });
 

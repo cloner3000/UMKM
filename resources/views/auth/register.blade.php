@@ -390,7 +390,7 @@
 
                                         <div class="col-sm-10 col-sm-offset-1">
                                             <div class="form-group">
-                                                <label>Berkas Akta Notaris <small>Maksimum 2 Mb</small></label>
+                                                <label>Berkas Akta Notaris(.JPG .PNG .JPEG) <small>Maksimum 2 Mb</small></label>
                                                 <input type="file" name="akta_notaris" id="" class="form-control" required>
                                             </div>
                                         </div>

@@ -18,8 +18,9 @@ class CreateVerifyUmkmsTable extends Migration
             $table->integer('umkm_id')->unsigned();
             $table->foreign( 'umkm_id')->references('id')
                 ->on('umkm')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->string('status');
             $table->text('note')->nullable();
-            $table->text('bukti');
+            $table->text('bukti')->nullable();
             $table->timestamps();
         });
     }

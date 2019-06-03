@@ -8,20 +8,20 @@
     <link rel="icon" href="{{asset('images/shop.ico')}}">
     <title>@yield('title')</title>
 
-    <!-- Favicon-->
     <link rel="stylesheet" href="{{asset('template/bootstrap/css/bootstrap.min.css')}}">
+
+    <link rel="stylesheet" href="{{asset('template/jquery-datatable/dataTables.bootstrap4.min.css')}}">
     <!-- Custom Css -->
     <link rel="stylesheet" href="{{asset('template/assets/css/main.css')}}">
-    <link rel="stylesheet" href="{{asset('template/assets/css/timeline.css')}}">
     <link rel="stylesheet" href="{{asset('template/assets/css/color_skins.css')}}">
-    <link rel="stylesheet" href="{{asset('template/assets/css/ecommerce.css')}}">
 
+    <link href="{{asset('template/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
+
+    <link rel="stylesheet" href="{{asset('template/select2/select2.css')}}" />
+{{--<link rel="stylesheet" href="{{asset('js/datatable/datatables.min.css')}}">--}}
     <!-- Sweet Alert v2 -->
     <script src="{{ asset('js/sweetalert/sweetalert.min.js') }}"></script>
 
-    <link rel="stylesheet"  href="{{asset('template/bootstrap-select/css/bootstrap-select.css')}}" />
-    <link rel="stylesheet"  href="{{asset('template/select2/select2-bootstrap.css')}}"/>
-    <link rel="stylesheet"  href="{{asset('template/select2/select2.css')}}"/>
     @stack('css')
 </head>
 <body class="theme-blue">
@@ -61,7 +61,7 @@
             <a href="{{ route('logout') }}"
                onclick="event.preventDefault();
                document.getElementById('logout-form').submit();" class="mega-menu" data-close="true"><i
-                    class="zmdi zmdi-power"></i></a>
+                    class="zmdi zmdi-power"> </i> Keluar </a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf
             </form>
@@ -101,7 +101,6 @@
 
 
 <section class="content">
-
     <div class="block-header">
         <div class="row">
             <div class="col-lg-7 col-md-6 col-sm-12">
@@ -114,31 +113,33 @@
         @yield('content')
     </div>
 </section>
+
+@yield('modal_umkm')
 @include('layouts.partial.alert')
 @include('layouts.partial.confirm')
 {{--@include('layouts.partial.maps')--}}
 <!-- Jquery Core Js -->
-<script>
-    $(document).ready(function(){
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-</script>
-
-
-
-<script src="{{asset('template/assets/bundles/libscripts.bundle.js')}}"></script> <!-- Lib Scripts Plugin Js -->
-
 <script src="{{asset('template/jquery/jquery-v3.3.1.min.js')}}"></script>
+<script src="{{asset('template/assets/bundles/libscripts.bundle.js')}}"></script> <!-- Lib Scripts Plugin Js -->
 <script src="{{asset('template/assets/bundles/vendorscripts.bundle.js')}}"></script> <!-- Lib Scripts Plugin Js -->
 
-<script  src="{{asset('template/bootstrap-select/js/bootstrap-select.js')}}"></script>
-<script src="{{asset('template/assets/bundles/knob.bundle.js')}}"></script> <!-- Jquery Knob Plugin Js -->
-
-<script src="{{asset('template/assets/bundles/mainscripts.bundle.js')}}"></script><!-- Custom Js -->
-<script src="{{asset('template/assets/js/pages/charts/jquery-knob.js')}}"></script>
-<script src="{{asset('template/select2/select2.min.js')}}"></script>
+<script src="{{asset('js/datatable/datatables.min.js')}}"></script>
 <script src="{{asset('template/tinymce/tinymce.js')}}"></script>
+<script src="{{asset('template/bootstrap/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('template/select2/select2.min.js')}}"></script>
+<script src="{{asset('template/jquery-validation/jquery.validate.js')}}"></script>
+<script src="{{asset('template/assets/bundles/mainscripts.bundle.js')}}"></script><!-- Custom Js -->
 
+<script>
+    $(document).ready( function () {
+        $('#myTable').DataTable();
+    } );
+</script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
 @stack('script')
 </body>
 </html>

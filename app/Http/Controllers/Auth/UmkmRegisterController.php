@@ -82,8 +82,7 @@ class UmkmRegisterController extends Controller
                 'akta_notaris' => 'upload/'.$user->id.'/file/'.$akta
             ]);
         }
-
-        return back()->withInput();
+        return redirect()->route('login')->with('success_login','Pendaftaran berhasil, Silahkan masuk dengan akun anda');
     }
 
     public function getLatLong($address)

@@ -2,13 +2,12 @@
 <a href="{{route('diskop.home')}}">
     <i class="zmdi zmdi-home"></i><span>Dashboard</span></a>
 
-<li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Order</span>
+<li><a href="javascript:void(0);" class="menu-toggle "><i class="zmdi zmdi-accounts"></i><span>Manajemen Umkm</span>
     </a>
     <ul class="ml-menu">
-        <li><a href="ec-dashboard.html">Dashboard</a></li>
-        <li><a href="ec-product.html">Product</a></li>
+        <li><a href="{{route('diskop.show.umkm')}}">Umkm Baru</a></li>
+        <li><a href="{{route('diskop.show.umkm.nonvalid')}}">Umkm Tidak Valid</a></li>
         <li><a href="ec-product-List.html">Product List</a></li>
-        <li><a href="ec-product-detail.html">Product detail</a></li>
     </ul>
 </li>
 
