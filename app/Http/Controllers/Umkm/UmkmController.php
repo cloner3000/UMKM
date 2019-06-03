@@ -7,6 +7,8 @@ use App\Model\Umkm;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\UmkmRegisterController as Latlong;
+
 
 class UmkmController extends Controller
 {
@@ -22,11 +24,39 @@ class UmkmController extends Controller
 
     public function update_general(Request $request)
     {
-        
+//        dd($request->jenis_id);
+        $umkm = Umkm::where('user_id', Auth::user()->id)->first();
+        $latlong = app(Latlong::class)->getLatLong($request->alamat);
+        $map = explode(',',$latlong);
+        $umkm->update([
+            'nama_pemilik' => $request->nama_pemilik,
+            'nik_pemilik' => $request->nik_pemilik,
+            'alamat' => $request->alamat,
+            'lat' => $map[0],
+            'long' => $map[1],
+            'avatar' => $request->avatar,
+            'jenis_id' => $request->jenis_id,
+            'tgl_berdiri' => $request->tgl_berdiri,
+            'desc' => $request->desc,
+        ]);
+
+        if($request->hasFile('new_logo')){
+            $file = $request->file('avatar');
+            $avaname = $file->getClientOriginalName();
+            $file->move('upload/'.Auth::user()->id.'/file/', $avaname);
+            $umkm->update([
+                'avatar' => 'upload/'.Auth::user()->id.'/file/'.$avaname
+            ]);
+        }
+        return back()->with('success_umkm','Data Umum Umkm anda berhasil diperbarui');
     }
 
-    public function update_izin()
+    public function update_izin(Request $request)
     {
+        $umkm = Umkm::where('user_id', Auth::user()->id)->first();
+        $umkm->update([
 
+        ]);
+        return back()->with('success_umkm','Data Umum Umkm anda berhasil diperbarui');
     }
 }

@@ -15,7 +15,8 @@
                         <div class="col-lg-4 col-md-4 col-12">
                             <div class="profile-image float-md-right">
                                 <img
-                                    src="{{asset( App\Model\Umkm::where('user_id',Auth::user()->id)->firstOrFail()->avatar )}}"></div>
+                                    src="{{asset( App\Model\Umkm::where('user_id',Auth::user()->id)->firstOrFail()->avatar )}}">
+                            </div>
                         </div>
                         <div class="col-lg-8 col-md-8 col-12">
                             <h4 class="m-t-0 m-b-0"><strong>{{ Auth::user()->username }}</strong></h4>
@@ -23,24 +24,18 @@
                             <p>795 Folsom Ave, Suite 600<br> San Francisco, CADGE 94107</p>
                             <div>
                                 @if(App\Model\Umkm::where('user_id',Auth::user()->id)->firstOrFail()->is_verified == true)
-                                    <button class="btn btn-primary btn-round" readonly><i class="zmdi zmdi-check-all"></i>UMKM
+                                    <button class="btn btn-primary btn-round" readonly><i
+                                            class="zmdi zmdi-check-all"></i>UMKM
                                         anda telah terverifikasi
                                     </button>
                                 @else
-                                    <button class="btn btn-danger btn-round" readonly><span class="zmdi zmdi-close"></span> UMKM
+                                    <button class="btn btn-danger btn-round" readonly><span
+                                            class="zmdi zmdi-close"></span> UMKM
                                         anda belum terverifikasi
                                     </button>
                                 @endif
 
                             </div>
-                            <p class="social-icon m-t-5 m-b-0">
-                                <a title="Twitter" href="javascript:void(0);"><i class="zmdi zmdi-twitter"></i></a>
-                                <a title="Facebook" href="javascript:void(0);"><i
-                                        class="zmdi zmdi-facebook"></i></a>
-                                <a title="Google-plus" href="javascript:void(0);"><i class="zmdi zmdi-twitter"></i></a>
-                                <a title="Behance" href="javascript:void(0);"><i class="zmdi zmdi-behance"></i></a>
-                                <a title="Instagram" href="javascript:void(0);"><i class="zmdi zmdi-instagram "></i></a>
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -102,13 +97,33 @@
         </div>
     </div>
 
+    <?php
+    $umkm = App\Model\Umkm::where('user_id', Auth::user()->id)->first();
+    $notif = \App\Model\VerifyUmkm::where('umkm_id',$umkm->id)->where('status','nonvalid')->get();
+    ?>
+    @if($notif->count() > 0)
+        <div class="row clearfix">
+            <div class="col-xl-12 col-lg-7 col-md-12">
+
+                <div class="alert alert-warning">
+                    <div class="alert-icon">
+                        <i class="zmdi zmdi-info"></i>
+                    </div>
+                    <strong>Ohh Tidak!</strong> Sepertinya data umkm anda kurang valid  <a href="{{route('umkm.show.akun')}}" class="alert-link">silahkan check disini</a>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div class="row clearfix">
         <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="card">
                 <div class="header">
                     <h2><strong>Pesanan</strong> Baru</h2>
                     <ul class="header-dropdown">
-                        <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
+                        <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle"
+                                                data-toggle="dropdown" role="button" aria-haspopup="true"
+                                                aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
                             <ul class="dropdown-menu slideUp">
                                 <li><a href="javascript:void(0);">Pesanan Hari ini</a></li>
                                 <li><a href="javascript:void(0);">Seluruh Pesanan</a></li>
@@ -144,7 +159,7 @@
                             <td><img src="http://via.placeholder.com/60x50" alt="Product img"></td>
                             <td>Camara</td>
                             <td>NOKIA-8</td>
-                            <td>2595 Pearlman Avenue Sudbury, MA 01776 </td>
+                            <td>2595 Pearlman Avenue Sudbury, MA 01776</td>
                             <td>3</td>
                             <td><span class="badge badge-default">Delivered</span></td>
                         </tr>
@@ -182,9 +197,11 @@
         <div class="col-xl-8 col-lg-7 col-md-12">
             <div class="card">
                 <div class="header">
-                    <h2><strong>Komentar</strong> Terbaru  </h2>
+                    <h2><strong>Komentar</strong> Terbaru </h2>
                     <ul class="header-dropdown">
-                        <li class="dropdown"> <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
+                        <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle"
+                                                data-toggle="dropdown" role="button" aria-haspopup="true"
+                                                aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
                             <ul class="dropdown-menu slideUp">
                                 <li><a href="javascript:void(0);">Action</a></li>
                                 <li><a href="javascript:void(0);">Another action</a></li>
@@ -201,7 +218,8 @@
                         <li class="col-12">
                             <div class="comment-action">
                                 <h6 class="c_name">Hossein Shams</h6>
-                                <p class="c_msg m-b-0">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. </p>
+                                <p class="c_msg m-b-0">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
+                                    scelerisque ante sollicitudin commodo. </p>
                                 <div class="badge badge-info">iPhone 8</div>
                                 <span class="m-l-10">
                                         <a href="javascript:void(0);"><i class="zmdi zmdi-star col-amber"></i></a>
@@ -217,7 +235,8 @@
 
                             <div class="comment-action">
                                 <h6 class="c_name">Tim Hank</h6>
-                                <p class="c_msg m-b-0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout</p>
+                                <p class="c_msg m-b-0">It is a long established fact that a reader will be distracted by
+                                    the readable content of a page when looking at its layout</p>
                                 <div class="badge badge-info">Nokia 8</div>
                                 <span class="m-l-10">
                                         <a href="javascript:void(0);"><i class="zmdi zmdi-star col-amber"></i></a>

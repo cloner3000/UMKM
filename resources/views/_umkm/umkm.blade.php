@@ -16,47 +16,33 @@
 @section('content')
 
     <div class="row clearfix">
-        <div class="col-xl-6 col-lg-7 col-md-12">
-            <div class="card profile-header">
-                <div class="body">
-                    <div class="row">
-                        <div class="col-lg-4 col-md-4 col-12">
-                            <div class="profile-image float-md-right">
-                                <img  src="{{asset( App\Model\Umkm::where('user_id',Auth::user()->id)->firstOrFail()->avatar )}}"  alt="">
+        <?php
+        $umkm = App\Model\Umkm::where('user_id', Auth::user()->id)->first();
+        $notif = \App\Model\VerifyUmkm::where('umkm_id', $umkm->id)->where('status', 'nonvalid')->first();
+        ?>
+        @if(!is_null($notif))
+            <div class="col-xl-6 col-lg-7 col-md-12">
+                <div class="card profile-header">
+                    <div class="header">
+                        <h2><strong>Pemberitahuan</strong> dari Dinas Koperasi Kota Maidun</h2>
+                    </div>
+                    <div class="body">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-4 col-12">
+                                <blockquote class="blockquote blockquote-primary">
+                                    {!! $notif->note !!}
+                                </blockquote>
                             </div>
-                        </div>
-                        <div class="col-lg-8 col-md-8 col-12">
-                            <h4 class="m-t-0 m-b-0"><strong>{{ Auth::user()->username }} </strong></h4>
-                            <span class="job_post">{{$umkm->nama_pemilik }}</span>
-                            <br>
-                            <p><spanu
-                                    class="badge badge-info">{{ App\Model\Role::find(Auth::user()->role_id)->role_name }}</spanu>
-                                <span class="badge badge-info">{{$jenis->name}}</span></p>
-                            <div>
-                                @if(App\Model\Umkm::where('user_id',Auth::user()->id)->firstOrFail()->is_verified == true)
-                                    <button class="btn btn-primary btn-round" readonly><i
-                                            class="zmdi zmdi-check-all"></i>UMKM
-                                        anda telah terverifikasi
-                                    </button>
-                                @else
-                                    <button class="btn btn-danger btn-round" readonly><span
-                                            class="zmdi zmdi-close"></span> UMKM
-                                        anda belum terverifikasi
-                                    </button>
-                                @endif
-
-                            </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endif
         <div class="col-xl-6 col-lg-5 col-md-12">
             <div role="tabpanel" class="tab-pane">
                 <div class="card">
                     <div class="header">
-                        <h2><strong>Account</strong> Settings</h2>
+                        <h2><strong>Sunting</strong> Akun</h2>
                     </div>
                     <div class="body">
                         <form method="post" action="{{route('user.update')}}">
@@ -80,7 +66,7 @@
                                 <input type="password" class="form-control" placeholder="Ketik Ulang Password Baru"
                                        name="confirm_pass" required>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-round">Submit</button>
+                            <button type="submit" class="btn btn-primary btn-round">Simpan</button>
                         </form>
                     </div>
                 </div>
@@ -104,13 +90,15 @@
                             <h2><strong>Data</strong> umum</h2>
                         </div>
                         <div class="body">
-                            <form>
+                            <form id="form_validation" action="{{route('umkm.general.update')}}" method="post"
+                                  enctype="multipart/form-data">
+                                @csrf
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group">
                                             <label>Pemilik Umkm</label>
                                             <input type="text" class="form-control" placeholder="Nama Lengkap Pemilik"
-                                                   name="nama_pemilik">
+                                                   name="nama_pemilik" value="{{$umkm->nama_pemilik}}" required>
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
@@ -118,23 +106,19 @@
                                             <label>NIK Pemilik UMKM</label>
                                             <input type="text" class="form-control" name="nik_pemilik"
                                                    placeholder="Pastikan 16 Digit Angka"
-                                                   onkeypress="return isNumberKey(event)">
+                                                   onkeypress="return isNumberKey(event)" value="{{$umkm->nik_pemilik}}"
+                                                   required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Logo UMKM</label>
+                                    <label>Logo UMKM
+                                        <small>.Jpg .Png .Jpeg Maks 2Mb</small>
+                                    </label>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <input type="file" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Alamat UMKM</label>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div id="map"></div>
+                                            <input type="file" class="form-control" name="new_logo">
+                                            <input type="hidden" name="avatar" value="{{$umkm->avatar}}" id="">
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +126,11 @@
                                     <div class="row">
                                         <div class="col-lg-8">
                                             <label for="">Jenis UMKM</label>
-                                            <select class="form-control" name="janis[]" multiple>
+                                            <select class="form-control show-tick z-index" name="jenis_id[]" multiple
+                                                    data-live-search="true" required>
+                                                @foreach($umkm->jenis_id as $data)
+                                                    <option value="{{$data}}" selected>{{\App\Model\JenisUmkm::find($data)->name}}</option>
+                                                @endforeach
                                                 @foreach($jenis_all as $item)
                                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                                 @endforeach
@@ -150,16 +138,32 @@
                                         </div>
                                         <div class="col-lg-4">
                                             <label for="">Tanggal berdiri UMKM</label>
-                                            <input type="date" class="form-control" name="tgl_berdiri" id="">
+                                            <input type="date" class="form-control" name="tgl_berdiri" id=""
+                                                   value="{{$umkm->tgl_berdiri}}" required>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="">Alamat UMKM</label>
+                                    <input type="text" class="form-control" placeholder="Alamat Umkm"
+                                           aria-label="Username"
+                                           name="alamat" id="pac-input"
+                                           aria-describedby="basic-addon1" value="{{$umkm->alamat}}" required>
+                                    <input type="radio" name="type" id="changetype-all" checked="checked" hidden>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="map"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="">Deskripsi UMKM</label>
                                     <textarea name="desc" id="" cols="30" rows="5" placeholder="Description"
-                                              class="form-control no-resize tiny"  required></textarea>
+                                              class="form-control no-resize tiny"
+                                              required> {!! $umkm->desc !!}</textarea>
                                 </div>
-                                <button class="btn btn-primary btn-round">Save Changes</button>
+                                <button class="btn btn-primary btn-round">Simpan</button>
                             </form>
                         </div>
                     </div>
@@ -168,7 +172,7 @@
                 <div role="tabpanel" class="tab-pane" id="usersettings">
                     <div class="card">
                         <div class="header">
-                            <h2><strong>Security</strong> Settings</h2>
+                            <h2><strong>Data </strong> Perizinan Umkm</h2>
                         </div>
                         <div class="body">
                             <div class="form-group">
@@ -248,6 +252,163 @@
 @endsection
 @push('script')
     <script>
+        $(function () {
+            $('#form_validation').validate({
+                rules: {
+                    'checkbox': {
+                        required: true
+                    },
+                    'gender': {
+                        required: true
+                    }
+                },
+                highlight: function (input) {
+                    $(input).parents('.form-line').addClass('error');
+                },
+                unhighlight: function (input) {
+                    $(input).parents('.form-line').removeClass('error');
+                },
+                errorPlacement: function (error, element) {
+                    $(element).parents('.form-group').append(error);
+                }
+            });
+
+            //Advanced Form Validation
+            $('#form_advanced_validation').validate({
+                rules: {
+                    'date': {
+                        customdate: true
+                    },
+                    'creditcard': {
+                        creditcard: true
+                    }
+                },
+                highlight: function (input) {
+                    $(input).parents('.form-line').addClass('error');
+                },
+                unhighlight: function (input) {
+                    $(input).parents('.form-line').removeClass('error');
+                },
+                errorPlacement: function (error, element) {
+                    $(element).parents('.form-group').append(error);
+                }
+            });
+
+            //Custom Validations ===============================================================================
+            //Date
+            $.validator.addMethod('customdate', function (value, element) {
+                    return value.match(/^\d\d\d\d?-\d\d?-\d\d$/);
+                },
+                'Please enter a date in the format YYYY-MM-DD.'
+            );
+
+            //Credit card
+            $.validator.addMethod('creditcard', function (value, element) {
+                    return value.match(/^\d\d\d\d?-\d\d\d\d?-\d\d\d\d?-\d\d\d\d$/);
+                },
+                'Please enter a credit card in the format XXXX-XXXX-XXXX-XXXX.'
+            );
+            //==================================================================================================
+        });
+    </script>
+    <script>
+        // This example requires the Places library. Include the libraries=places
+        // parameter when you first load the API. For example:
+        // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: {{$umkm->lat}}, lng: {{$umkm->long}}},
+                zoom: 13
+            });
+            var card = document.getElementById('pac-card');
+            var input = document.getElementById('pac-input');
+            var types = document.getElementById('type-selector');
+            var strictBounds = document.getElementById('strict-bounds-selector');
+
+            map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
+            var autocomplete = new google.maps.places.Autocomplete(input);
+
+            // Bind the map's bounds (viewport) property to the autocomplete object,
+            // so that the autocomplete requests use the current map bounds for the
+            // bounds option in the request.
+            autocomplete.bindTo('bounds', map);
+
+            // Set the data fields to return when the user selects a place.
+            autocomplete.setFields(
+                ['address_components', 'geometry', 'icon', 'name']);
+
+            var infowindow = new google.maps.InfoWindow();
+            var infowindowContent = document.getElementById('infowindow-content');
+            infowindow.setContent(infowindowContent);
+            var marker = new google.maps.Marker({
+                position: {lat: {{$umkm->lat}}, lng: {{$umkm->long}}},
+                map: map,
+                anchorPoint: new google.maps.Point(0, -29)
+            });
+
+            autocomplete.addListener('place_changed', function () {
+                infowindow.close();
+                marker.setVisible(false);
+                var place = autocomplete.getPlace();
+                if (!place.geometry) {
+                    // User entered the name of a Place that was not suggested and
+                    // pressed the Enter key, or the Place Details request failed.
+                    window.alert("No details available for input: '" + place.name + "'");
+                    return;
+                }
+
+                // If the place has a geometry, then present it on a map.
+                if (place.geometry.viewport) {
+                    map.fitBounds(place.geometry.viewport);
+                } else {
+                    map.setCenter(place.geometry.location);
+                    map.setZoom(17);  // Why 17? Because it looks good.
+                }
+                marker.setPosition(place.geometry.location);
+                marker.setVisible(true);
+
+                var address = '';
+                if (place.address_components) {
+                    address = [
+                        (place.address_components[0] && place.address_components[0].short_name || ''),
+                        (place.address_components[1] && place.address_components[1].short_name || ''),
+                        (place.address_components[2] && place.address_components[2].short_name || '')
+                    ].join(' ');
+                }
+
+                infowindowContent.children['place-icon'].src = place.icon;
+                infowindowContent.children['place-name'].textContent = place.name;
+                infowindowContent.children['place-address'].textContent = address;
+                infowindow.open(map, marker);
+            });
+
+            // Sets a listener on a radio button to change the filter type on Places
+            // Autocomplete.
+            function setupClickListener(id, types) {
+                var radioButton = document.getElementById(id);
+                radioButton.addEventListener('click', function () {
+                    autocomplete.setTypes(types);
+                });
+            }
+
+            setupClickListener('changetype-all', []);
+            setupClickListener('changetype-address', ['address']);
+            setupClickListener('changetype-establishment', ['establishment']);
+            setupClickListener('changetype-geocode', ['geocode']);
+
+            document.getElementById('use-strict-bounds')
+                .addEventListener('click', function () {
+                    console.log('Checkbox clicked! New state=' + this.checked);
+                    autocomplete.setOptions({strictBounds: this.checked});
+                });
+        }
+    </script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIljHbKjgtTrpZhEiHum734tF1tolxI68&libraries=places&callback=initMap"
+        async defer></script>
+    <script>
         @if(Session::has('success'))
         swal({
             title: 'Success',
@@ -272,10 +433,5 @@
         }
 
         tinymce.init({selector: 'textarea'});
-        $(document).ready(function () {
-            $('.select2').select2();
-        });
-
-
     </script>
 @endpush
