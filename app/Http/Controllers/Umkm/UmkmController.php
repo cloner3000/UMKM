@@ -55,8 +55,29 @@ class UmkmController extends Controller
     {
         $umkm = Umkm::where('user_id', Auth::user()->id)->first();
         $umkm->update([
-
+            'aset' => $request->aset,
+            'omset' => $request->omset,
+            'no_siup' => $request->no_siup,
+            'tgl_siup' => $request->tgl_siup,
+            'tgl_siup_exp' => $request->tgl_siup_exp,
+            'npwp' => $request->npwp,
+            'tdp' => $request->tdp,
+            'tgl_tdp' => $request->tgl_tdp,
+            'tgl_tdp_exp' => $request->tgl_tdp_exp,
+            'izin_ganguan' => $request->izin_ganguan,
+            'tgl_izin_ganguan' => $request->tgl_izin_ganguan,
+            'akta_notaris' => $request->akta_notaris,
         ]);
-        return back()->with('success_umkm','Data Umum Umkm anda berhasil diperbarui');
+
+        if ($request->hasFile('new_akta')){
+            $file = $request->file('new_akta');
+            $avaname = $file->getClientOriginalName();
+            $file->move('upload/'.Auth::user()->id.'/file/', $avaname);
+            $umkm->update([
+                'akta_notaris' => 'upload/'.Auth::user()->id.'/file/'.$avaname
+            ]);
+        }
+
+        return back()->with('success_umkm','Data Perizinan Umkm anda berhasil diperbarui');
     }
 }

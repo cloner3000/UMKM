@@ -184,6 +184,7 @@
                             <h2><strong>Data </strong> Perizinan Umkm</h2>
                         </div>
                         <form action="{{route('umkm.izin.update')}}" method="post" enctype="multipart/form-data">
+                            @csrf
                             <div class="body">
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -192,7 +193,7 @@
                                             <input type="text" class="form-control" name="aset"
                                                    placeholder="Aset Milik Umkm" minlength="16" id=""
                                                    onkeypress="return isNumberKey(event)"
-                                                   value="{{number_format($umkm->aset,2)}}"
+                                                   value="{{$umkm->aset}}"
                                                    required>
                                         </div>
                                     </div>
@@ -202,7 +203,7 @@
                                             <input type="text" class="form-control" name="omset"
                                                    placeholder="Omset Umkm" minlength="16"
                                                    onkeypress="return isNumberKey(event)"
-                                                   value="{{number_format($umkm->omset,2)}}"
+                                                   value="{{$umkm->omset}}"
                                                    required>
                                         </div>
                                     </div>
@@ -303,14 +304,14 @@
                                             <button class="btn btn-warning btn-icon btn-round" data-toggle="tooltip"
                                                     type="button"
                                                     title="Lihat Gambar"
-                                                    onclick="modal('{{asset($umkm->avatar)}}','File Akta Notaris')">
+                                                    onclick="modal('{{asset($umkm->akta_notaris)}}','File Akta Notaris')">
                                                 <i class="zmdi zmdi-image"></i>
                                             </button>
                                         </div>
                                     </div>
                                 </div>
 
-                                <button class="btn btn-info btn-round">Simpan</button>
+                                <button class="btn btn-info btn-round" type="submit">Simpan</button>
                             </div>
                         </form>
                     </div>
