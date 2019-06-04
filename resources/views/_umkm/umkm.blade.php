@@ -105,7 +105,7 @@
                                         <div class="form-group">
                                             <label>NIK Pemilik UMKM</label>
                                             <input type="text" class="form-control" name="nik_pemilik"
-                                                   placeholder="Pastikan 16 Digit Angka"
+                                                   placeholder="Pastikan 16 Digit Angka" minlength="16"
                                                    onkeypress="return isNumberKey(event)" value="{{$umkm->nik_pemilik}}"
                                                    required>
                                         </div>
@@ -116,9 +116,16 @@
                                         <small>.Jpg .Png .Jpeg Maks 2Mb</small>
                                     </label>
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-11">
                                             <input type="file" class="form-control" name="new_logo">
                                             <input type="hidden" name="avatar" value="{{$umkm->avatar}}" id="">
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="btn btn-warning btn-icon btn-round" data-toggle="tooltip" type="button"
+                                                    title="Lihat Gambar"
+                                                    onclick="modal('{{asset($umkm->avatar)}}','Logo Saat ini')">
+                                                <i class="zmdi zmdi-image"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -250,8 +257,33 @@
 
     </div>
 @endsection
+@section('modal_umkm')
+    <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="title" id="largeModalLabel"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <img src="" alt="" id="imageRender">
+
+                    </div>
+                    <input type="hidden" id="idumkm" name="umkm_id">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Tutup</button>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+@endsection
 @push('script')
     <script>
+        function modal(source,nama) {
+            $("#largeModalLabel").text(nama);
+            $('#imageRender').attr('src', source);
+            $("#largeModal").modal('show');
+        }
         $(function () {
             $('#form_validation').validate({
                 rules: {
@@ -433,5 +465,7 @@
         }
 
         tinymce.init({selector: 'textarea'});
+
+
     </script>
 @endpush
