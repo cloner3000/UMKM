@@ -21,7 +21,7 @@
                         <div class="col-lg-8 col-md-8 col-12">
                             <h4 class="m-t-0 m-b-0"><strong>{{ Auth::user()->username }}</strong></h4>
                             <span class="job_post">{{ App\Model\Role::find(Auth::user()->role_id)->role_name }}</span>
-                            <p>795 Folsom Ave, Suite 600<br> San Francisco, CADGE 94107</p>
+                            <p>{{App\Model\Umkm::where('user_id',Auth::user()->id)->firstOrFail()->alamat}}</p>
                             <div>
                                 @if(App\Model\Umkm::where('user_id',Auth::user()->id)->firstOrFail()->is_verified == true)
                                     <button class="btn btn-primary btn-round" readonly><i
