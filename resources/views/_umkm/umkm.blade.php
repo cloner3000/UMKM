@@ -121,7 +121,8 @@
                                             <input type="hidden" name="avatar" value="{{$umkm->avatar}}" id="">
                                         </div>
                                         <div class="col-md-1">
-                                            <button class="btn btn-warning btn-icon btn-round" data-toggle="tooltip" type="button"
+                                            <button class="btn btn-warning btn-icon btn-round" data-toggle="tooltip"
+                                                    type="button"
                                                     title="Lihat Gambar"
                                                     onclick="modal('{{asset($umkm->avatar)}}','Logo Saat ini')">
                                                 <i class="zmdi zmdi-image"></i>
@@ -136,7 +137,8 @@
                                             <select class="form-control show-tick z-index" name="jenis_id[]" multiple
                                                     data-live-search="true" required>
                                                 @foreach($umkm->jenis_id as $data)
-                                                    <option value="{{$data}}" selected>{{\App\Model\JenisUmkm::find($data)->name}}</option>
+                                                    <option value="{{$data}}"
+                                                            selected>{{\App\Model\JenisUmkm::find($data)->name}}</option>
                                                 @endforeach
                                                 @foreach($jenis_all as $item)
                                                     <option value="{{$item->id}}">{{$item->name}}</option>
@@ -181,76 +183,139 @@
                         <div class="header">
                             <h2><strong>Data </strong> Perizinan Umkm</h2>
                         </div>
-                        <div class="body">
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Username">
+                        <form action="{{route('umkm.izin.update')}}" method="post" enctype="multipart/form-data">
+                            <div class="body">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Aset (Rupiah)</label>
+                                            <input type="text" class="form-control" name="aset"
+                                                   placeholder="Aset Milik Umkm" minlength="16" id=""
+                                                   onkeypress="return isNumberKey(event)"
+                                                   value="{{number_format($umkm->aset,2)}}"
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Omset (Rupiah)</label>
+                                            <input type="text" class="form-control" name="omset"
+                                                   placeholder="Omset Umkm" minlength="16"
+                                                   onkeypress="return isNumberKey(event)"
+                                                   value="{{number_format($umkm->omset,2)}}"
+                                                   required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label>No. Siup</label>
+                                            <input type="text" class="form-control" placeholder="Nomor Siup"
+                                                   name="no_siup" value="{{$umkm->no_siup}}" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="">Tanggal Siup</label>
+                                            <input type="date" class="form-control" name="tgl_siup" id=""
+                                                   value="{{$umkm->tgl_siup}}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="">Tanggal Berakhir Siup</label>
+                                            <input type="date" class="form-control" name="tgl_siup_exp" id=""
+                                                   value="{{$umkm->tgl_siup_exp}}" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label>NPWP</label>
+                                            <input type="text" class="form-control" placeholder="NPWP"
+                                                   name="npwp" value="{{$umkm->npwp}}" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group">
+                                            <label>Tanda Daftar Perusahaan ( TDP )</label>
+                                            <input type="text" class="form-control" placeholder="tdp"
+                                                   name="tdp" value="{{$umkm->tdp}}" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="">Tanggal TDP</label>
+                                            <input type="date" class="form-control" name="tgl_tdp" id=""
+                                                   value="{{$umkm->tgl_tdp}}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="">Tanggal Berakhir TDP</label>
+                                            <input type="date" class="form-control" name="tgl_tdp_exp" id=""
+                                                   value="{{$umkm->tgl_tdp_exp}}" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="">Izin Gangguan</label>
+                                            <input type="text" class="form-control" name="izin_ganguan" id=""
+                                                   value="{{$umkm->izin_ganguan}}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label for="">Tanggal Izin Gangguan</label>
+                                            <input type="date" class="form-control" name="tgl_izin_ganguan" id=""
+                                                   value="{{$umkm->tgl_izin_ganguan}}" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>File Akta Notaris
+                                        <small>.Jpg .Png .Jpeg Maks 2Mb</small>
+                                    </label>
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <input type="file" class="form-control" name="new_akta">
+                                            <input type="hidden" name="akta_notaris" value="{{$umkm->akta_notaris}}"
+                                                   id="">
+                                        </div>
+                                        <div class="col-md-1">
+                                            <button class="btn btn-warning btn-icon btn-round" data-toggle="tooltip"
+                                                    type="button"
+                                                    title="Lihat Gambar"
+                                                    onclick="modal('{{asset($umkm->avatar)}}','File Akta Notaris')">
+                                                <i class="zmdi zmdi-image"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-info btn-round">Simpan</button>
                             </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Current Password">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" placeholder="New Password">
-                            </div>
-                            <button class="btn btn-info btn-round">Save Changes</button>
-                        </div>
+                        </form>
                     </div>
-                    <div class="card">
-                        <div class="header">
-                            <h2><strong>Account</strong> Settings</h2>
-                        </div>
-                        <div class="body">
-                            <div class="row clearfix">
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="First Name">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Last Name">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="City">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="E-mail">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-12">
-                                    <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Country">
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <textarea rows="4" class="form-control no-resize"
-                                                  placeholder="Address Line 1"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="checkbox">
-                                        <input id="procheck1" type="checkbox">
-                                        <label for="procheck1">Profile Visibility For Everyone</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <input id="procheck2" type="checkbox">
-                                        <label for="procheck2">New task notifications</label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <input id="procheck3" type="checkbox">
-                                        <label for="procheck3">New friend request notifications</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <button class="btn btn-primary btn-round">Save Changes</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+
                 </div>
             </div>
         </div>
@@ -261,17 +326,17 @@
     <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="title" id="largeModalLabel"></h4>
-                    </div>
-                    <div class="modal-body">
-                        <img src="" alt="" id="imageRender">
+                <div class="modal-header">
+                    <h4 class="title" id="largeModalLabel"></h4>
+                </div>
+                <div class="modal-body">
+                    <img src="" alt="" id="imageRender" height="50%" width="50%">
 
-                    </div>
-                    <input type="hidden" id="idumkm" name="umkm_id">
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Tutup</button>
-                    </div>
+                </div>
+                <input type="hidden" id="idumkm" name="umkm_id">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Tutup</button>
+                </div>
 
             </div>
         </div>
@@ -279,11 +344,13 @@
 @endsection
 @push('script')
     <script>
-        function modal(source,nama) {
+
+        function modal(source, nama) {
             $("#largeModalLabel").text(nama);
             $('#imageRender').attr('src', source);
             $("#largeModal").modal('show');
         }
+
         $(function () {
             $('#form_validation').validate({
                 rules: {
