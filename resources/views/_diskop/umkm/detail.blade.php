@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title','Daftar Umkm Baru')
+@section('title','Detail Umkm')
 @section('title_page')
     <h2>{{$data->nama}}
         <small>Detail {{$data->nama}}</small>
@@ -27,7 +27,7 @@
                                                 <div class="col-lg-4 col-md-4 col-12">
                                                     <div class="profile-image float-md-right">
                                                         <img
-                                                            src="{{asset( 'images/diskop.png')}}" class="img-circle"
+                                                            src="{{asset( $data->avatar)}}" class="img-circle"
                                                             alt=""></div>
                                                 </div>
                                                 <div class="col-lg-8 col-md-8 col-12">
@@ -62,11 +62,30 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group row mb-0">
-                                        <label class="col-lg-4"><b>Skema</b></label>
+                                        <label class="col-lg-2"><b>Nama Pemilik</b></label>
                                         <div class="col-lg-8">
-                                            <p>Advance Office Operator</p>
+                                            <p>{{$data->nama_pemilik}}</p>
                                         </div>
                                     </div>
+                                    <div class="form-group row mb-0">
+                                        <label class="col-lg-2"><b>NIK Pemilik</b></label>
+                                        <div class="col-lg-8">
+                                            <p>{{$data->nik_pemilik}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-0">
+                                        <label class="col-lg-2"><b>Tanggal Didirikan</b></label>
+                                        <div class="col-lg-8">
+                                            <?php \Carbon\Carbon::setLocale('ID')?>
+                                            <p>{{\Carbon\Carbon::parse($data->tgl_berdiri)->format('d-M-Y')}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <label for=""><b>Tentang Umkm</b> </label>
+                                    {!! $data->desc !!}
                                 </div>
                             </div>
                         </div>
