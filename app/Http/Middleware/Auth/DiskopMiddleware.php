@@ -17,7 +17,7 @@ class DiskopMiddleware
     public function handle($request, Closure $next)
     {
         if(Auth::check()){
-            if(Auth::user()->role_id == 2){
+            if(Auth::user()->role_id == 2 || Auth::user()->role_id == 1){
                 return $next($request); //lanjur ke prosess berikutnya
             }
         } else{
