@@ -9,6 +9,10 @@
     swal('Oops!!','{{session('error_verify')}}','error')
     @elseif(session('success_verify'))
     swal('Berhasil','{{session('success_verify')}}','success')
+    @elseif(session('success_master'))
+    swal('Berhasil','{{session('success_master')}}','success')
+    @elseif(session('error_master'))
+    swal('Oops!!','{{session('error_master')}}','error')
     @elseif(session('success_umkm'))
     swal('Berhasil','{{session('success_umkm')}}','success')
     @endif

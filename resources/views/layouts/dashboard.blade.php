@@ -82,6 +82,7 @@
                 @if(Auth::check())
                     <ul class="list">
                         @if(Auth::user()->role_id == 1)
+                            @include('layouts.sidemenu._root')
                         @elseif(Auth::user()->role_id == 2)
                             @include('layouts.sidemenu._diskopside')
                         @elseif(Auth::user()->role_id == 3)
