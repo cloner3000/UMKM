@@ -37,6 +37,21 @@ Route::group(['prefix' => 'root/','middleware' => ['auth','root']], function () 
             'as' => 'root.kategori'
         ]);
 
+        Route::post('kategori/store', [
+            'uses' => 'Root\DataMasterController@kategori_store',
+            'as' => 'root.kategori.store'
+        ]);
+
+        Route::post('kategori/update', [
+            'uses' => 'Root\DataMasterController@kategori_update',
+            'as' => 'root.kategori.update'
+        ]);
+
+        Route::post('kategori/delete', [
+            'uses' => 'Root\DataMasterController@kategori_destroy',
+            'as' => 'root.kategori.delete'
+        ]);
+
         Route::get('role', [
             'uses' => 'Root\PageController@role',
             'as' => 'root.role'

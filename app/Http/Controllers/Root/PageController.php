@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Root;
 
 use App\Model\JenisUmkm;
+use App\Model\Kategori;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -22,7 +23,9 @@ class PageController extends Controller
 
     public function kategori()
     {
-        return view('_root.kategori');
+        return view('_root.kategori',[
+            'data' => Kategori::orderBy('id')->get()
+        ]);
     }
 
     public function role()
