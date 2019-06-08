@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title','Daftar Umkm Baru')
+@section('title','Daftar Umkm Non-valid')
 @section('title_page')
     <h2>Umkm Non valid
         <small>Daftar Umkm non valid</small>
@@ -31,7 +31,7 @@
                                 <tr>
                                     <td><img src="{{asset($data->avatar)}}" class="img-circle" height="40%"></td>
                                     <td>{{$data->nama}}</td>
-                                    <td>{{$data->nama_pemilik}}</td>
+                                    <td>{{$data->nama_pemilik}} </td>
                                     <?php
                                     Carbon\Carbon::setLocale('id');
                                     ?>
@@ -53,11 +53,16 @@
                                             </button>
                                         </a>
                                         <br>
+                                        <?php
+                                        $note = \App\Model\VerifyUmkm::where('umkm_id',$data->id)->first();
+                                        ?>
+                                        <input type="hidden" name="" id="note-{{$data->id}}" value="{!! $note->note !!}">
                                         <button class="btn btn-warning btn-icon" data-toggle="tooltip"
                                                 title="Validasi ulang"
-                                                onclick="modal('{{$data->id}}','{{$data->nama}}')">
+                                                onclick="modal('{{$data->id}}','{{$data->nama}}','{{$note->id}}')">
                                             <i class="zmdi zmdi-check-circle-u"></i>
                                         </button>
+
                                     </td>
                                 </tr>
                             @endforeach
@@ -83,14 +88,14 @@
                         <div class="form-group">
                             <label>Status Verifikasi</label>
                             <div class="radio">
-                                <input type="radio" name="status" id="radio1" value="valid">
+                                <input type="radio" name="status" id="radio1" value="valid" required>
                                 <label for="radio1">
                                     Data Umkm valid
                                 </label>
                             </div>
 
                             <div class="radio">
-                                <input type="radio" name="status" id="radio2" value="nonvalid">
+                                <input type="radio" name="status" id="radio2" value="nonvalid" required>
                                 <label for="radio2">
                                     Data Umkm tidak valid
                                 </label>
@@ -98,7 +103,7 @@
                         </div>
 
                         <div class="form-group form-float" id="bukti">
-                            <label for="filebukti">Upload bukti Umkm valid</label>
+                            <label for="filebukti">Upload bukti Umkm valid <small style="color: red;">Wajib, maks 2mb</small></label>
                             <input type="file" id="filebukti" class="form-control"  name="bukti">
                         </div>
 
@@ -108,7 +113,8 @@
                         </div>
 
                     </div>
-                    <input type="hidden" id="idumkm" name="umkm_id">
+                    <input type="hidden" id="idumkm" name="umkm_id" value="">
+                    <input type="hidden" id="verify_id" name="verify_id" value="">
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Tutup</button>
                         <button type="submit" class="btn btn-default btn-round waves-effect">Proses</button>
@@ -134,15 +140,19 @@
                    $('#bukti').show();
                }
            });
-           $("#divlasan").hide();
+
            $("#bukti").hide();
        });
 
        tinymce.init({selector: 'textarea'});
 
-        function modal(id, nama) {
+        function modal(id, nama, verify_id) {
             $("#largeModalLabel").text(nama);
             $("#idumkm").val(id);
+            $("#verify_id").val(verify_id);
+            $("#alasan").val(function () {
+                tinyMCE.activeEditor.setContent($("#note-"+id).val());
+            });
             $("#largeModal").modal('show');
         }
     </script>

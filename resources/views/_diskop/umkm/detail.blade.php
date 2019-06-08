@@ -62,19 +62,19 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group row mb-0">
-                                        <label class="col-lg-2"><b>Nama Pemilik</b></label>
+                                        <label class="col-lg-3"><b>Nama Pemilik</b></label>
                                         <div class="col-lg-8">
                                             <p>{{$data->nama_pemilik}}</p>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-0">
-                                        <label class="col-lg-2"><b>NIK Pemilik</b></label>
+                                        <label class="col-lg-3"><b>NIK Pemilik</b></label>
                                         <div class="col-lg-8">
                                             <p>{{$data->nik_pemilik}}</p>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-0">
-                                        <label class="col-lg-2"><b>Tanggal Didirikan</b></label>
+                                        <label class="col-lg-3"><b>Tanggal Didirikan</b></label>
                                         <div class="col-lg-8">
                                             <?php \Carbon\Carbon::setLocale('ID')?>
                                             <p>{{\Carbon\Carbon::parse($data->tgl_berdiri)->format('d-M-Y')}}</p>
@@ -95,7 +95,109 @@
                 <div role="tabpanel" class="tab-pane" id="timeline">
                     <div class="card">
                         <div class="body">
-
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-lg-3"><b>Jumlah Aset</b></label>
+                                        <div class="col-lg-8">
+                                            <p>Rp. {{$data->aset}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-lg-3"><b>Omset Umkm</b></label>
+                                        <div class="col-lg-8">
+                                            <p>Rp. {{$data->omset}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-lg-3"><b>Nomor SIUP</b></label>
+                                        <div class="col-lg-8">
+                                            <p>{{$data->siup}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-lg-3"><b>Tanggal SIUP keluarkan</b></label>
+                                        <div class="col-lg-8">
+                                            <p>{{\Carbon\Carbon::parse($data->tgl_siup)->format('d-M-Y') }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-lg-3"><b>Tanggal SIUP berakhir</b></label>
+                                        <div class="col-lg-8">
+                                            <p>{{\Carbon\Carbon::parse($data->tgl_siup_exp)->format('d-M-Y')}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-lg-3"><b>NPWP</b></label>
+                                        <div class="col-lg-8">
+                                            <p>{{$data->npwp}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-lg-3"><b>TDP</b></label>
+                                        <div class="col-lg-8">
+                                            <p>{{$data->tdp}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-lg-3"><b>Tanggal TDP keluarkan</b></label>
+                                        <div class="col-lg-8">
+                                            <p>{{\Carbon\Carbon::parse($data->tgl_tdp)->format('d-M-Y') }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-lg-3"><b>Tanggal TDP berakhir</b></label>
+                                        <div class="col-lg-8">
+                                            <p>{{\Carbon\Carbon::parse($data->tgl_tdp_exp)->format('d-M-Y') }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-lg-3"><b>Izin Gangguan</b></label>
+                                        <div class="col-lg-8">
+                                            <p>{{$data->izin_ganguan }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-lg-3"><b>Tanggal Izin Ganguuan</b></label>
+                                        <div class="col-lg-8">
+                                            <p>{{\Carbon\Carbon::parse($data->tgl_izin_ganguan)->format('d-M-Y') }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group row mb-0">
+                                        <label class="col-lg-3"><b>Akta Notaris</b></label>
+                                        <div class="col-lg-8">
+                                            <button class="btn btn-warning btn-icon btn-round" data-toggle="tooltip"
+                                                    type="button"
+                                                    title="Lihat Gambar"
+                                                    onclick="modal('{{asset($data->akta_notaris)}}','File Akta Notaris')">
+                                                <i class="zmdi zmdi-image"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -104,16 +206,41 @@
         </div>
     </div>
 @endsection
+@section('modal_umkm')
+    <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="title" id="largeModalLabel"></h5>
+                </div>
+                <div class="modal-body">
+                    <img src="" alt="" id="imageRender" height="50%" width="50%">
 
+                </div>
+                <input type="hidden" id="idumkm" name="umkm_id">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Tutup</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+@endsection
 @push('script')
     <script>
+        function modal(source, nama) {
+            $("#largeModalLabel").text(nama);
+            $('#imageRender').attr('src', source);
+            $("#largeModal").modal('show');
+        }
+
         var map;
         function init() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: {lat: {{$data->lat}}, lng: {{$data->long}}},
                 zoom: 12
             });
-            var marker = new google.maps.Marker({
+            var marker = new google.maps.Markeur({
                 position: {lat: {{$data->lat}}, lng: {{$data->long}}},
                 map: map});
         }

@@ -31,7 +31,7 @@ class PageController extends Controller
 
     public function nonvalid()
     {
-        $umkm = Umkm::wherehas('getVerify')->where('is_verified',false)->get();
+        $umkm = Umkm::wherehas('getVerify')->where('is_verified',false)->orderBy('updated_at','DESC')->get();
         return view('_diskop.umkm.list_nonvalid',[
             'umkm' =>$umkm
         ]);

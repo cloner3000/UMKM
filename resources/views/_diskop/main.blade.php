@@ -25,16 +25,19 @@
                                     class="badge badge-info">{{ App\Model\Role::find(Auth::user()->role_id)->role_name }}</span>
                             </p>
                             <div>
-                                @if($detail->status == 'Terverifikasi')
-                                    <button class="btn btn-primary btn-round" readonly><i
-                                            class="zmdi zmdi-check-all"></i>Akun
-                                        anda telah terverifikasi
-                                    </button>
-                                @else
-                                    <button class="btn btn-danger btn-round" readonly><span
-                                            class="zmdi zmdi-close"></span> Akun
-                                        anda belum terverifikasi
-                                    </button>
+                                @if(Auth::user()->role_id == 1)
+                                    @else
+                                    @if($detail->status == 'Terverifikasi')
+                                        <button class="btn btn-primary btn-round" readonly><i
+                                                class="zmdi zmdi-check-all"></i>Akun
+                                            anda telah terverifikasi
+                                        </button>
+                                    @else
+                                        <button class="btn btn-danger btn-round" readonly><span
+                                                class="zmdi zmdi-close"></span> Akun
+                                            anda belum terverifikasi
+                                        </button>
+                                    @endif
                                 @endif
                             </div>
                         </div>
