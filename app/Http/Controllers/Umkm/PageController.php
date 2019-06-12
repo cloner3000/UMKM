@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Umkm;
 use App\Model\Kategori;
 use App\Model\Like;
 use App\Model\Produk;
+use App\Model\Review;
 use App\Model\Umkm;
+use App\Model\Comment;
+use function foo\func;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +28,7 @@ class PageController extends Controller
     {
         $umkm = Umkm::where('user_id',Auth::user()->id)->first();
         return view('_umkm.produk',[
+            'umkm' => $umkm,
             'product' => Produk::where('umkm_id',$umkm->id)->paginate(10)
         ]);
     }
@@ -50,6 +54,31 @@ class PageController extends Controller
         $result_id = decrypt($id);
         return view('_umkm.detail', [
             'data' => Produk::findOrFail($result_id),
+        ]);
+    }
+
+    public function review()
+    {
+        $data = Review::whereHas('getProduct', function ($query){
+            $query->whereHas('getUmkm',function ($query){
+                $query->where('user_id',Auth::user()->id);
+            });
+        })->paginate(10);
+
+        return view('_umkm.review',[
+            'data' => $data
+        ]);
+    }
+
+    public function komentar()
+    {
+        $data = Comment::whereHas('getProduct', function ($query) {
+            $query->whereHas('getUmkm',function ($query) {
+                $query->where('user_id',Auth::user()->id);
+            });
+        })->get();
+        return view('_umkm.komentar',[
+            'data' => $data
         ]);
     }
 }

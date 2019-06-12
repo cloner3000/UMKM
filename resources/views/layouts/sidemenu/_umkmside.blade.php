@@ -7,7 +7,8 @@
     </a>
     <ul class="ml-menu">
         <li><a href="{{route('umkm.produk')}}">Daftar Produk</a></li>
-        <li><a href="ec-product.html">Komentar</a></li>
+        <li><a href="{{route('umkm.review.show')}}">Review</a></li>
+        <li><a href="{{route('umkm.komentar.show')}}">Komentar</a></li>
     </ul>
 </li>
 
