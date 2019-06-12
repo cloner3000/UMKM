@@ -8,4 +8,9 @@ class Review extends Model
 {
     protected $table = 'reviews';
     protected $guarded = ['id'];
+
+    public function getProduct()
+    {
+        return $this->belongsTo('App\Model\Produk','produk_id');
+    }
 }

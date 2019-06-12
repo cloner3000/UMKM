@@ -10,4 +10,9 @@ class Like extends Model
     protected $fillable = [
         'user_id', 'produk_id',
     ];
+
+    public function getProduct()
+    {
+        return $this->belongsTo('App\Model\Produk','produk_id');
+    }
 }

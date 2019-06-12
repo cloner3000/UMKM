@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,5 +10,10 @@ class Comment extends Model
     protected $fillable = [
         'user_id', 'produk_id', 'title', 'message'
     ];
+
+    public function getProduct()
+    {
+        return $this->belongsTo('App\Model\Produk','produk_id');
+    }
 
 }

@@ -17,6 +17,9 @@ class Umkm extends Model
         return $this->hasOne('App\Model\VerifyUmkm','umkm_id');
     }
 
-
+    public function getProduct()
+    {
+        return $this->hasMany('App\Model\Produk','umkm_id');
+    }
 
 }
