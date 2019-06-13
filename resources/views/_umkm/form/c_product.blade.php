@@ -60,7 +60,7 @@
 
                         <div class="form-group">
                             <label>Kategori produk <sub>Bisa lebih dari satu</sub></label>
-                            <select class="form-control" multiple data-placeholder="Kategori Produk Anda"
+                            <select class="form-control show-tick z-index" multiple data-placeholder="Kategori Produk Anda"  data-live-search="true"
                                     name="kategori[]">
                                 @foreach($kategori as $cath)
                                     <option value="{{$cath->id}}">{{$cath->name}}</option>

@@ -53,7 +53,7 @@ Route::group(['prefix' => 'umkm/','middleware' => ['auth','umkm']], function () 
         ]);
 
         Route::get('show/filter', [
-            'uses' => 'Umkm\Controller@review',
+            'uses' => 'Umkm\ReviewController@review_filter',
             'as' => 'umkm.review.filter'
         ]);
     });
@@ -62,6 +62,11 @@ Route::group(['prefix' => 'umkm/','middleware' => ['auth','umkm']], function () 
         Route::get('show', [
             'uses' => 'Umkm\PageController@komentar',
             'as' => 'umkm.komentar.show'
+        ]);
+
+        Route::get('show/filter', [
+            'uses' => 'Umkm\CommentController@comment_filter',
+            'as' => 'umkm.comment.filter'
         ]);
     });
 

@@ -63,7 +63,7 @@
                     <li class="col-lg-4 col-md-4 col-6">
                         <div class="body">
                             <i class="zmdi zmdi-comment-text col-red"></i>
-                            <h5 class="m-b-0 number count-to" data-from="0" data-to="0" data-speed="1000"
+                            <h5 class="m-b-0 number count-to" data-from="0" data-to="{{$comment}}" data-speed="1000"
                                 data-fresh-interval="700">324</h5>
                             <small>Comments</small>
                         </div>
@@ -71,7 +71,7 @@
                     <li class="col-lg-4 col-md-4 col-6">
                         <div class="body">
                             <i class="zmdi zmdi-account text-success"></i>
-                            <h5 class="m-b-0 number count-to" data-from="0" data-to="1980" data-speed="1000"
+                            <h5 class="m-b-0 number count-to" data-from="0" data-to="{{count($review)}}" data-speed="1000"
                                 data-fresh-interval="700">1980</h5>
                             <small>Review</small>
                         </div>
@@ -99,7 +99,7 @@
 
     <?php
     $umkm = App\Model\Umkm::where('user_id', Auth::user()->id)->first();
-    $notif = \App\Model\VerifyUmkm::where('umkm_id',$umkm->id)->where('status','nonvalid')->get();
+    $notif = \App\Model\VerifyUmkm::where('umkm_id', $umkm->id)->where('status', 'nonvalid')->get();
     ?>
     @if($notif->count() > 0)
         <div class="row clearfix">
@@ -109,7 +109,8 @@
                     <div class="alert-icon">
                         <i class="zmdi zmdi-info"></i>
                     </div>
-                    <strong>Ohh Tidak!</strong> Sepertinya data umkm anda kurang valid  <a href="{{route('umkm.show.akun')}}" class="alert-link">silahkan check disini</a>
+                    <strong>Ohh Tidak!</strong> Sepertinya data umkm anda kurang valid <a
+                        href="{{route('umkm.show.akun')}}" class="alert-link">silahkan check disini</a>
                 </div>
             </div>
         </div>
@@ -197,57 +198,46 @@
         <div class="col-xl-8 col-lg-7 col-md-12">
             <div class="card">
                 <div class="header">
-                    <h2><strong>Komentar</strong> Terbaru </h2>
+                    <h2><strong>Review</strong> Pelanggan Terbaru </h2>
                     <ul class="header-dropdown">
                         <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle"
                                                 data-toggle="dropdown" role="button" aria-haspopup="true"
                                                 aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
                             <ul class="dropdown-menu slideUp">
-                                <li><a href="javascript:void(0);">Action</a></li>
-                                <li><a href="javascript:void(0);">Another action</a></li>
-                                <li><a href="javascript:void(0);">Something else</a></li>
+                                <li><a href="{{route('umkm.review.show')}}">Lihat Selengkapnya</a></li>
                             </ul>
-                        </li>
-                        <li class="remove">
-                            <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
                         </li>
                     </ul>
                 </div>
                 <div class="body">
                     <ul class="row list-unstyled c_review">
-                        <li class="col-12">
-                            <div class="comment-action">
-                                <h6 class="c_name">Hossein Shams</h6>
-                                <p class="c_msg m-b-0">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                                    scelerisque ante sollicitudin commodo. </p>
-                                <div class="badge badge-info">iPhone 8</div>
-                                <span class="m-l-10">
-                                        <a href="javascript:void(0);"><i class="zmdi zmdi-star col-amber"></i></a>
-                                        <a href="javascript:void(0);"><i class="zmdi zmdi-star col-amber"></i></a>
-                                        <a href="javascript:void(0);"><i class="zmdi zmdi-star col-amber"></i></a>
-                                        <a href="javascript:void(0);"><i class="zmdi zmdi-star col-amber"></i></a>
-                                        <a href="javascript:void(0);"><i class="zmdi zmdi-star col-amber"></i></a>
+                        <?php
+                        Carbon\Carbon::setLocale('id');
+                        ?>
+                        @foreach($review as $item)
+                            <li class="col-12">
+                                <div class="comment-action">
+                                    <h6 class="c_name">Hossein Shams</h6>
+                                    <p class="c_msg m-b-0">{{$item->konten}} </p>
+                                    <div
+                                        class="badge badge-info">{{\App\Model\Produk::find($item->produk_id)->nama}}</div>
+                                    <span class="m-l-10">
+                                        <?php
+                                        $selisih = 5 - $item->star
+                                        ?>
+                                        @for($i=1 ; $i <= $item->star ; $i++)
+                                            <a href="javascript:void(0);"><i class="zmdi zmdi-star col-amber"></i></a>
+                                        @endfor
+                                        @for($i=1 ; $i <= $selisih ; $i++)
+                                            <a href="javascript:void(0);"><i
+                                                    class="zmdi zmdi-star-outline text-muted"></i></a>
+                                        @endfor
                                     </span>
-                                <small class="comment-date float-sm-right">Dec 21, 2017</small>
-                            </div>
-                        </li>
-                        <li class="col-12">
-
-                            <div class="comment-action">
-                                <h6 class="c_name">Tim Hank</h6>
-                                <p class="c_msg m-b-0">It is a long established fact that a reader will be distracted by
-                                    the readable content of a page when looking at its layout</p>
-                                <div class="badge badge-info">Nokia 8</div>
-                                <span class="m-l-10">
-                                        <a href="javascript:void(0);"><i class="zmdi zmdi-star col-amber"></i></a>
-                                        <a href="javascript:void(0);"><i class="zmdi zmdi-star col-amber"></i></a>
-                                        <a href="javascript:void(0);"><i class="zmdi zmdi-star-outline text-muted"></i></a>
-                                        <a href="javascript:void(0);"><i class="zmdi zmdi-star-outline text-muted"></i></a>
-                                        <a href="javascript:void(0);"><i class="zmdi zmdi-star-outline text-muted"></i></a>
-                                    </span>
-                                <small class="comment-date float-sm-right">Dec 18, 2017</small>
-                            </div>
-                        </li>
+                                    <small
+                                        class="comment-date float-sm-right">{{\Carbon\Carbon::parse($item->created_at)->format('d M, Y')}}</small>
+                                </div>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

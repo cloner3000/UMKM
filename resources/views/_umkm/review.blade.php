@@ -2,7 +2,7 @@
 @section('title','Review Pelanggan')
 @section('title_page')
     <h2>Review dari Pelanggan
-        <small>daftar kumpulan review dari pembeli</small>
+        <small>Daftar kumpulan review dari pembeli</small>
     </h2>
 @endsection
 @section('content')
@@ -11,88 +11,58 @@
         <div class="col-lg-12">
             <div class="card action_bar">
                 <div class="body">
-                    <div class="row clearfix">
-                        <div class="col-lg-6 col-md-5 col-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="input-group search">
-                                        <input type="date" class="form-control" placeholder="Start from" id="start">
-                                        <span class="input-group-addon">
-                                        <i class="zmdi zmdi-search"></i>
-                                    </span>
+                    <form action="{{route('umkm.review.filter')}}" method="get">
+                        <div class="row clearfix">
+                            <div class="col-lg-10 col-md-5 col-6">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Kategori produk <sub>Bisa lebih dari satu</sub></label>
+                                            <select class="form-control show-tick z-index" multiple data-placeholder=""  data-live-search="true"
+                                                    name="produk[]">
+                                                <option value="">Semua Produk</option>
+                                                @foreach($produk as $item)
+                                                    <option value="{{$item->id}}">{{$item->nama}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="input-group search">
-                                        <input type="date" class="form-control" placeholder="till form" id="end">
-                                        <span class="input-group-addon">
-                                        <i class="zmdi zmdi-search"></i>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="start">Mulai Tanggal</label>
+                                            <div class="input-group search">
+                                                <input type="date" class="form-control" placeholder="Start from" name="start"
+                                                       id="start">
+                                                <span class="input-group-addon">
+                                        <i class="zmdi zmdi-calendar"></i>
                                     </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="start">Sampai Tanggal</label>
+                                            <div class="input-group search">
+                                                <input type="date" class="form-control" placeholder="till form" name="end"
+                                                       id="end">
+                                                <span class="input-group-addon">
+                                        <i class="zmdi zmdi-calendar"></i>
+                                    </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-3 text-right">
-                            <div class="btn-group hidden-sm-down">
-                                <button type="button" class="btn btn-neutral dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">More<span class="caret"></span>
+                            <div class="col-lg-2">
+                                <br>
+                                <button class="btn btn-info btn-round" data-toggle="tooltip"
+                                        type="submit"
+                                        title="Filter Data">
+                                    <i class="zmdi zmdi-filter-list"></i>
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="javascript:void(0);">Unread</a></li>
-                                    <li><a href="javascript:void(0);">Unimportant</a></li>
-                                    <li><a href="javascript:void(0);">Add star</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="javascript:void(0);">Mute</a></li>
-                                </ul>
                             </div>
-                            <div class="btn-group hidden-md-down hidden-sm-down">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-neutral dropdown-toggle" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                        <i class="zmdi zmdi-filter"></i>
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="javascript:void(0);">Family</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">Work</a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0);">Google</a>
-                                        </li>
-                                        <li role="separator" class="divider"></li>
-                                        <li>
-                                            <a href="javascript:void(0);">Create a Label</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="btn-group hidden-md-down hidden-sm-down">
-                                <button type="button" class="btn btn-neutral dropdown-toggle" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false"><i class="zmdi zmdi-folder"></i>
-                                    <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li><a href="javascript:void(0);">Important</a></li>
-                                    <li><a href="javascript:void(0);">Social</a></li>
-                                    <li><a href="javascript:void(0);">Bank Statements</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="javascript:void(0);">Create a folder</a></li>
-                                </ul>
-                            </div>
-                            <button type="button" class="btn btn-neutral hidden-sm-down">
-                                <i class="zmdi zmdi-plus-circle"></i>
-                            </button>
-                            <button type="button" class="btn btn-neutral hidden-sm-down">
-                                <i class="zmdi zmdi-archive"></i>
-                            </button>
-                            <button type="button" class="btn btn-neutral btn-danger">
-                                <i class="zmdi zmdi-delete"></i>
-                            </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -155,9 +125,9 @@
 
             $("#start").on('blur', function () {
                 if (!this.value)
-                    $('#end').attr('disabled', true);
+                    $('#end').attr('disabled', true).val("");
                 else
-                $("#end").removeAttr('disabled')
+                    $("#end").removeAttr('disabled')
             });
         });
 

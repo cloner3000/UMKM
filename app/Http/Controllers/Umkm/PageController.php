@@ -18,9 +18,20 @@ class PageController extends Controller
     public function index()
     {
         $umkm = Umkm::where('user_id',Auth::user()->id)->first();
-
+        $review = Review::whereHas('getProduct', function ($query){
+            $query->whereHas('getUmkm',function ($query){
+                $query->where('user_id',Auth::user()->id);
+            });
+        })->get()->take(10);
+        $comment = Comment::whereHas('getProduct', function ($query){
+            $query->whereHas('getUmkm',function ($query){
+                $query->where('user_id',Auth::user()->id);
+            });
+        })->get()->count();
         return view('_umkm.main',[
             'produk' => count(Produk::where('umkm_id',$umkm->id)->get()),
+            'review' => $review,
+            'comment' =>$comment
         ]);
     }
 
@@ -65,8 +76,13 @@ class PageController extends Controller
             });
         })->paginate(10);
 
+        $produk = Produk::whereHas('getUmkm',function ($query){
+            $query->where('user_id',Auth::user()->id);
+        })->get();
+
         return view('_umkm.review',[
-            'data' => $data
+            'data' => $data,
+            'produk' => $produk
         ]);
     }
 
@@ -76,9 +92,13 @@ class PageController extends Controller
             $query->whereHas('getUmkm',function ($query) {
                 $query->where('user_id',Auth::user()->id);
             });
+        })->paginate(10);
+        $produk = Produk::whereHas('getUmkm',function ($query){
+            $query->where('user_id',Auth::user()->id);
         })->get();
         return view('_umkm.komentar',[
-            'data' => $data
+            'data' => $data,
+            'produk' => $produk
         ]);
     }
 }

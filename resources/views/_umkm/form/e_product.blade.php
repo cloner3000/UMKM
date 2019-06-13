@@ -91,8 +91,8 @@
 
                         <div class="form-group">
                             <label>Kategori produk <sub>Bisa lebih dari satu</sub></label>
-                            <select class="form-control" multiple data-placeholder="Kategori Produk Anda"
-                                    name="kategori[]">
+                            <select class="form-control show-tick z-index" multiple data-placeholder="Kategori Produk Anda"
+                                    name="kategori[]" data-live-search="true">
                                 @foreach($data->kategori_ids as $item)
                                     <option value="{{$item}}"
                                             selected>{{App\Model\Kategori::find($item)->name}}</option>
