@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('onetech/plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('onetech/plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('onetech/plugins/OwlCarousel2-2.2.1/animate.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('onetech/styles/responsive.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('onetech/plugins/slick-1.8.0/slick.css')}}">
     <!-- Sweet Alert v2 -->
     <script src="{{ asset('js/sweetalert/sweetalert.min.js') }}"></script>
@@ -309,6 +310,56 @@
 
     <header class="header">
 
+        <!-- Top Bar -->
+
+        <div class="top_bar">
+            <div class="container">
+                <div class="row">
+                    <div class="col d-flex flex-row">
+                        <div class="top_bar_contact_item">
+                            <div class="top_bar_icon"><img src="images/phone.png" alt=""></div>
+                            +38 068 005 3570
+                        </div>
+                        <div class="top_bar_contact_item">
+                            <div class="top_bar_icon"><img src="images/mail.png" alt=""></div>
+                            <a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                        <div class="top_bar_content ml-auto">
+                            @guest()
+                                <div class="top_bar_user">
+                                    <div class="user_icon"><img src="images/user.svg" alt=""></div>
+                                    <div><a href="javascript:void(0)" onclick="openRegisterModal();">Daftar </a></div>
+                                    <div><a href="javascript:void(0)" onclick="openLoginModal();">Masuk</a></div>
+                                </div>
+                            @else
+                                <div class="top_bar_menu">
+                                    <ul class="standard_dropdown top_bar_dropdown">
+                                        <li>
+                                            <a href="#">{{Auth::user()->username}}<i class="fa fa-user"></i></a>
+                                            <ul>
+                                                <li><a href="#"><span class="fa fa-cog"></span> Pengaturan Akun</a></li>
+                                                <li class="float-right">
+                                                    <a href="{{ route('logout') }}"
+                                                       onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();"
+                                                       class="mega-menu" data-close="true"><span
+                                                            class="fa fa-power-off"> </span> Keluar </a>
+                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                          style="display: none;">
+                                                        @csrf
+                                                    </form>
+
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            @endguest
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Header Main -->
 
         <div class="header_main">
@@ -318,7 +369,7 @@
                     <!-- Logo -->
                     <div class="col-lg-2 col-sm-3 col-3 order-1">
                         <div class="logo_container">
-                            <div class="logo"><a href="#">E - UMKM</a></div>
+                            <div class="logo"><a href="#">E-UMKM</a></div>
                         </div>
                     </div>
 
@@ -344,8 +395,9 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <button type="submit" class="header_search_button trans_300" value="Submit">
-                                            <span class="fa fa-search" style="color: #ffffff;"></span></button>
+                                        <button type="submit" class="header_search_button trans_300"
+                                                style="color: white;" value="Submit"><span class="fa fa-search"></span>
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -353,72 +405,36 @@
                     </div>
 
                     <!-- Wishlist -->
-                    <div class="col-lg-4 col-12 order-lg-12 order-2 text-lg-left text-right">
-                        <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-                            @guest
-
+                    @guest()
+                        @else
+                        <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+                            <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                                 <div class="wishlist d-flex flex-row align-items-center justify-content-end">
+                                    <div class="wishlist_icon">
+                                        <span class="fa fa-heart" style="font-size: 32pt"></span>
+                                    </div>
                                     <div class="wishlist_content">
-                                        <div class="row">
-                                            <div class="col-md-5">
-                                                <button data-toggle="modal" onclick="openLoginModal();" type="button"
-                                                        class="btn btn-outline-primary border-0 ">Masuk
-                                                </button>
-                                            </div>
-                                            <div class="col-md-5">
-                                                <button data-toggle="modal" onclick="openRegisterModal();" type="button"
-                                                        class="btn btn-outline-primary">Daftar
-                                                </button>
-                                            </div>
-                                        </div>
-
+                                        <div class="wishlist_text"><a href="#">Wishlist</a></div>
+                                        <div class="wishlist_count">115</div>
                                     </div>
                                 </div>
 
-                            @else
-                                <div class="row">
-                                    <div class="col-lg-3 offset-3">
-                                        <div class="wishlist d-flex flex-row align-items-center justify-content-end">
-                                            <span class="fa fa-heart" style="font-size: 36px;color: lightslategrey"></span>
-                                            <div class="wishlist_content">
-                                                <div class="wishlist_text"><a href="#">Wishlist</a></div>
-                                                <div class="wishlist_count">115</div>
-                                            </div>
+                                <!-- Cart -->
+                                <div class="cart">
+                                    <div class="cart_container d-flex flex-row align-items-center justify-content-end">
+                                        <div class="cart_icon">
+                                            <span class="fa fa-shopping-cart" style="font-size: 32pt"></span>
+                                            <div class="cart_count"><span>10</span></div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-3 offset-1">
-                                        <div class="cart">
-                                            <div class="cart_container d-flex flex-row align-items-center justify-content-end">
-                                                <div class="cart_icon">
-                                                    <span id="cart" class="fa fa-shopping-cart" style="font-size: 36px;color: lightslategrey"></span>
-                                                    <div class="cart_count"><span>10</span></div>
-                                                </div>
-                                                <div class="cart_content">
-                                                    <div class="cart_text"><a href="#">Keranjang</a></div>
-                                                    <div class="cart_price">$85</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-1">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-primary ">{{Auth::user()->username}}</button>
-                                            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span class="sr-only">Toggle Dropdown</span>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="#">Action</a>
-                                                <a class="dropdown-item" href="#">Another action</a>
-                                                <a class="dropdown-item" href="#">Something else here</a>
-                                                <div class="dropdown-divider"></div>
-                                                <a class="dropdown-item" href="#">Separated link</a>
-                                            </div>
+                                        <div class="cart_content">
+                                            <div class="cart_text"><a href="#">Keranjang</a></div>
+                                            <div class="cart_price">$85</div>
                                         </div>
                                     </div>
                                 </div>
-                            @endguest
+                            </div>
                         </div>
-                    </div>
+                    @endguest
                 </div>
             </div>
         </div>
@@ -478,7 +494,7 @@
 
                             <div class="main_nav_menu ml-auto">
                                 <ul class="standard_dropdown main_nav_dropdown">
-                                    <li><a href="index.html">Home<i class="fas fa-chevron-down"></i></a></li>
+                                    <li><a href="#">Home<i class="fas fa-chevron-down"></i></a></li>
                                     <li class="hassubs">
                                         <a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
                                         <ul>
@@ -591,7 +607,7 @@
                                     </ul>
                                 </li>
                                 <li class="page_menu_item">
-                                    <a href="index.html">Home<i class="fa fa-angle-down"></i></a>
+                                    <a href="#">Home<i class="fa fa-angle-down"></i></a>
                                 </li>
                                 <li class="page_menu_item has-children">
                                     <a href="#">Super Deals<i class="fa fa-angle-down"></i></a>
@@ -788,21 +804,20 @@
 </div>
 
 <script src="{{asset('onetech/js/jquery-3.3.1.min.js')}}"></script>
-
+<script src="{{asset('onetech/styles/bootstrap4/popper.js')}}"></script>
+<script src="{{asset('onetech/styles/bootstrap4/bootstrap.min.js')}}"></script>
+<script src="{{asset('onetech/plugins/greensock/TweenMax.min.js')}}"></script>
+<script src="{{asset('onetech/plugins/greensock/TimelineMax.min.js')}}"></script>
+<script src="{{asset('onetech/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
+<script src="{{asset('onetech/plugins/greensock/animation.gsap.min.js')}}"></script>
+<script src="{{asset('onetech/plugins/greensock/ScrollToPlugin.min.js')}}"></script>
+<script src="{{asset('onetech/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
+<script src="{{asset('onetech/plugins/slick-1.8.0/slick.js')}}"></script>
+<script src="{{asset('onetech/plugins/easing/easing.js')}}"></script>
+<script src="{{asset('onetech/js/custom.js')}}"></script>
 @include('layouts.partial._script')
 @include('layouts.partial.alert')
 @push('main_scipt')
-    <script src="{{asset('onetech/styles/bootstrap4/popper.js')}}"></script>
-    <script src="{{asset('onetech/styles/bootstrap4/bootstrap.min.js')}}"></script>
-    <script src="{{asset('onetech/plugins/greensock/TweenMax.min.js')}}"></script>
-    <script src="{{asset('onetech/plugins/greensock/TimelineMax.min.js')}}"></script>
-    <script src="{{asset('onetech/plugins/scrollmagic/ScrollMagic.min.js')}}"></script>
-    <script src="{{asset('onetech/plugins/greensock/animation.gsap.min.js')}}"></script>
-    <script src="{{asset('onetech/plugins/greensock/ScrollToPlugin.min.js')}}"></script>
-    <script src="{{asset('onetech/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
-    <script src="{{asset('onetech/plugins/slick-1.8.0/slick.js')}}"></script>
-    <script src="{{asset('onetech/plugins/easing/easing.js')}}"></script>
-    <script src="{{asset('onetech/js/custom.js')}}"></script>
 </body>
 
 </html>

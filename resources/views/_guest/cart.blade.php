@@ -1,7 +1,6 @@
 @extends('layouts.main')
 @push('main_css')
     <link rel="stylesheet" type="text/css" href="{{asset('onetech/styles/main_styles.css')}}">
-
 @endpush
 @section('main_title','E-Umkm')
 @section('main_content')
@@ -44,7 +43,7 @@
                                                     <div class="product_content">
                                                         <div class="product_price">Rp. {{number_format($item->harga)}} </div>
                                                         <div class="product_name">
-                                                            <div><a href="{{route('detail.product',['id' => encrypt($item->id)])}}">{{$item->nama}}</a></div>
+                                                            <div><a href="product.html">{{$item->nama}}</a></div>
                                                         </div>
                                                         <div class="product_extras">
                                                             <div class="product_color">

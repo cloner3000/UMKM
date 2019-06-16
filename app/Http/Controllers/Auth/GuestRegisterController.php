@@ -43,7 +43,7 @@ class GuestRegisterController extends Controller
         ]);
 
         Auth::login($user);
-        return redirect('/');
+        return redirect('/')->with('login','Pendaftaran Behasil, Selamat Berbelanja');
 
     }
 }
