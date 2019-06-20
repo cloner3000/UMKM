@@ -24,11 +24,15 @@ class CreateProduksTable extends Migration
             $table->string('keyword');
             $table->string('kategori_ids');
             $table->double('harga');
-            $table->boolean('purchase_order');
+            $table->string('persediaan')->default(0);
+            $table->boolean('purchase_order')->default(false);
             $table->text('pic1')->nullable();
             $table->text('pic2')->nullable();
             $table->string('status');
             $table->double('rating')->nullable();
+            $table->boolean('isHide')->default(false);
+            $table->boolean('isDiscount')->default(false);
+            $table->string('discount')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });
