@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('title','Product List')
+@section('title','Sunting Produk')
 @push('css')
 
 @endpush
@@ -37,27 +37,33 @@
                             <div class="form-group">
                                 <label>Ketersediaan Produk</label> <br>
                                 <div class="radio inlineblock m-r-20">
-                                    <input type="radio" name="po" id="male" class="with-gap" value="false" checked>
+                                    <input type="radio" name="po" id="male" class="with-gap" value="0" checked>
                                     <label for="male">Siap Jual</label>
                                 </div>
                                 <div class="radio inlineblock">
-                                    <input type="radio" name="po" id="Female" class="with-gap" value="true">
+                                    <input type="radio" name="po" id="Female" class="with-gap" value="1">
                                     <label for="Female">Purchase Order ( PO )</label>
                                 </div>
                             </div>
-                            @else
+                        @else
                             <div class="form-group">
                                 <label>Ketersediaan Produk</label> <br>
                                 <div class="radio inlineblock m-r-20">
-                                    <input type="radio" name="po" id="male" class="with-gap" value="false">
-                                    <label for="male">Siap Jual</label>
+                                    <input type="radio" name="po" id="ready" class="with-gap" value="0">
+                                    <label for="ready">Siap Jual</label>
                                 </div>
                                 <div class="radio inlineblock">
-                                    <input type="radio" name="po" id="Female" class="with-gap" value="true" checked>
-                                    <label for="Female">Purchase Order ( PO )</label>
+                                    <input type="radio" name="po" id="po" class="with-gap" value="1" checked>
+                                    <label for="po">Purchase Order ( PO )</label>
                                 </div>
                             </div>
                         @endif
+
+                        <div class="form-group form-float" id="stock">
+                            <label>Jumlah Produk Siap Jual</label>
+                            <input type="text" class="form-control" placeholder="Dalam jumlah pcs" name="stock"
+                                   value="{{$data->persediaan}}" onkeypress="return isNumberKey(event)">
+                        </div>
 
                         <div class="form-group">
                             <div class="row">
@@ -76,6 +82,7 @@
                         <div class="form-group form-float">
                             <label><b>Tambah </b> Gambar Produk <sub>Bisa lebih dari satu</sub></label>
                             <input type="file" class="form-control" name="photos[]" multiple/>
+                            <input type="hidden" name="foto" id="" value="">
                         </div>
 
                         <div class="form-group form-float">
@@ -91,7 +98,8 @@
 
                         <div class="form-group">
                             <label>Kategori produk <sub>Bisa lebih dari satu</sub></label>
-                            <select class="form-control show-tick z-index" multiple data-placeholder="Kategori Produk Anda"
+                            <select class="form-control show-tick z-index" multiple
+                                    data-placeholder="Kategori Produk Anda"
                                     name="kategori[]" data-live-search="true">
                                 @foreach($data->kategori_ids as $item)
                                     <option value="{{$item}}"
@@ -107,6 +115,30 @@
                             <textarea name="description" cols="30" rows="5" placeholder="Description"
                                       class="form-control no-resize tiny" required> {!! $data->long_desc !!} </textarea>
                         </div>
+                        @if($data->isDiscount == true)
+                            <div class="checkbox">
+                                <input id="diskon_cb" type="checkbox" onchange="shoi()" name="isDiscount" checked>
+                                <label for="diskon_cb">
+                                    Diskon Produk
+                                    <small>( optional )</small>
+                                </label>
+                            </div>
+                        @else
+                            <div class="checkbox">
+                                <input id="diskon_cb" type="checkbox" onchange="shoi()" name="isDiscount" >
+                                <label for="diskon_cb">
+                                    Diskon Produk
+                                    <small>( optional )</small>
+                                </label>
+                            </div>
+                        @endif
+
+                        <div class="form-group form-float" id="diskon_input">
+                            <label>Diskon Produk</label>
+                            <input type="text" class="form-control" placeholder="Diskon Dalam Persen" name="discount" id="dis"
+                                   onkeypress="return isNumberKey(event)" value="{{$data->discount}}">
+                        </div>
+
                         <div class="form-group form-float">
                             <label>Keyword</label>
                             <input type="text" class="form-control" placeholder="Untuk mempermudah pencarian oleh user"
@@ -121,8 +153,41 @@
 
 @endsection
 @push('script')
-
     <script>
+        $(document).ready(function () {
+            $('#ready').change(function () {
+                if ($(this).prop("checked", true)) {
+                    $('#stock').show("slow");
+                }
+            });
+            $('#po').change(function () {
+                if ($(this).prop("checked", true)) {
+                    $('#stock').hide("slow");
+
+                }
+            });
+            @if($data->persediaan == null)
+            $("#stock").hide();
+            @else
+            $("#stock").show();
+            @endif
+
+            @if($data->isDiscount == true)
+            $('#diskon_input').show();
+            @else
+            $('#diskon_input').hide();
+            @endif
+        });
+
+        function shoi() {
+            if ($('#diskon_cb').is(':checked')) {
+                $('#diskon_input').show("slow");
+            } else {
+                $('#diskon_input').hide("slow");
+                $('#dis').val("0");
+            }
+        }
+
         function isNumberKey(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
             if (charCode > 31 && (charCode < 48 || charCode > 57))

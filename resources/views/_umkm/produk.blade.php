@@ -52,10 +52,10 @@
                                            data-toggle="tooltip" title="Lihat Selengkapnya"><i
                                                 class="zmdi zmdi-view-web"></i></a>
                                         <a href="{{route('umkm.produk.edit',['id' => encrypt($item->id)])}}"
-                                           class="btn btn-default waves-effect waves-float waves-green"
+                                           class="btn btn-info waves-effect waves-float waves-green"
                                            data-toggle="tooltip" title="edit data"><i class="zmdi zmdi-edit"></i></a>
                                         <button onclick="return dele({{$item->id}})"
-                                                class="btn btn-default waves-effect waves-float waves-red delete"
+                                                class="btn btn-danger"
                                                 data-toggle="tooltip" title="Hapus data" data-id="{{$item->id}}"><i
                                                 class="zmdi zmdi-delete"></i></button>
                                         <form id="delete-form-{{$item->id}}"

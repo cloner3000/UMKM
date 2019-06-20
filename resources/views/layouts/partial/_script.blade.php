@@ -2,7 +2,7 @@
     $(function() {
         @if(session('error_login'))
             $("#loginModal").modal('show');
-            shakeModal();
+            shakeModal('{{session('error_login')}}');
             @elseif(session('error_register'))
             $('.loginBox').fadeOut('fast',function(){
                 $('.registerBox').fadeIn('fast');
@@ -32,7 +32,7 @@
             $('.login-footer').fadeOut('fast',function(){
                 $('.register-footer').fadeIn('fast');
             });
-            $('.modal-title').html('Register with');
+            $('.modal-title').html('Daftar');
         });
         $('.error').removeClass('alert alert-danger').html('');
 
@@ -44,7 +44,7 @@
                 $('.login-footer').fadeIn('fast');
             });
 
-            $('.modal-title').html('Login with');
+            $('.modal-title').html('Masuk');
         });
         $('.error').removeClass('alert alert-danger').html('');
     }
@@ -78,9 +78,9 @@
         shakeModal();
     }
 
-    function shakeModal(){
+    function shakeModal(msg){
         $('#loginModal .modal-dialog').addClass('shake');
-        $('.error').addClass('alert alert-danger').html("Kombinasi email dan password salah");
+        $('.error').addClass('alert alert-danger').html(msg);
         $('input[type="password"]').val('');
         setTimeout( function(){
             $('#loginModal .modal-dialog').removeClass('shake');

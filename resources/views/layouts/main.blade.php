@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('onetech/plugins/OwlCarousel2-2.2.1/owl.carousel.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('onetech/plugins/OwlCarousel2-2.2.1/owl.theme.default.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('onetech/plugins/OwlCarousel2-2.2.1/animate.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{asset('onetech/styles/responsive.css')}}">
+
     <link rel="stylesheet" type="text/css" href="{{asset('onetech/plugins/slick-1.8.0/slick.css')}}">
     <!-- Sweet Alert v2 -->
     <script src="{{ asset('js/sweetalert/sweetalert.min.js') }}"></script>
@@ -317,25 +317,26 @@
                 <div class="row">
                     <div class="col d-flex flex-row">
                         <div class="top_bar_contact_item">
-                            <div class="top_bar_icon"><img src="images/phone.png" alt=""></div>
+                            <div class="top_bar_icon"><span class="fa fa-phone"></span></div>
                             +38 068 005 3570
                         </div>
                         <div class="top_bar_contact_item">
-                            <div class="top_bar_icon"><img src="images/mail.png" alt=""></div>
+                            <div class="top_bar_icon"><span class="fa fa-envelope"></span></div>
                             <a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
                         <div class="top_bar_content ml-auto">
                             @guest()
                                 <div class="top_bar_user">
                                     <div class="user_icon"><img src="images/user.svg" alt=""></div>
                                     <div><a href="javascript:void(0)" onclick="openRegisterModal();">Daftar </a></div>
-                                    <div><a href="javascript:void(0)" onclick="openLoginModal();">Masuk</a></div>
+                                    <div><a href="javascript:void(0)" onclick="openLoginModal();"> <span class="fa fa-sign-in-alt"></span> Masuk</a></div>
                                 </div>
                             @else
                                 <div class="top_bar_menu">
                                     <ul class="standard_dropdown top_bar_dropdown">
                                         <li>
-                                            <a href="#">{{Auth::user()->username}}<i class="fa fa-user"></i></a>
+                                            <a href="#">{{Auth::user()->username}} <span class="fa fa-caret-down"></span></a>
                                             <ul>
+                                                <li><a href="#"><span class="fa fa-history"></span> Riwayat Pembelian</a></li>
                                                 <li><a href="#"><span class="fa fa-cog"></span> Pengaturan Akun</a></li>
                                                 <li class="float-right">
                                                     <a href="{{ route('logout') }}"
@@ -668,26 +669,6 @@
 
     </header>
 
-    <!-- Banner -->
-
-    <div class="banner">
-        <div class="banner_background"
-             style="background-image:url({{asset('onetech/images/banner_background.jpg')}})"></div>
-        <div class="container fill_height">
-            <div class="row fill_height">
-                <div class="banner_product_image"><img src="{{asset('onetech/images/banner_product.png')}}" alt="">
-                </div>
-                <div class="col-lg-5 offset-lg-4 fill_height">
-                    <div class="banner_content">
-                        <h1 class="banner_text">Segera Daftarkan UMKM Anda</h1>
-                        <div class="banner_product_name">Kami Bantu Wujudkan Lapak Impianmu</div>
-                        <br>
-                        <div class="button banner_button"><a href="{{route('register')}}">Daftar Sekarang</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 @yield('main_content')
 @include('layouts.partial.modal_login')
 <!-- Characteristics -->
@@ -814,10 +795,9 @@
 <script src="{{asset('onetech/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
 <script src="{{asset('onetech/plugins/slick-1.8.0/slick.js')}}"></script>
 <script src="{{asset('onetech/plugins/easing/easing.js')}}"></script>
-<script src="{{asset('onetech/js/custom.js')}}"></script>
 @include('layouts.partial._script')
 @include('layouts.partial.alert')
-@push('main_scipt')
+@stack('main_scipt')
 </body>
 
 </html>

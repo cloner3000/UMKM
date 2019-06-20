@@ -27,20 +27,25 @@
 
                         <div class="form-group form-float">
                             <label>Deskripsi Singkat produk</label>
-                            <input type="text" class="form-control" placeholder="Deskripsi Singkat" name="short_desc" required>
+                            <input type="text" class="form-control" placeholder="Deskripsi Singkat" name="short_desc"
+                                   required>
                         </div>
 
                         <div class="form-group">
                             <label>Ketersediaan Produk</label> <br>
                             <div class="radio inlineblock m-r-20">
-                                <input type="radio" name="po" id="male" class="with-gap" value="false">
-                                <label for="male">Siap Jual</label>
+                                <input type="radio" name="preorder" id="ready" class="with-gap" value="0">
+                                <label for="ready">Siap Jual</label>
                             </div>
                             <div class="radio inlineblock">
-                                <input type="radio" name="po" id="Female" class="with-gap" value="true"
-                                       checked="">
-                                <label for="Female">Purchase Order ( PO )</label>
+                                <input type="radio" name="preorder" id="po" class="with-gap" value="1">
+                                <label for="po">Purchase Order ( PO )</label>
                             </div>
+                        </div>
+
+                        <div class="form-group form-float" id="stock">
+                            <label>Jumlah Produk Siap Jual</label>
+                            <input type="text" class="form-control" placeholder="Dalam jumlah pcs" name="stock" onkeypress="return isNumberKey(event)">
                         </div>
 
                         <div class="form-group form-float">
@@ -54,13 +59,15 @@
                                     <span class="input-group-addon">
                                         Rp.
                                     </span>
-                                <input type="text" class="form-control" name="harga" onkeypress="return isNumberKey(event)"/>
+                                <input type="text" class="form-control" name="harga"
+                                       onkeypress="return isNumberKey(event)"/>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label>Kategori produk <sub>Bisa lebih dari satu</sub></label>
-                            <select class="form-control show-tick z-index" multiple data-placeholder="Kategori Produk Anda"  data-live-search="true"
+                            <select class="form-control show-tick z-index" multiple
+                                    data-placeholder="Kategori Produk Anda" data-live-search="true"
                                     name="kategori[]">
                                 @foreach($kategori as $cath)
                                     <option value="{{$cath->id}}">{{$cath->name}}</option>
@@ -70,11 +77,25 @@
                         <div class="form-group form-float">
                             <label>Deskripsi Produk </label>
                             <textarea name="description" cols="30" rows="5" placeholder="Description"
-                                      class="form-control no-resize tiny"  required> </textarea>
+                                      class="form-control no-resize tiny" required> </textarea>
                         </div>
+
+                        <div class="checkbox">
+                            <input id="diskon_cb" type="checkbox" onchange="shoi()" name="isDiscount">
+                            <label for="diskon_cb">
+                                Diskon Produk <small>( optional )</small>
+                            </label>
+                        </div>
+
+                        <div class="form-group form-float" id="diskon_input">
+                            <label>Diskon Produk</label>
+                            <input type="text" class="form-control" placeholder="Diskon Dalam Persen" name="discount" onkeypress="return isNumberKey(event)">
+                        </div>
+
                         <div class="form-group form-float">
                             <label>Keyword</label>
-                            <input type="text" class="form-control" placeholder="Untuk mempermudah pencarian oleh user" name="key" required>
+                            <input type="text" class="form-control" placeholder="Untuk mempermudah pencarian oleh user"
+                                   name="key" required>
                         </div>
                         <button class="btn btn-raised btn-primary btn-round waves-effect" type="submit">SUBMIT</button>
                     </form>
@@ -87,12 +108,39 @@
 @push('script')
 
     <script>
+
+        $(document).ready(function () {
+            $('#ready').change(function () {
+                if ($(this).prop("checked",true)) {
+                    $('#stock').show("slow");
+                }
+            });
+            $('#po').change(function () {
+                if ($(this).prop("checked",true)) {
+                    $('#stock').hide("slow");
+                }
+            });
+            $("#stock").hide();
+            $('#diskon_input').hide();
+
+        });
+
+        function shoi() {
+            if ($('#diskon_cb').is(':checked'))
+            {
+                $('#diskon_input').show("slow");
+            }else {
+                $('#diskon_input').hide("slow");
+            }
+        }
+
         function isNumberKey(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode
             if (charCode > 31 && (charCode < 48 || charCode > 57))
                 return false;
             return true;
         }
+
         tinymce.init({selector: 'textarea'});
         $(document).ready(function () {
             $('.select2').select2();

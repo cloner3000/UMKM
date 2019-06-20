@@ -3,7 +3,7 @@
     <div class="modal-dialog login animated">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Login with</h4>
+                <h4 class="modal-title">Masuk</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
             </div>
             <div class="modal-body">
