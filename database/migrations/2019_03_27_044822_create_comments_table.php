@@ -23,6 +23,8 @@ class CreateCommentsTable extends Migration
                 ->on('produks')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->string('title');
             $table->text('message');
+            $table->boolean('isAnswer')->default(false);
+            $table->integer('comment_id')->nullable();
             $table->timestamps();
         });
     }

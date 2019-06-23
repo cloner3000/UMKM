@@ -36,4 +36,22 @@ class CommentController extends Controller
             'produk' =>$produk
         ]);
     }
+
+    public function answer_comment(Request $request)
+    {
+        Comment::create([
+            'message' => $request->massage,
+            'produk_id' => $request->produk_id,
+            'comment_id' => $request->comment_id,
+            'isAnswer' => true,
+            'user_id' => Auth::user()->id,
+            'title' => 'jawaban'
+        ]);
+        return back();
+    }
+
+    public function edit_answer()
+    {
+        
+    }
 }

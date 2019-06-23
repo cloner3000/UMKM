@@ -18,7 +18,8 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Kategori produk <sub>Bisa lebih dari satu</sub></label>
-                                            <select class="form-control show-tick z-index" multiple data-placeholder=""  data-live-search="true"
+                                            <select class="form-control show-tick z-index" multiple data-placeholder=""
+                                                    data-live-search="true"
                                                     name="produk[]">
                                                 <option value="">Semua Produk</option>
                                                 @foreach($produk as $item)
@@ -31,7 +32,8 @@
                                         <div class="form-group">
                                             <label for="start">Mulai Tanggal</label>
                                             <div class="input-group search">
-                                                <input type="date" class="form-control" placeholder="Start from" name="start"
+                                                <input type="date" class="form-control" placeholder="Start from"
+                                                       name="start"
                                                        id="start">
                                                 <span class="input-group-addon">
                                         <i class="zmdi zmdi-calendar"></i>
@@ -43,7 +45,8 @@
                                         <div class="form-group">
                                             <label for="start">Sampai Tanggal</label>
                                             <div class="input-group search">
-                                                <input type="date" class="form-control" placeholder="till form" name="end"
+                                                <input type="date" class="form-control" placeholder="till form"
+                                                       name="end"
                                                        id="end">
                                                 <span class="input-group-addon">
                                         <i class="zmdi zmdi-calendar"></i>
@@ -67,6 +70,7 @@
             </div>
         </div>
     </div>
+
     <div class="row clearfix">
         <div class="col-md-12 col-lg-12 col-xl-12">
             <ul class="mail_list list-group list-unstyled">
@@ -77,19 +81,10 @@
                     ?>
                     <li class="list-group-item">
                         <div class="media">
-                            <div class="pull-left">
-                                <div class="controls">
-                                    <div class="checkbox">
-                                        <input type="checkbox" id="basic_checkbox_1">
-                                        <label for="basic_checkbox_1"></label>
-                                    </div>
-                                    {{--<a href="javascript:void(0);" class="favourite text-muted hidden-sm-down" data-toggle="active"><i class="zmdi zmdi-star-outline"></i></a>--}}
-                                </div>
-                                {{--<div class="thumb hidden-sm-down m-r-20"> <img src="{{asset('images/shop.png')}}" style="width: 30%; height: 20%" class="rounded-circle" alt=""> </div>--}}
-                            </div>
                             <div class="media-body">
                                 <div class="media-heading">
-                                    <a href="javascript:void(0)" class="m-r-10">Velit a labore</a>
+                                    <a href="javascript:void(0)"
+                                       class="m-r-10">{{\App\User::find($item->user_id)->username}}</a>
                                     <a href="{{route('umkm.produk.detail',[ 'id' => encrypt($item->id)])}}"
                                        target="_blank">
                                     <span
@@ -100,7 +95,52 @@
                                               datetime="2017">{{\Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</time>
                                         <i class="zmdi zmdi-attachment-alt"></i></small>
                                 </div>
-                                <p class="msg">{{$item->konten}} </p>
+                                <div class="float-right">
+                                    <button class="btn btn-success btn-icon  btn-icon-mini btn-round"
+                                            data-toggle="tooltip"
+                                            title="Balas Pertanyaan"
+                                            onclick="modal('{{$item->id}}','{{$item->message}}','{{$item->produk_id}}')">
+                                        <i class="zmdi zmdi-mail-reply"></i>
+                                    </button>
+                                    <button class="btn btn-primary btn-icon  btn-icon-mini btn-round"
+                                            data-toggle="tooltip"
+                                            title="Lihat Percakapan" onclick="show_answer('{{$item->id}}')">
+                                        <i class="zmdi zmdi-more"></i>
+                                    </button>
+                                </div>
+                                <p class="msg">{{$item->message}} </p>
+
+                            </div>
+                        </div>
+                        <div class="media media-hidden offset-1" id="answer_hide-{{$item->id}}">
+                            <div class="media-body">
+                                <?php
+                                $answer = \App\Model\Comment::where('isAnswer', true)->where('comment_id', $item->id)->get();
+                                ?>
+                                @foreach($answer as $ans)
+                                    <div class="media-heading">
+                                        <a href="javascript:void(0)"
+                                           class="m-r-10">{{\App\User::find($ans->user_id)->username}}</a>
+                                        <a href="{{route('umkm.produk.detail',[ 'id' => encrypt($item->id)])}}"
+                                           target="_blank">
+                                    <span
+                                        class="badge bg-blue">{{\App\Model\Produk::find($item->produk_id)->nama}}</span>
+                                        </a>
+                                        <small class="float-right text-muted">
+                                            <time class="hidden-sm-down"
+                                                  datetime="2017">{{\Carbon\Carbon::parse($ans->created_at)->diffForHumans()}}</time>
+                                            <i class="zmdi zmdi-attachment-alt"></i></small>
+                                    </div>
+                                    <div class="float-right">
+                                        {{--<button class="btn btn-primary btn-icon  btn-icon-mini btn-round"--}}
+                                                {{--data-toggle="tooltip"--}}
+                                                {{--title="Balas Pertanyaan"--}}
+                                                {{--onclick="modal('{{$item->id}}','{{$item->message}}','{{$item->produk_id}}')">--}}
+                                            {{--<i class="zmdi zmdi-mail-reply"></i>--}}
+                                        {{--</button>--}}
+                                    </div>
+                                    <p class="msg">{{$ans->message}} </p>
+                                @endforeach
                             </div>
                         </div>
                     </li>
@@ -118,6 +158,37 @@
         </div>
     </div>
 @endsection
+@section('modal_umkm')
+    <div class="modal fade" id="largeModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <form action="{{route('umkm.comment.answer')}}" method="post">
+                    @csrf
+                    <div class="modal-header">
+                        <h4 class="title" id="largeModalLabel"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group form-float" id="bukti">
+                            <label for="filebukti">Pertanyaan Pelanggan</label>
+                            <input type="text" id="pertanyaan" class="form-control disabled" readonly>
+                        </div>
+
+                        <div class="form-group form-float" id="bukti">
+                            <label for="filebukti">Jawaban Anda</label>
+                            <input type="text" id="jawaban" class="form-control" name="massage">
+                        </div>
+                    </div>
+                    <input type="hidden" id="idproduk" name="produk_id">
+                    <input type="hidden" id="idcomment" name="comment_id">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-default btn-round waves-effect">Proses</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
 @push('script')
     <script>
         $(document).ready(function () {
@@ -129,7 +200,20 @@
                 else
                     $("#end").removeAttr('disabled')
             });
+            $('.media-hidden').hide();
         });
+
+        function show_answer(id) {
+            $('#answer_hide-' + id).toggle("slow");
+        }
+
+        function modal(id, pesan, produk_id) {
+            $("#largeModalLabel").text("Balas Pesan Pelanggan");
+            $("#idproduk").val(produk_id);
+            $("#pertanyaan").val(pesan);
+            $("#idcomment").val(id);
+            $("#largeModal").modal('show');
+        }
 
         $("#start").datepicker({
             format: "yyyy-mm-dd", autoclose: true, todayHighlight: true, todayBtn: true,

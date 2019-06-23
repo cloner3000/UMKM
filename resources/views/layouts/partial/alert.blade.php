@@ -15,5 +15,7 @@
     swal('Oops!!','{{session('error_master')}}','error')
     @elseif(session('success_umkm'))
     swal('Berhasil','{{session('success_umkm')}}','success')
+    @elseif(session('success_komen'))
+    swal('Berhasil','{{session('success_komen')}}','success')
     @endif
 </script>

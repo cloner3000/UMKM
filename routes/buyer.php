@@ -40,4 +40,14 @@ Route::group(['prefix' => 'action/','middleware' => ['buyer']], function () {
         'uses' => 'Guest\BuyingController@remove_wishlist',
         'as' => 'add.wishlist.remove'
     ]);
+
+    Route::post('comment',[
+        'uses' => 'Guest\ReviewCommentController@comment_store',
+        'as' => 'submit.comment'
+    ]);
+
+    Route::post('comment/answer',[
+        'uses' => 'Guest\ReviewCommentController@answer_comment',
+        'as' => 'submit.comment.answer'
+    ]);
 });

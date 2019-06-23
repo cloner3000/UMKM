@@ -92,7 +92,7 @@ class PageController extends Controller
             $query->whereHas('getUmkm',function ($query) {
                 $query->where('user_id',Auth::user()->id);
             });
-        })->paginate(10);
+        })->where('isAnswer',false)->paginate(10);
         $produk = Produk::whereHas('getUmkm',function ($query){
             $query->where('user_id',Auth::user()->id);
         })->get();

@@ -68,6 +68,11 @@ Route::group(['prefix' => 'umkm/','middleware' => ['auth','umkm']], function () 
             'uses' => 'Umkm\CommentController@comment_filter',
             'as' => 'umkm.comment.filter'
         ]);
+
+        Route::post('answer', [
+            'uses' => 'Umkm\CommentController@answer_comment',
+            'as' => 'umkm.comment.answer'
+        ]);
     });
 
     Route::group(['prefix' => 'akun/'], function () {

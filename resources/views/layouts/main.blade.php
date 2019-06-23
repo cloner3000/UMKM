@@ -327,7 +327,7 @@
                             @guest()
                                 <div class="top_bar_user">
                                     <div class="user_icon"><img src="images/user.svg" alt=""></div>
-                                    <div><a href="javascript:void(0)" onclick="openRegisterModal();">Daftar </a></div>
+                                    <div><a href="javascript:void(0)" onclick="openRegisterModal();"><span class="fa fa-user-plus"></span> Daftar </a></div>
                                     <div><a href="javascript:void(0)" onclick="openLoginModal();"> <span class="fa fa-sign-in-alt"></span> Masuk</a></div>
                                 </div>
                             @else
@@ -795,6 +795,11 @@
 <script src="{{asset('onetech/plugins/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
 <script src="{{asset('onetech/plugins/slick-1.8.0/slick.js')}}"></script>
 <script src="{{asset('onetech/plugins/easing/easing.js')}}"></script>
+<script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
 @include('layouts.partial._script')
 @include('layouts.partial.alert')
 @stack('main_scipt')
