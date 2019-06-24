@@ -83,14 +83,11 @@
                                                                 <input type="radio" name="product_color"
                                                                        style="background:#999999">
                                                             </div>
-                                                            <form action="{{route('add.cart')}}" method="post">
-                                                                @csrf
-                                                                <input type="hidden" name="produk_id"
-                                                                       value="{{$item->id}}">
-                                                                <button type="submit" class="product_cart_button">Add to
-                                                                    Cart
+                                                            <a href="{{route('detail.product',['id'=> encrypt($item->id)])}}">
+                                                                <button type="submit" class="product_cart_button">Lihat
+                                                                    Detail
                                                                 </button>
-                                                            </form>
+                                                            </a>
                                                         </div>
                                                     </div>
                                                     <div class="product_fav"><i class="fas fa-heart"></i></div>

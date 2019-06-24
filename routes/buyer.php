@@ -16,10 +16,21 @@ Route::get('detail/{id}',[
 ]);
 
 Route::group(['prefix' => 'action/','middleware' => ['buyer']], function () {
+
+
     Route::post('add_cart',[
         'uses' => 'Guest\BuyingController@add_cart',
         'as' => 'add.cart'
     ]);
+
+    Route::group(['prefix' => 'keranjang/'], function () {
+
+        Route::get('list', [
+            'uses' => 'Guest\PageController@cart',
+            'as' => 'cart'
+        ]);
+    });
+
 
     Route::post('remove_cart',[
         'uses' => 'Guest\BuyingController@cancel_cart',

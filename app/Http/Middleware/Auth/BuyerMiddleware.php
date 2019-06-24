@@ -17,7 +17,7 @@ class BuyerMiddleware
     public function handle($request, Closure $next)
     {
         if (Auth::guest()) {
-            return redirect()->guest(route('landing'))
+            return redirect()->back()
                 ->with('error_login', 'Proses yang Anda minta memerlukan otentikasi, silahkan masuk ke akun Anda.');
         }
         return $next($request); //lanjur ke prosess berikutnya

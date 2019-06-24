@@ -134,7 +134,8 @@
                         {{--<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>--}}
                         <div class="product_text"></div>
                         <div class="order_info d-flex flex-row">
-                            <form action="#">
+                            <form action="{{route('add.cart')}}" method="post">
+                                @csrf
                                 <div class="clearfix" style="z-index: 1000;">
 
                                     <!-- Product Quantity -->
@@ -176,17 +177,15 @@
 
                                 </div>
 
-                                <div class="product_price">Rp {{number_format($data->harga)}}</div>
+                                <div class="product_price">Rp {{number_format($data->harga)}} / Unit</div>
                                 <div class="button_container">
-                                    <form action="" method="post">
-                                        <input type="text" id="hasil_qty" name="qty" hidden>
-                                        <button type="submit" class="button cart_button"><span
-                                                class="fa fa-cart-plus"></span> Tambah ke keranjang
-                                        </button>
-                                    </form>
+                                    <input type="text" id="hasil_qty" name="qty" hidden>
+                                    <input type="text" id="hasil_qty" name="produk_id" value="{{$data->id}}" hidden>
+                                    <button type="submit" class="button cart_button"><span
+                                            class="fa fa-cart-plus"></span> Tambah ke keranjang
+                                    </button>
                                     <div class="product_fav"><i class="fas fa-heart"></i></div>
                                 </div>
-
                             </form>
                         </div>
                     </div>
@@ -236,6 +235,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="tab-pane" id="tab-1-2">
                                     <div class="d-flex flex-column flex-lg-row">
                                         @if(count($review) < 1)
@@ -312,7 +312,8 @@
                                                                     @endforeach
                                                                     <br>
                                                                     <br>
-                                                                    <form action="{{route('submit.comment.answer')}}" method="post">
+                                                                    <form action="{{route('submit.comment.answer')}}"
+                                                                          method="post">
                                                                         @csrf
                                                                         <div class="input-group mb-3">
                                                                             <input type="text" class="form-control"
@@ -321,8 +322,10 @@
                                                                                    aria-describedby="basic-addon2"
                                                                                    name="massage"
                                                                                    required>
-                                                                            <input type="hidden" name="produk_id" value="{{$data->id}}">
-                                                                            <input type="hidden" name="comment_id" value="{{$item->id}}">
+                                                                            <input type="hidden" name="produk_id"
+                                                                                   value="{{$data->id}}">
+                                                                            <input type="hidden" name="comment_id"
+                                                                                   value="{{$item->id}}">
                                                                             <div class="input-group-append">
                                                                                 <button class="btn btn-outline-info"
                                                                                         type="submit">Kirim
@@ -414,6 +417,11 @@
 @push('main_scipt')
     <script src="{{asset('onetech/js/product_custom.js')}}"></script>
     <script>
+
+        $(document).ready(function () {
+            $('#hasil_qty').val("1")
+        })
+
         function question(q) {
             var input = $('#tanya_ta');
             var konten = input.val(input.val() + q);
@@ -428,33 +436,33 @@
         $(function () {
             "use strict";
 
-            $('a[href*="#"]').on('click', function (event) {
-                {
-                    // Figure out element to scroll to
-                    var target = $(this);
-                    target = target.length ? target : $('[name=' + this.slice(1) + ']');
-                    // Does a scroll target exist?
-                    if (target.length) {
-                        // Only prevent default if animation is actually gonna happen
-                        event.preventDefault();
-                        $('html, body').animate({
-                            scrollTop: target.offset().top
-                        }, 1000, function () {
-                            // Callback after animation
-                            // Must change focus!
-                            var $target = $(target);
-                            $target.focus();
-                            if ($target.is(":focus")) { // Checking if the target was focused
-                                return false;
-                            } else {
-                                $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
-                                $target.focus(); // Set focus again
-                            }
-                            ;
-                        });
-                    }
-                }
-            });
+            // $('a[href*="#"]').on('click', function (event) {
+            //     {
+            //         // Figure out element to scroll to
+            //         var target = $(this);
+            //         target = target.length ? target : $('[name=' + this.slice(1) + ']');
+            //         // Does a scroll target exist?
+            //         if (target.length) {
+            //             // Only prevent default if animation is actually gonna happen
+            //             event.preventDefault();
+            //             $('html, body').animate({
+            //                 scrollTop: target.offset().top
+            //             }, 1000, function () {
+            //                 // Callback after animation
+            //                 // Must change focus!
+            //                 var $target = $(target);
+            //                 $target.focus();
+            //                 if ($target.is(":focus")) { // Checking if the target was focused
+            //                     return false;
+            //                 } else {
+            //                     $target.attr('tabindex', '-1'); // Adding tabindex for elements not focusable
+            //                     $target.focus(); // Set focus again
+            //                 }
+            //                 ;
+            //             });
+            //         }
+            //     }
+            // });
 
         }); /* End Fn */
     </script>

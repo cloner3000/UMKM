@@ -370,7 +370,7 @@
                     <!-- Logo -->
                     <div class="col-lg-2 col-sm-3 col-3 order-1">
                         <div class="logo_container">
-                            <div class="logo"><a href="#">E-UMKM</a></div>
+                            <div class="logo"><a href="{{route('landing')}}">E-UMKM</a></div>
                         </div>
                     </div>
 
@@ -428,7 +428,7 @@
                                             <div class="cart_count"><span>10</span></div>
                                         </div>
                                         <div class="cart_content">
-                                            <div class="cart_text"><a href="#">Keranjang</a></div>
+                                            <div class="cart_text"><a href="{{route('cart')}}">Keranjang</a></div>
                                             <div class="cart_price">$85</div>
                                         </div>
                                     </div>
@@ -654,11 +654,11 @@
 
                             <div class="menu_contact">
                                 <div class="menu_contact_item">
-                                    <div class="menu_contact_icon"><img src="images/phone_white.png" alt=""></div>
+                                    <div class="menu_contact_icon"><span class="fa fa-phone"></span> </div>
                                     +38 068 005 3570
                                 </div>
                                 <div class="menu_contact_item">
-                                    <div class="menu_contact_icon"><img src="images/mail_white.png" alt=""></div>
+                                    <div class="menu_contact_icon"><span class="fa fa-envelope"></span> </div>
                                     <a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
                             </div>
                         </div>
@@ -770,10 +770,10 @@
                         </div>
                         <div class="logos ml-sm-auto">
                             <ul class="logos_list">
-                                <li><a href="#"><img src="images/logos_1.png" alt=""></a></li>
-                                <li><a href="#"><img src="images/logos_2.png" alt=""></a></li>
-                                <li><a href="#"><img src="images/logos_3.png" alt=""></a></li>
-                                <li><a href="#"><img src="images/logos_4.png" alt=""></a></li>
+                                {{--<li><a href="#"><img src="images/logos_1.png" alt=""></a></li>--}}
+                                {{--<li><a href="#"><img src="images/logos_2.png" alt=""></a></li>--}}
+                                {{--<li><a href="#"><img src="images/logos_3.png" alt=""></a></li>--}}
+                                {{--<li><a href="#"><img src="images/logos_4.png" alt=""></a></li>--}}
                             </ul>
                         </div>
                     </div>

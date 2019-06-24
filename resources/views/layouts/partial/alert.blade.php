@@ -17,5 +17,7 @@
     swal('Berhasil','{{session('success_umkm')}}','success')
     @elseif(session('success_komen'))
     swal('Berhasil','{{session('success_komen')}}','success')
+    @elseif(session('success_cart'))
+    swal('Berhasil','{{session('success_cart')}}','success')
     @endif
 </script>

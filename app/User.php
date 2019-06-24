@@ -38,4 +38,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getCart()
+    {
+        return $this->hasMany('App\Modal\Produk','user_id');
+    }
 }

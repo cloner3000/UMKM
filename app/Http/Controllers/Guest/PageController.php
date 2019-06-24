@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\Guest;
 
+use App\Model\Cart;
 use App\Model\Comment;
 use App\Model\Produk;
 use App\Model\Review;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -29,6 +31,17 @@ class PageController extends Controller
             'data' => $data,
             'review' => $review,
             'comment' => $comment
+        ]);
+    }
+
+    public function cart()
+    {
+        $data = Cart::where('user_id',Auth::user()->id)->where('isPaid',false)->get();
+        $id = Cart::where('user_id',Auth::user()->id)->where('isPaid',false)->get()->pluck('id');
+
+        return view('_guest.cart',[
+            'data' => $data,
+            'id' => $id
         ]);
     }
 }

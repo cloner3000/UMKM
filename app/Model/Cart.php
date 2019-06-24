@@ -13,4 +13,10 @@ class Cart extends Model
     {
         return $this->belongsTo('App\Model\Produk','produk_id');
     }
+
+    public function getPembeli()
+    {
+        return $this->belongsTo('App\Produk','user_id');
+    }
+
 }
