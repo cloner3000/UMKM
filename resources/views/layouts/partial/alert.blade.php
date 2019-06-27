@@ -3,6 +3,8 @@
     swal( 'Data Produk', '{{session('success_products')}}',  'success')
     @elseif(session('error'))
     swal('Oops!!','{{session('error')}}','error')
+    @elseif(session('success'))
+    swal('Berhasil','{{session('success')}}','success')
     @elseif(session('login'))
     swal('Berhasil','{{session('login')}}','success')
     @elseif(session('error_verify'))

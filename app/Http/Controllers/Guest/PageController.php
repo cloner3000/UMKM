@@ -34,6 +34,11 @@ class PageController extends Controller
         ]);
     }
 
+    public function account()
+    {
+        return view('_guest.pengaturan');
+    }
+
     public function cart()
     {
         $data = Cart::where('user_id',Auth::user()->id)->where('isPaid',false)->get();

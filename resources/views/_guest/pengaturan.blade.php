@@ -41,31 +41,48 @@
                             <div class="row">
                                 <div class="col-lg-4">
                                     <div class="card" style=" box-shadow: 0px 5px 5px rgba(0,0,0,0.1);">
+                                        <?php
+                                        $defaulImg = '';
+                                        $img = \App\Model\DetailUser::where('user_id', \Illuminate\Support\Facades\Auth::user()->id)->first();
+                                        if ($img->avatar == null) {
+                                            $defaulImg = 'images/Flat Blue-900x900.jpg';
+                                        } else {
+                                            $defaulImg = $img->avatar;
+                                        }
+
+                                        ?>
                                         <img class="card-img-top" id="blah"
-                                             src="{{asset('images/Flat Blue-900x900.jpg')}}" alt="Card image cap">
+                                             src="{{asset($defaulImg)}}" alt="Card image cap">
                                         <div class="card-body">
                                             <h5 class="card-title">{{\Illuminate\Support\Facades\Auth::user()->username}}</h5>
-                                            <div class="input-group mb-3">
-                                                <input type="file" class="form-control test"
-                                                       placeholder="Recipient's username"
-                                                       aria-label="Recipient's username" aria-describedby="basic-addon2"
-                                                       id="imgInp" lang="id" accept='.jpg, .jpeg, .png'
-                                                >
-                                                <div class="input-group-append">
-                                                    <button class="btn btn-outline-secondary" type="button">upload
-                                                    </button>
+                                            <form action="{{route('account.ava')}}" method="post" enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="input-group mb-3">
+                                                    <input type="file" class="form-control test"
+                                                           placeholder="Recipient's username"
+                                                           aria-label="Recipient's username"
+                                                           aria-describedby="basic-addon2"
+                                                           id="imgInp" lang="id" accept='.jpg, .jpeg, .png'
+                                                           name="avatar"
+                                                    >
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-primary" type="submit">upload
+                                                        </button>
+                                                    </div>
                                                 </div>
-                                            </div>
-
+                                            </form>
                                             <p class="card-text">Maksimum foto dengan ukuran 2Mb, dengan format .Png
                                                 .Jpg . Jpeg</p>
                                         </div>
                                         <div class="card-footer">
-                                            <small class="text-muted">Last updated 3 mins ago</small>
+                                            <?php
+                                            Carbon\Carbon::setLocale('id');
+                                            ?>
+                                            <small class="text-muted">Terakhir diperbarui {{\Carbon\Carbon::parse($img->updated_at)->diffForHumans()}}</small>
                                         </div>
                                     </div>
                                     <br>
-                                    <div class="card">
+                                    <div class="card" style="box-shadow: 0px 5px 5px rgba(0,0,0,0.1);">
                                         <div class="card-body">
                                             <button type="button" class="btn btn-primary btn-lg btn-block"
                                                     onclick="openModal()">
@@ -75,34 +92,30 @@
                                     </div>
                                 </div>
 
-
                                 <div class="col-lg-7">
-                                    <form>
+                                    <form action="{{route('account.setting')}}" method="post">
+                                        @csrf
                                         <div class='col-sm-12'>
-                                            <div class='card'>
+                                            <div class='card' style="box-shadow: 0px 5px 5px rgba(0,0,0,0.1);">
                                                 <div class='card-header '>
                                                     <span class="fa fa-cogs"> Sunting Data Diri</span>
                                                 </div>
                                                 <div class='card-body'>
-                                                    <div class='form-group'>
-                                                        <label for='event_name'>Name</label>
-                                                        <input class='form-control' id='event_name' type='text'>
-                                                        <small class='form-text text-muted' id='emailHelp'>
-                                                            6 characters minimum.
-                                                        </small>
-                                                    </div>
                                                     <div class='form-row'>
                                                         <div class='col-sm-6'>
                                                             <div class='form-group'>
-                                                                <label for='event_startdate'>Starts at</label>
-                                                                <input class='form-control' id='event_category'
-                                                                       type='text'>
+                                                                <label for='event_startdate'>Nama depan</label>
+                                                                <input class='form-control' id='event_category' name="first_name" value="{{$img->first_name}}"
+                                                                       type='text' required>
                                                             </div>
                                                         </div>
                                                         <div class='col-sm-6'>
                                                             <div class='form-group'>
-                                                                <label for='event_enddate'>Ends at</label>
-                                                                <input class='form-control' id='event_tags' type='text'>
+                                                                <label for='event_enddate'>Nama Delakang</label>
+                                                                <input class='form-control' id='event_tags' type='text' name="last_name" value="{{$img->last_name}}">
+                                                                <small class='form-text text-muted' id='emailHelp'>
+                                                                    Optional/ Bila Memiliki.
+                                                                </small>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -111,44 +124,77 @@
                                                         <br>
                                                         <div class="row">
                                                             <div class="col-sm-2">
-                                                            <label class="radio-inline">
-                                                                <input type="radio" name="optradio">  Pria
-                                                            </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="gender" value="pria" required> Pria
+                                                                </label>
                                                             </div>
                                                             <div class="col-sm-2">
-                                                            <label class="radio-inline">
-                                                                <input type="radio" name="optradio">  Wanita
-                                                            </label>
+                                                                <label class="radio-inline">
+                                                                    <input type="radio" name="gender" value="wanita" required> Wanita
+                                                                </label>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class='form-group'>
-                                                        <label for='event_description'>Description</label>
-                                                        <textarea class='form-control' id='event_description'
-                                                                  placeholder='Write something about your event'
-                                                                  rows='4'></textarea>
+                                                    <div class='form-row'>
+                                                        <div class='col-sm-6'>
+                                                            <div class='form-group'>
+                                                                <label for='event_startdate'>Tanggal Lahir</label>
+                                                                <input class='form-control' id='event_category' name="date_of_birth" required value="{{$img->date_of_birth}}"
+                                                                       type='date'>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-sm-6'>
+                                                            <div class='form-group'>
+                                                                <label for='event_enddate'>No. Telepon</label>
+                                                                <input class='form-control' id='event_tags' type='text' value="{{$img->no_telp}}"
+                                                                       onkeypress="return isNumberKey(event)" name="no_telp" required>
+                                                            </div>
+                                                        </div>
                                                     </div>
+
                                                     <div class='form-group'>
                                                         <label class='col-form-label' for='venue_address'>Alamat tinggal
                                                             saat ini </label>
-                                                        <input class='form-control' id='pac-input' name='alamat'
+                                                        <input class='form-control' id='pac-input' name='alamat' required value="{{$img->alamat}}"
                                                                placeholder='Jl. Aji Baskoro.....' type='text'>
-                                                        <input type="radio" name="type" id="changetype-all" checked="checked" hidden>
+                                                        <input type="radio" name="type" id="changetype-all"
+                                                               checked="checked" hidden>
+                                                    </div>
+                                                    <div class='form-row'>
+                                                        <div class='col-sm-4'>
+                                                            <div class='form-group'>
+                                                                <label for='event_startdate'>Kecamatan</label>
+                                                                <input class='form-control' id='event_category' name="kecamatan" required value="{{$img->kecamatan}}"
+                                                                       type='text'>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-sm-4'>
+                                                            <div class='form-group'>
+                                                                <label for='event_enddate'>Kelurahan</label>
+                                                                <input class='form-control' id='event_tags' type='text' name="kelurahan" value="{{$img->kelurahan}}" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-sm-4'>
+                                                            <div class='form-group'>
+                                                                <label for='event_enddate'>Kode Pos</label>
+                                                                <input class='form-control' id='event_tags' type='text'
+                                                                       onkeypress="return isNumberKey(event)" name="zip_code" required value="{{$img->zip_code}}"
+                                                                maxlength="6">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <div class='form-row'>
                                                         <div class='form-group col-md-12'>
                                                             <label>Tampak Map</label>
                                                             <div id='venue_map'></div>
                                                         </div>
-                                                        <input accept='.jpg, .jpeg, .png' class='form-control'
-                                                               id='venue_image' type='file'>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class='form-group d-flex justify-content-end mt-3'>
-                                            <button type="submit"
+                                            <button type="submit" style="box-shadow: 0px 5px 5px rgba(0,0,0,0.1);"
                                                     class='btn btn-primary d-flex align-items-center float-right'>
                                                 Simpan
                                             </button>
@@ -248,14 +294,14 @@
                 anchorPoint: new google.maps.Point(0, -29)
             });
 
-            autocomplete.addListener('place_changed', function() {
+            autocomplete.addListener('place_changed', function () {
                 infowindow.close();
                 marker.setVisible(false);
                 var place = autocomplete.getPlace();
                 if (!place.geometry) {
                     // User entered the name of a Place that was not suggested and
                     // pressed the Enter key, or the Place Details request failed.
-                   swal('Oops!!',"Maaf sistem tidak menemukan alamat : '" + place.name + "'",'error');
+                    swal('Oops!!', "Maaf sistem tidak menemukan alamat : '" + place.name + "'", 'error');
                     return;
                 }
 
@@ -288,7 +334,7 @@
             // Autocomplete.
             function setupClickListener(id, types) {
                 var radioButton = document.getElementById(id);
-                radioButton.addEventListener('click', function() {
+                radioButton.addEventListener('click', function () {
                     autocomplete.setTypes(types);
                 });
             }
@@ -299,14 +345,15 @@
             setupClickListener('changetype-geocode', ['geocode']);
 
             document.getElementById('use-strict-bounds')
-                .addEventListener('click', function() {
+                .addEventListener('click', function () {
                     console.log('Checkbox clicked! New state=' + this.checked);
                     autocomplete.setOptions({strictBounds: this.checked});
                 });
         }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIljHbKjgtTrpZhEiHum734tF1tolxI68&libraries=places&callback=initMap"
-            async defer></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIljHbKjgtTrpZhEiHum734tF1tolxI68&libraries=places&callback=initMap"
+        async defer></script>
     <script src="{{asset('onetech/js/cart_custom.js')}}"></script>
 
     <script>
@@ -330,5 +377,12 @@
         $("#imgInp").change(function () {
             readURL(this);
         });
+
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }
     </script>
 @endpush

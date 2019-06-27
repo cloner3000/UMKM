@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <title>@yield('main_title')</title>
     <meta charset="utf-8">
@@ -327,17 +327,21 @@
                             @guest()
                                 <div class="top_bar_user">
                                     <div class="user_icon"><img src="images/user.svg" alt=""></div>
-                                    <div><a href="javascript:void(0)" onclick="openRegisterModal();"><span class="fa fa-user-plus"></span> Daftar </a></div>
-                                    <div><a href="javascript:void(0)" onclick="openLoginModal();"> <span class="fa fa-sign-in-alt"></span> Masuk</a></div>
+                                    <div><a href="javascript:void(0)" onclick="openRegisterModal();"><span
+                                                class="fa fa-user-plus"></span> Daftar </a></div>
+                                    <div><a href="javascript:void(0)" onclick="openLoginModal();"> <span
+                                                class="fa fa-sign-in-alt"></span> Masuk</a></div>
                                 </div>
                             @else
                                 <div class="top_bar_menu">
                                     <ul class="standard_dropdown top_bar_dropdown">
                                         <li>
-                                            <a href="#">{{Auth::user()->username}} <span class="fa fa-caret-down"></span></a>
+                                            <a href="#">{{Auth::user()->username}} <span
+                                                    class="fa fa-caret-down"></span></a>
                                             <ul>
-                                                <li><a href="#"><span class="fa fa-history"></span> Riwayat Pembelian</a></li>
-                                                <li><a href="#"><span class="fa fa-cog"></span> Pengaturan Akun</a></li>
+                                                <li><a href="#"><span class="fa fa-history"></span> Riwayat
+                                                        Pembelian</a></li>
+                                                <li><a href="{{route('account')}}"><span class="fa fa-cog"></span> Pengaturan Akun</a></li>
                                                 <li class="float-right">
                                                     <a href="{{ route('logout') }}"
                                                        onclick="event.preventDefault();
@@ -365,8 +369,17 @@
 
         <div class="header_main">
             <div class="container">
-                <div class="row">
+                @auth()
+                    <div class="row" >
+                        <div class="col-lg-12 ">
+                            <div class="alert alert-info" role="alert">
+                                Satu Langkah lagi. Ayo lengkapi datamu klik <a href="{{route('account')}}" class="alert-link" >Disini</a>
+                            </div>
+                        </div>
+                    </div>
 
+                @endauth
+                <div class="row">
                     <!-- Logo -->
                     <div class="col-lg-2 col-sm-3 col-3 order-1">
                         <div class="logo_container">
@@ -379,8 +392,8 @@
                         <div class="header_search">
                             <div class="header_search_content">
                                 <div class="header_search_form_container">
-                                    <form action="#" class="header_search_form clearfix">
-                                        <input type="search" required="required" class="header_search_input"
+                                    <form action="{{route('search')}}" class="header_search_form clearfix" method="get">
+                                        <input type="search" required="required" class="header_search_input" name="key"
                                                placeholder="Search for products...">
                                         <div class="custom_dropdown">
                                             <div class="custom_dropdown_list">
@@ -407,7 +420,15 @@
 
                     <!-- Wishlist -->
                     @guest()
-                        @else
+                    @else
+                        <?php
+                        $cart = \App\Model\Cart::where('user_id',Auth::user()->id)->where('isPaid',false)->get();
+                        $paid = 0;
+                        foreach ($cart as $item){
+                            $paid = $paid + $item->harga;
+                        }
+
+                        ?>
                         <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
                             <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
                                 <div class="wishlist d-flex flex-row align-items-center justify-content-end">
@@ -425,11 +446,11 @@
                                     <div class="cart_container d-flex flex-row align-items-center justify-content-end">
                                         <div class="cart_icon">
                                             <span class="fa fa-shopping-cart" style="font-size: 32pt"></span>
-                                            <div class="cart_count"><span>10</span></div>
+                                            <div class="cart_count"><span>{{count($cart)}}</span></div>
                                         </div>
                                         <div class="cart_content">
                                             <div class="cart_text"><a href="{{route('cart')}}">Keranjang</a></div>
-                                            <div class="cart_price">$85</div>
+                                            <div class="cart_price">Rp. {{number_format($paid)}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -654,11 +675,11 @@
 
                             <div class="menu_contact">
                                 <div class="menu_contact_item">
-                                    <div class="menu_contact_icon"><span class="fa fa-phone"></span> </div>
+                                    <div class="menu_contact_icon"><span class="fa fa-phone"></span></div>
                                     +38 068 005 3570
                                 </div>
                                 <div class="menu_contact_item">
-                                    <div class="menu_contact_icon"><span class="fa fa-envelope"></span> </div>
+                                    <div class="menu_contact_icon"><span class="fa fa-envelope"></span></div>
                                     <a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
                             </div>
                         </div>
@@ -683,23 +704,23 @@
                 <div class="col-lg-3 footer_col">
                     <div class="footer_column footer_contact">
                         <div class="logo_container">
-                            <div class="logo"><a href="#">OneTech</a></div>
+                            <div class="logo"><a href="{{route('landing')}}">E-UMKM</a></div>
                         </div>
-                        <div class="footer_title">Got Question? Call Us 24/7</div>
-                        <div class="footer_phone">+38 068 005 3570</div>
+                        <div class="footer_title">Tanyakan Kami di</div>
+                        <div class="footer_phone"><span class="fa fa-phone"></span> (0351) 464195</div>
                         <div class="footer_contact_text">
-                            <p>17 Princess Road, London</p>
-                            <p>Grester London NW18JR, UK</p>
+                            <p>Jl. Mayjen Panjaitan No.8, Pandean, Kec. Taman,</p>
+                            <p> Kota Madiun, Jawa Timur 63133</p>
                         </div>
-                        <div class="footer_social">
-                            <ul>
-                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                                <li><a href="#"><i class="fab fa-google"></i></a></li>
-                                <li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>
-                            </ul>
-                        </div>
+                        {{--<div class="footer_social">--}}
+                        {{--<ul>--}}
+                        {{--<li><a href="#"><i class="fab fa-facebook-f"></i></a></li>--}}
+                        {{--<li><a href="#"><i class="fab fa-twitter"></i></a></li>--}}
+                        {{--<li><a href="#"><i class="fab fa-youtube"></i></a></li>--}}
+                        {{--<li><a href="#"><i class="fab fa-google"></i></a></li>--}}
+                        {{--<li><a href="#"><i class="fab fa-vimeo-v"></i></a></li>--}}
+                        {{--</ul>--}}
+                        {{--</div>--}}
                     </div>
                 </div>
 
