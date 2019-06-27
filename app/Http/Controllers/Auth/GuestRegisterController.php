@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Model\DetailUser;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -40,6 +41,10 @@ class GuestRegisterController extends Controller
             'password' => Hash::make($request['password']),
             'isGuest' => $request['isGuest'],
             'role_id' => 4
+        ]);
+
+        DetailUser::create([
+           'user_id' => $user->id
         ]);
 
         Auth::login($user);

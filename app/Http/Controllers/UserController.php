@@ -14,22 +14,28 @@ class UserController extends Controller
 
         if (!Hash::check($request->old_pass, Auth::user()->password)) {
             return back()->with([
-                'error' => 'Password Lama Anda Salah!!'
+                'error' => 'Kata Sandi Lama Anda Salah!!'
             ]);
         } else {
             if ($request->new_pass !== $request->confirm_pass) {
                 return back()->with([
-                    'error' => 'Password Baru Tidak Sama!!'
+                    'error' => 'Kata SAndi Baru Tidak Sama!!'
                 ]);
             } else {
-                Auth::user()->update([
-                    'username' => $request->username,
-                    'password' => bcrypt($request->new_pass)
-                ]);
-                $umkm =  Umkm::findOrfail($request->umkm);
-                $umkm->update([
-                    'nama' => $request->username
-                ]);
+                if (Auth::user()->role_id == 3){ //UMKM
+                    Auth::user()->update([
+                        'username' => $request->username,
+                        'password' => bcrypt($request->new_pass)
+                    ]);
+                    $umkm =  Umkm::findOrfail($request->umkm);
+                    $umkm->update([
+                        'nama' => $request->username
+                    ]);
+                }elseif (Auth::user()->role_id == 4){//GUest
+                    Auth::user()->update([
+                        'password' => bcrypt($request->new_pass)
+                    ]);
+                }
             }
             return back()->with([
                 'success' => 'Berhasil Memperbarui Akun !'

@@ -10,18 +10,41 @@ Route::get('/',[
     'as' => 'landing'
 ]);
 
+Route::get('/pencarian',[
+    'uses' => 'Guest\SearchController@search',
+    'as' => 'search'
+]);
+
 Route::get('detail/{id}',[
     'uses' => 'Guest\PageController@detail',
     'as' => 'detail.product'
 ]);
 
-Route::group(['prefix' => 'action/','middleware' => ['buyer']], function () {
+Route::group(['prefix' => 'page/','middleware' => ['buyer']], function () {
 
 
     Route::post('add_cart',[
         'uses' => 'Guest\BuyingController@add_cart',
         'as' => 'add.cart'
     ]);
+
+    Route::group(['prefix' => 'akun/'], function () {
+
+        Route::get('pengaturan', [
+            'uses' => 'Guest\PageController@account',
+            'as' => 'account'
+        ]);
+
+        Route::post('pengaturan/sunting', [
+            'uses' => 'Guest\AccountController@setting',
+            'as' => 'account.setting'
+        ]);
+
+        Route::post('pengaturan/ava', [
+            'uses' => 'Guest\AccountController@change_ava',
+            'as' => 'account.ava'
+        ]);
+    });
 
     Route::group(['prefix' => 'keranjang/'], function () {
 

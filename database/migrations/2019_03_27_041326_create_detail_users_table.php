@@ -15,14 +15,20 @@ class CreateDetailUsersTable extends Migration
     {
         Schema::create('detail_users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->text('avatar')->nullable();
             $table->integer('user_id')->unsigned();
             $table->foreign( 'user_id')->references('id')
                 ->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('gender');
-            $table->date('date_of_birth');
-            $table->string('status');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('gender')->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->text('alamat')->nullable();
+            $table->text('kecamatan')->nullable();
+            $table->text('kelurahan')->nullable();
+            $table->text('zip_code')->nullable();
+            $table->string('no_telp')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
