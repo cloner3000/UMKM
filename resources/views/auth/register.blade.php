@@ -168,7 +168,7 @@
                                                     <img src="assets/img/default-avatar.png" class="picture-src"
                                                          name="avatar"
                                                          id="wizardPicturePreview" title=""/>
-                                                    <input type="file" name="avatar" id="wizard-picture">
+                                                    <input type="file" accept='.jpg, .jpeg, .png' name="avatar" id="wizard-picture">
                                                 </div>
                                                 <h6>Logo UMKM
                                                     <small>(Bila Ada)</small><br>
@@ -391,7 +391,7 @@
                                         <div class="col-sm-10 col-sm-offset-1">
                                             <div class="form-group">
                                                 <label>Berkas Akta Notaris(.JPG .PNG .JPEG) <small>Maksimum 2 Mb</small></label>
-                                                <input type="file" name="akta_notaris" id="" class="form-control" required>
+                                                <input type="file" name="akta_notaris" id="" class="form-control" accept='.jpg, .jpeg, .png' required>
                                             </div>
                                         </div>
 

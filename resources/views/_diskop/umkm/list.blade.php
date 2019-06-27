@@ -95,7 +95,7 @@
 
                         <div class="form-group form-float" id="bukti">
                             <label for="filebukti">Upload bukti Umkm valid</label>
-                            <input type="file" id="filebukti" class="form-control"  name="bukti">
+                            <input type="file" id="filebukti" class="form-control"  name="bukti" accept='.jpg, .jpeg, .png'>
                         </div>
 
                         <div class="form-group form-float" id="divlasan">

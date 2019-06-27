@@ -50,7 +50,7 @@
 
                         <div class="form-group form-float">
                             <label>Gambar Produk <sub>Bisa lebih dari satu</sub></label>
-                            <input type="file" class="form-control" name="photos[]" multiple/>
+                            <input type="file" class="form-control" name="photos[]" multiple accept='.jpg, .jpeg, .png'/>
                         </div>
 
                         <div class="form-group form-float">

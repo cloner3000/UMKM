@@ -81,7 +81,7 @@
 
                         <div class="form-group form-float">
                             <label><b>Tambah </b> Gambar Produk <sub>Bisa lebih dari satu</sub></label>
-                            <input type="file" class="form-control" name="photos[]" multiple/>
+                            <input type="file" class="form-control" name="photos[]" multiple accept='.jpg, .jpeg, .png'/>
                             <input type="hidden" name="foto" id="" value="">
                         </div>
 
