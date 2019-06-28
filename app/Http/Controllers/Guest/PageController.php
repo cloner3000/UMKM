@@ -15,9 +15,11 @@ class PageController extends Controller
     public function index()
     {
         $new_arrival = Produk::orderBy('created_at',"DESC")->get()->take(10);
+        $diskon = Produk::where('isDiscount', true)->get()->take(12);
         return view('welcome',[
             'produk' => Produk::all(),
-            'new' => $new_arrival
+            'new' => $new_arrival,
+            'diskon' => $diskon
         ]);
     }
 
