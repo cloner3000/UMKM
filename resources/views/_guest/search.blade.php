@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @push('main_css')
+    <link rel="stylesheet" href="{{asset('onetech/plugins/jquery-ui-1.12.1.custom/jquery-ui.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('onetech/styles/shop_styles.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('onetech/styles/shop_responsive.css')}}">
 @endpush
@@ -44,6 +45,7 @@
                             <div class="filter_price">
                                 <div id="slider-range" class="slider_range"></div>
                                 <p>Range: </p>
+
                                 <p><input type="text" id="amount" class="amount" readonly
                                           style="border:0; font-weight:bold;"></p>
                             </div>
@@ -120,7 +122,7 @@
                                             <img src="images/featured_1.png" alt=""></div>
                                         <div class="product_content">
 
-                                            <div class="product_price"> Rp. {{number_format($item->harga - ($item->harga*($item->discount/100)))}}<span><br> <strike> Rp. {{number_format($item->harga)}} </strike></span></div>
+                                            <div class="product_price">Rp.  {{ $item->harga - ($item->harga*($item->discount/100))}}<span><br> <strike> Rp. {{$item->harga}} </strike></span></div>
                                             <div class="product_name">
                                                 <div><a href="{{route('detail.product',['id' => encrypt($item->id)])}}" tabindex="0">{{$item->nama}}</a></div>
                                             </div>
@@ -140,7 +142,7 @@
                                             class="product_image d-flex flex-column align-items-center justify-content-center">
                                             <img src="images/featured_2.png" alt=""></div>
                                         <div class="product_content">
-                                            <div class="product_price">Rp. {{number_format($item->harga)}}</div>
+                                            <div class="product_price">Rp. {{$item->harga}}</div>
                                             <div class="product_name">
                                                 <div><a href="{{route('detail.product',['id' => encrypt($item->id)])}}" tabindex="0">{{$item->nama}}</a></div>
                                             </div>
@@ -175,8 +177,47 @@
 @endsection
 @push('main_scipt')
     <script src="{{asset('onetech/plugins/Isotope/isotope.pkgd.min.js')}}"></script>
+    <script src="{{asset('onetech/plugins/jquery-ui-1.12.1.custom/jquery-ui.js')}}"></script>
     <script src="{{asset('onetech/js/shop_custom.js')}}"></script>
     <script>
+        initPriceSlider();
+        function initPriceSlider()
+        {
+            if($("#slider-range").length)
+            {
+                $("#slider-range").slider(
+                    {
+                        range: true,
+                        min: 0,
+                        max: 10000000,
+                        values: [ 0, 5000000 ],
+                        slide: function( event, ui )
+                        {
+                            $( "#amount" ).val( "Rp." + ui.values[ 0 ] + " - Rp." + ui.values[ 1 ] );
+                        }
+                    });
 
+                $( "#amount" ).val( "Rp. " + $( "#slider-range" ).slider( "values", 0 ) + " - Rp. " + $( "#slider-range" ).slider( "values", 1 ) );
+                $('.ui-slider-handle').on('mouseup', function()
+                {
+                    $('.product_grid').isotope({
+                        filter: function()
+                        {
+                            var priceRange = $('#amount').val();
+                            var priceMin = parseFloat(priceRange.split('-')[0].replace('Rp.', ''));
+                            var priceMax = parseFloat(priceRange.split('-')[1].replace('Rp.', ''));
+                            var itemPrice = $(this).find('.product_price').clone().children().remove().end().text().replace( 'Rp.', '' );
+
+                            return (itemPrice > priceMin) && (itemPrice < priceMax);
+                        },
+                        animationOptions: {
+                            duration: 750,
+                            easing: 'linear',
+                            queue: false
+                        }
+                    });
+                });
+            }
+        }
     </script>
 @endpush

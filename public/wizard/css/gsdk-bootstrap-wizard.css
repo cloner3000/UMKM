@@ -63,7 +63,7 @@ input[type="button"]:focus {
 }
 
 .made-with-mk {
-  width: 50px;
+  width: 130px;
   height: 50px;
   display: block;
   position: fixed;
@@ -84,7 +84,7 @@ input[type="button"]:focus {
   transition: 0.55s cubic-bezier(0.6, 0, 0.4, 1);
 }
 .made-with-mk:hover, .made-with-mk:active, .made-with-mk:focus {
-  width: 218px;
+  width: 270px;
   color: #FFFFFF;
   transition-duration: .55s;
   padding: 10px 30px;
@@ -111,7 +111,7 @@ input[type="button"]:focus {
 .made-with-mk .made-with {
   color: rgba(255, 255, 255, 0.6);
   position: absolute;
-  left: 75px;
+  left: 150px;
   top: 15px;
   opacity: 0;
   margin: 0;
