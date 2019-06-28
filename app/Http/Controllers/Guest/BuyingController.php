@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Guest;
 
 use App\Model\Cart;
 use App\Model\Produk;
+use App\Model\Wishlist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -62,11 +63,18 @@ class BuyingController extends Controller
 
     public function add_wishlist(Request $request)
     {
+        Wishlist::create([
+           'user_id' => Auth::user()->id,
+            'produk_id' => $request->produk_id
+        ]);
 
+        return back()->with('success_cart', 'Daftar ingin dibeli bertambah');
     }
 
     public function remove_wishlist(Request $request)
     {
-
+        $wish = Wishlist::find($request->id);
+        $wish->delete();
+        return back()->with('success_cart', 'Daftar ingin Dihapus');
     }
 }
