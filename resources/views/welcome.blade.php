@@ -174,6 +174,7 @@
                                                 <div class="bestsellers_price discount">Rp. {{number_format($item->harga - ($item->harga*($item->discount/100)))}}<span><br> <strike> Rp. {{number_format($item->harga)}} </strike></span></div>
                                             </div>
                                         </div>
+
                                         <div class="bestsellers_fav active"></div>
                                         <ul class="bestsellers_marks">
                                             <li class="bestsellers_mark bestsellers_discount">-{{$item->discount}}%</li>

@@ -52,7 +52,7 @@ class ProductSeeder extends Seeder
                     'rating' => random_int(1,5),
                     'isHide' => false,
                     'isDiscount' => true,
-                    'discount' => 10
+                    'discount' => random_int(1,99)
                 ]);
             }
         }
