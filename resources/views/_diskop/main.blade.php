@@ -46,4 +46,68 @@
             </div>
         </div>
     </div>
+    <div class="row clearfix">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div class="card">
+                <div class="header">
+                    <h2><strong>Pesanan</strong> Baru</h2>
+                    <ul class="header-dropdown">
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle"
+                               data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
+                            <ul class="dropdown-menu slideUp">
+                                <li><a href="javascript:void(0);">Pesanan Hari ini</a></li>
+                                <li><a href="javascript:void(0);">Seluruh Pesanan</a></li>
+                            </ul>
+                        </li>
+                        {{--<li class="remove">--}}
+                        {{--<a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>--}}
+                        {{--</li>--}}
+                    </ul>
+                </div>
+                <div class="body table-responsive members_profiles">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th style="width:60px;">#</th>
+                            <th>Pemesan</th>
+                            <th>Produk</th>
+                            <th>Produksi Oleh</th>
+                            <th>Alamat Pembeli</th>
+                            <th>Jumlah</th>
+                            <th>Waktu pesan</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($order as $item)
+                            <?php
+                                \Carbon\Carbon::setLocale('ID');
+                            $user = \App\User::find($item->user_id);
+                            $detail = \App\Model\DetailUser::where('user_id',$user->id)->first();
+                            $produk = \App\Model\Produk::find($item->produk_id);
+                            $umkm = \App\Model\Umkm::find($produk->umkm_id);
+                            ?>
+                            <tr>
+                                <td><img src="http://via.placeholder.com/60x50" alt="Product img"></td>
+                                <td>{{$user->username}}</td>
+                                <td>{{\App\Model\Produk::find($item->produk_id)->nama}}</td>
+                                <td>{{$umkm->nama}}<br>
+                                    {{$umkm->no_telp}}</td>
+                                <td>{{$detail->alamat}} <br>
+                                    Kec. {{$detail->kecamatan}}, Kel. {{$detail->kelurahan}} <br>
+                                    Kode pos : {{$detail->zip_code}}
+                                </td>
+                                <td>{{$item->qty}}</td>
+                                <?php
+                                ?>
+                                <td>{{\Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

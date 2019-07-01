@@ -7,7 +7,14 @@
     <ul class="ml-menu">
         <li><a href="{{route('diskop.show.umkm')}}">Umkm Baru</a></li>
         <li><a href="{{route('diskop.show.umkm.nonvalid')}}">Umkm Tidak Valid</a></li>
-        <li><a href="ec-product-List.html">Product List</a></li>
+    </ul>
+</li>
+
+<li><a href="javascript:void(0);" class="menu-toggle "><i class="zmdi zmdi-shopping-cart"></i><span>Manajemen Order</span>
+    </a>
+    <ul class="ml-menu">
+        <li><a href="{{route('diskop.order')}}">Pesanan Baru</a></li>
+        <li><a href="{{route('diskop.show.umkm.nonvalid')}}">Pemesanan keseluruhan</a></li>
     </ul>
 </li>
 

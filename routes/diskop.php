@@ -30,6 +30,20 @@ Route::group(['prefix' => 'diskop/','middleware' => ['auth','diskop']], function
         ]);
     });
 
+    Route::group(['prefix' => 'order/'], function (){
+        Route::get('list', [
+            'uses' => 'Dinskop\PageController@order',
+            'as' => 'diskop.order'
+        ]);
+
+        Route::post('verify', [
+            'uses' => 'Dinskop\ActivityController@verify_order',
+            'as' => 'diskop.order.verify'
+        ]);
+
+    });
+
+
     Route::group(['prefix' => 'akun/'], function () {
         Route::get('/', [
             'uses' => 'Dinskop\DiskopController@show',

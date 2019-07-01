@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dinskop;
 
+use App\Model\Cart;
 use App\Model\Umkm;
 use App\Model\VerifyUmkm;
 use Illuminate\Http\Request;
@@ -69,5 +70,14 @@ class ActivityController extends Controller
                 return back()->with('success_verify','Status Umkm berhasil ditangani');
             }
         }
+    }
+
+    public function verify_order(Request $request)
+    {
+        $cart = Cart::find($request->cart_id);
+        $cart->update([
+           'isVerify' => true
+        ]);
+        return back()->with('success_verify','Data berhasil dikirim');
     }
 }

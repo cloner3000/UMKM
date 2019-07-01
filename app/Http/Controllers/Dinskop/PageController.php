@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dinskop;
 
+use App\Model\Cart;
 use App\Model\DetailUser;
 use App\Model\Umkm;
 use App\Model\VerifyUmkm;
@@ -15,8 +16,10 @@ class PageController extends Controller
     {
         $user = Auth::user();
         $detail = DetailUser::where('user_id',$user->id)->first();
+        $order = Cart::where('isPaid',true)->get();
         return view('_diskop.main',[
-            'detail' => $detail
+            'detail' => $detail,
+            'order' => $order
         ]);
     }
 
@@ -46,5 +49,11 @@ class PageController extends Controller
         ]);
     }
 
-
+    public function order()
+    {
+        $data = Cart::where('isPaid',true)->where('isVerify',false)->where('isHandle',false)->orderBy('user_id')->paginate(10);
+        return view('_diskop.order',[
+           'data' => $data
+        ]);
+    }
 }
