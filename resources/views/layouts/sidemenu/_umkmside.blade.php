@@ -15,10 +15,9 @@
 <li><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-shopping-cart"></i><span>Pesanan</span>
     </a>
     <ul class="ml-menu">
-        <li><a href="ec-dashboard.html">Dashboard</a></li>
-        <li><a href="ec-product.html">Product</a></li>
-        <li><a href="ec-product-List.html">Product List</a></li>
-        <li><a href="ec-product-detail.html">Product detail</a></li>
+        <li><a href="{{route('umkm.order',['condition' => 'today'])}}">Pesanan Masuk</a></li>
+        <li><a href="{{route('umkm.order.handle')}}">Pesanan Tertangani</a></li>
+
     </ul>
 </li>
 

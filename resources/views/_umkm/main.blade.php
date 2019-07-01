@@ -71,25 +71,26 @@
                     <li class="col-lg-4 col-md-4 col-6">
                         <div class="body">
                             <i class="zmdi zmdi-account text-success"></i>
-                            <h5 class="m-b-0 number count-to" data-from="0" data-to="{{count($review)}}" data-speed="1000"
+                            <h5 class="m-b-0 number count-to" data-from="0" data-to="{{count($review)}}"
+                                data-speed="1000"
                                 data-fresh-interval="700">1980</h5>
                             <small>Review</small>
                         </div>
                     </li>
                     <li class="col-lg-4 col-md-4 col-6">
                         <div class="body">
-                            <i class="zmdi zmdi-desktop-mac text-info"></i>
-                            <h5 class="m-b-0 number count-to" data-from="0" data-to="251" data-speed="1000"
-                                data-fresh-interval="700">251</h5>
-                            <small>Website View</small>
+                            <i class="zmdi zmdi-shopping-cart text-info"></i>
+                            <h5 class="m-b-0 number count-to" data-from="0" data-to="{{count($order)}}" data-speed="1000"
+                                data-fresh-interval="700">{{count($order)}}</h5>
+                            <small>Pesanan</small>
                         </div>
                     </li>
                     <li class="col-lg-4 col-md-4 col-6">
                         <div class="body">
-                            <i class="zmdi zmdi-attachment text-warning"></i>
-                            <h5 class="m-b-0 number count-to" data-from="0" data-to="52" data-speed="1000"
-                                data-fresh-interval="700">52</h5>
-                            <small>Attachment</small>
+                            <i class="zmdi zmdi-assignment-check text-warning"></i>
+                            <h5 class="m-b-0 number count-to" data-from="0" data-to="{{count($done)}}" data-speed="1000"
+                                data-fresh-interval="700">{{count($done)}}</h5>
+                            <small>Pesanan teratasi</small>
                         </div>
                     </li>
                 </ul>
@@ -122,17 +123,18 @@
                 <div class="header">
                     <h2><strong>Pesanan</strong> Baru</h2>
                     <ul class="header-dropdown">
-                        <li class="dropdown"><a href="javascript:void(0);" class="dropdown-toggle"
-                                                data-toggle="dropdown" role="button" aria-haspopup="true"
-                                                aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle"
+                               data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
                             <ul class="dropdown-menu slideUp">
-                                <li><a href="javascript:void(0);">Pesanan Hari ini</a></li>
+                                <li><a href="{{route('umkm.order')}}">Pesanan Hari ini</a></li>
                                 <li><a href="javascript:void(0);">Seluruh Pesanan</a></li>
                             </ul>
                         </li>
-                        <li class="remove">
-                            <a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>
-                        </li>
+                        {{--<li class="remove">--}}
+                        {{--<a role="button" class="boxs-close"><i class="zmdi zmdi-close"></i></a>--}}
+                        {{--</li>--}}
                     </ul>
                 </div>
                 <div class="body table-responsive members_profiles">
@@ -148,52 +150,32 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td><img src="http://via.placeholder.com/60x50" alt="Product img"></td>
-                            <td>Hossein</td>
-                            <td>IPONE-7</td>
-                            <td>Porterfield 508 Virginia Street Chicago, IL 60653</td>
-                            <td>3</td>
-                            <td><span class="badge badge-success">DONE</span></td>
-                        </tr>
-                        <tr>
-                            <td><img src="http://via.placeholder.com/60x50" alt="Product img"></td>
-                            <td>Camara</td>
-                            <td>NOKIA-8</td>
-                            <td>2595 Pearlman Avenue Sudbury, MA 01776</td>
-                            <td>3</td>
-                            <td><span class="badge badge-default">Delivered</span></td>
-                        </tr>
-                        <tr>
-                            <td><img src="http://via.placeholder.com/60x50" alt="Product img"></td>
-                            <td>Maryam</td>
-                            <td>NOKIA-456</td>
-                            <td>Porterfield 508 Virginia Street Chicago, IL 60653</td>
-                            <td>4</td>
-                            <td><span class="badge badge-success">DONE</span></td>
-                        </tr>
-                        <tr>
-                            <td><img src="http://via.placeholder.com/60x50" alt="Product img"></td>
-                            <td>Micheal</td>
-                            <td>SAMSANG PRO</td>
-                            <td>508 Virginia Street Chicago, IL 60653</td>
-                            <td>1</td>
-                            <td><span class="badge badge-success">DONE</span></td>
-                        </tr>
-                        <tr>
-                            <td><img src="http://via.placeholder.com/60x50" alt="Product img"></td>
-                            <td>Frank</td>
-                            <td>NOKIA-456</td>
-                            <td>1516 Holt Street West Palm Beach, FL 33401</td>
-                            <td>13</td>
-                            <td><span class="badge badge-warning">PENDING</span></td>
-                        </tr>
+                        @foreach($order as $item)
+                            <?php
+                            $user = \App\User::find($item->user_id);
+                            $detail = \App\Model\DetailUser::where('user_id',$user->id)->first();
+                            ?>
+                            <tr>
+                                <td><img src="http://via.placeholder.com/60x50" alt="Product img"></td>
+                                <td>{{$user->username}}</td>
+                                <td>{{\App\Model\Produk::find($item->produk_id)->nama}}</td>
+                                <td>{{$detail->alamat}} <br>
+                                    Kec. {{$detail->kecamatan}}, Kel. {{$detail->kelurahan}} <br>
+                                    Kode pos : {{$detail->zip_code}}
+                                </td>
+                                <td>{{$item->qty}}</td>
+                                <?php
+                                ?>
+                                <td><span class="badge badge-info">Baru Masuk</span></td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
+
     <div class="row clearfix">
         <div class="col-xl-8 col-lg-7 col-md-12">
             <div class="card">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Umkm;
 
+use App\Model\Cart;
 use App\Model\Kategori;
 use App\Model\Like;
 use App\Model\Produk;
@@ -28,10 +29,25 @@ class PageController extends Controller
                 $query->where('user_id',Auth::user()->id);
             });
         })->get()->count();
+
+        $order = Cart::whereHas('getProduct', function ($query) use ($umkm){
+            $query->whereHas('getUmkm',function ($query) use ($umkm){
+               $query->where('umkm_id',$umkm->id);
+            });
+        })->where('isPaid',true)->where('isVerify', true)->where('isHandle',false)->get();
+
+        $order_done = Cart::whereHas('getProduct', function ($query) use ($umkm){
+            $query->whereHas('getUmkm',function ($query) use ($umkm){
+                $query->where('umkm_id',$umkm->id);
+            });
+        })->where('isPaid',true)->where('isVerify', true)->where('isHandle',true)->get();
+
         return view('_umkm.main',[
             'produk' => count(Produk::where('umkm_id',$umkm->id)->get()),
             'review' => $review,
-            'comment' =>$comment
+            'comment' =>$comment,
+            'order' => $order,
+            'done' => $order_done
         ]);
     }
 
@@ -98,6 +114,30 @@ class PageController extends Controller
         })->get();
         return view('_umkm.komentar',[
             'data' => $data,
+            'produk' => $produk
+        ]);
+    }
+
+    public function order_list()
+    {
+        $data = Cart::where('isVerify', true)->where('isHandle', false)->orderBy('user_id')->paginate(10);
+        $buyer = Cart::where('isVerify', true)->where('isHandle', false)->pluck('user_id')->unique();
+        $produk = Cart::where('isVerify', true)->where('isHandle', false)->pluck('produk_id')->unique();
+        return view('_umkm.order', [
+            'data' => $data,
+            'buyer' => $buyer,
+            'produk' => $produk
+        ]);
+    }
+
+    public function handle()
+    {
+        $data = Cart::where('isVerify', true)->where('isHandle', true)->orderBy('user_id')->paginate(10);
+        $buyer = Cart::where('isVerify', true)->where('isHandle', true)->pluck('user_id')->unique();
+        $produk = Cart::where('isVerify', true)->where('isHandle', true)->pluck('produk_id')->unique();
+        return view('_umkm.handle', [
+            'data' => $data,
+            'buyer' => $buyer,
             'produk' => $produk
         ]);
     }

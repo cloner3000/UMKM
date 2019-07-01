@@ -35,6 +35,7 @@ class UmkmController extends Controller
             'lat' => $map[0],
             'long' => $map[1],
             'avatar' => $request->avatar,
+            'no_telp' => $request->no_telp,
             'jenis_id' => $request->jenis_id,
             'tgl_berdiri' => $request->tgl_berdiri,
             'desc' => $request->desc,

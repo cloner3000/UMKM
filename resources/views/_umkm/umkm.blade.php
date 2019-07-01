@@ -117,7 +117,7 @@
                                     </label>
                                     <div class="row">
                                         <div class="col-md-11">
-                                            <input type="file" class="form-control" name="new_logo">
+                                            <input type="file" class="form-control" name="new_logo" accept='.jpg, .jpeg, .png'>
                                             <input type="hidden" name="avatar" value="{{$umkm->avatar}}" id="">
                                         </div>
                                         <div class="col-md-1">
@@ -162,6 +162,16 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div id="map"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Nomor Telepon
+                                    </label>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <input type="text" class="form-control" name="no_telp" value="{{$umkm->no_telp}}" onkeypress="return isNumberKey(event)" id="">
                                         </div>
                                     </div>
                                 </div>

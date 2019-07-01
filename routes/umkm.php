@@ -75,13 +75,32 @@ Route::group(['prefix' => 'umkm/','middleware' => ['auth','umkm']], function () 
         ]);
     });
 
-    Route::group(['prefix' => 'akun/'], function () {
+    Route::group(['prefix' => 'order/'], function () {
 
-        Route::get('order/{condition}', [
-            'uses' => 'Umkm\OrderController@order_list',
+        Route::get('/', [
+            'uses' => 'Umkm\PageController@order_list',
             'as' => 'umkm.order'
         ]);
 
+        Route::get('handle', [
+            'uses' => 'Umkm\PageController@handle',
+            'as' => 'umkm.order.handle'
+        ]);
+
+        Route::get('/search', [
+            'uses' => 'Umkm\OrderController@filter_order',
+            'as' => 'umkm.order.search'
+        ]);
+
+        Route::post('/handle', [
+            'uses' => 'Umkm\OrderController@handle',
+            'as' => 'umkm.order.handle'
+        ]);
+
+        Route::get('print/{id}', [
+            'uses' => 'Umkm\OrderController@print',
+            'as' => 'umkm.order.print'
+        ]);
     });
 
     Route::group(['prefix' => 'akun/'], function () {
