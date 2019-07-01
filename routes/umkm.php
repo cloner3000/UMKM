@@ -77,6 +77,15 @@ Route::group(['prefix' => 'umkm/','middleware' => ['auth','umkm']], function () 
 
     Route::group(['prefix' => 'akun/'], function () {
 
+        Route::get('order/{condition}', [
+            'uses' => 'Umkm\OrderController@order_list',
+            'as' => 'umkm.order'
+        ]);
+
+    });
+
+    Route::group(['prefix' => 'akun/'], function () {
+
         Route::get('/', [
             'uses' => 'Umkm\UmkmController@show',
             'as' => 'umkm.show.akun'

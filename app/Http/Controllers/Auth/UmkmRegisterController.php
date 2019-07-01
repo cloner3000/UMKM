@@ -50,6 +50,7 @@ class UmkmRegisterController extends Controller
             'nama_pemilik' => $request->nama_pemilik,
             'nik_pemilik' => $request->nik_pemilik,
             'alamat' => $request->alamat,
+            'no_telp' => $request->no_telp,
             'lat' => $map[0],
             'long' => $map[1],
             'jenis_id' => $request->jenis_id,

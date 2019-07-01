@@ -254,7 +254,8 @@
                                         <div class="col-sm-5">
                                             <div class="form-group">
                                                 <label>Jenis UMKM</label><br>
-                                                <select name="jenis_id" class="form-control my-select" required>
+                                                <select name="jenis_id" multiple class="form-control my-select"
+                                                        data-live-search="true" required>
                                                     @foreach(\App\Model\JenisUmkm::all() as $item)
                                                         <option value="{{$item->id}}"> {{$item->name}} </option>
                                                     @endforeach
@@ -297,6 +298,16 @@
                                                        name="omset"
                                                        aria-describedby="basic-addon1" value="{{old('omset')}}"
                                                        required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-10 col-sm-offset-1">
+                                            <div class="form-group">
+                                                <label>Nomor Telepon</label>
+                                                <input type="text" class="form-control" placeholder="Nomor telepon yang dapat dihubungi"
+                                                       aria-label="Username" onkeypress="return isNumberKey(event)"
+                                                       name="no_telp"
+                                                       aria-describedby="basic-addon1" value="{{old('no_telp')}}" required>
                                             </div>
                                         </div>
 

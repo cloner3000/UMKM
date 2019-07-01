@@ -88,7 +88,16 @@
                                                             </a>
                                                         </div>
                                                     </div>
-                                                    <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                                    <form action="{{route('add.wishlist')}}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="produk_id" value="{{$item->id}}">
+                                                        <button type="submit">
+                                                            <div class="product_fav" data-toggle="tooltip"
+                                                                 title="Whislist Produk ini"><i
+                                                                    class="fas fa-heart"></i>
+                                                            </div>
+                                                        </button>
+                                                    </form>
                                                     <ul class="product_marks">
                                                         <li class="product_mark product_discount">-25%</li>
                                                         <li class="product_mark product_new">Baru</li>
@@ -164,14 +173,19 @@
                                     <div class="bestsellers_item discount">
                                         <div
                                             class="bestsellers_item_container d-flex flex-row align-items-center justify-content-start">
-                                            <div class="bestsellers_image"><img src="{{asset($item->pic1[0])}}" alt=""></div>
+                                            <div class="bestsellers_image"><img src="{{asset($item->pic1[0])}}" alt="">
+                                            </div>
                                             <div class="bestsellers_content">
                                                 <div class="bestsellers_category"><a href="#">Headphones</a></div>
-                                                <div class="bestsellers_name"><a href="{{route('detail.product',['id' => encrypt($item->id)])}}">{{$item->nama}}</a>
+                                                <div class="bestsellers_name"><a
+                                                        href="{{route('detail.product',['id' => encrypt($item->id)])}}">{{$item->nama}}</a>
                                                 </div>
                                                 {{--<div class="rating_r rating_r_4 bestsellers_rating">--}}
-                                                    {{--<i></i><i></i><i></i><i></i><i></i></div>--}}
-                                                <div class="bestsellers_price discount">Rp. {{number_format($item->harga - ($item->harga*($item->discount/100)))}}<span><br> <strike> Rp. {{number_format($item->harga)}} </strike></span></div>
+                                                {{--<i></i><i></i><i></i><i></i><i></i></div>--}}
+                                                <div class="bestsellers_price discount">
+                                                    Rp. {{number_format($item->harga - ($item->harga*($item->discount/100)))}}
+                                                    <span><br> <strike> Rp. {{number_format($item->harga)}} </strike></span>
+                                                </div>
                                             </div>
                                         </div>
 
