@@ -57,7 +57,7 @@
                                data-toggle="dropdown" role="button" aria-haspopup="true"
                                aria-expanded="false"> <i class="zmdi zmdi-more"></i> </a>
                             <ul class="dropdown-menu slideUp">
-                                <li><a href="javascript:void(0);">Pesanan Hari ini</a></li>
+                                <li><a href="{{route('diskop.order')}}">Pesanan Hari ini</a></li>
                                 <li><a href="javascript:void(0);">Seluruh Pesanan</a></li>
                             </ul>
                         </li>

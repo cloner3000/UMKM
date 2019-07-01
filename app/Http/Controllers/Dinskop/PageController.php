@@ -16,7 +16,7 @@ class PageController extends Controller
     {
         $user = Auth::user();
         $detail = DetailUser::where('user_id',$user->id)->first();
-        $order = Cart::where('isPaid',true)->get();
+        $order = Cart::where('isPaid',true)->where('isVerify',false)->get();
         return view('_diskop.main',[
             'detail' => $detail,
             'order' => $order
