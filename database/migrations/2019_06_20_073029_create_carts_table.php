@@ -25,6 +25,8 @@ class CreateCartsTable extends Migration
             $table->string('harga');
             $table->boolean('isCart')->default(true);
             $table->boolean('isPaid')->default(false);
+            $table->boolean('isVerify')->default(false);
+            $table->boolean('isHandle')->default(false);
             $table->timestamps();
         });
     }

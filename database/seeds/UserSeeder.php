@@ -77,6 +77,7 @@ class UserSeeder extends Seeder
                         'nama_pemilik' => $faker->name,
                         'nik_pemilik' => $faker->randomNumber($nbDigits = NULL),
                         'alamat' => $faker->address,
+                        'no_telp' => $faker->phoneNumber,
                         'lat' => $faker->latitude,
                         'long' => $faker->longitude,
                         'jenis_id' => rand(JenisUmkm::min('id'), JenisUmkm::max('id')),
