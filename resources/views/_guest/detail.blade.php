@@ -184,15 +184,21 @@
                                     <button type="submit" class="button cart_button"><span
                                             class="fa fa-cart-plus"></span> Tambah ke keranjang
                                     </button>
-                                    <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                    <button id="wishlist" type="button" onclick="wishlist_pro()"
+                                            data-toggle="tooltip" title="Wishlist Produk ini"
+                                            class="product_fav"><i class="fas fa-heart"></i></button>
                                 </div>
                             </form>
                         </div>
                     </div>
                 </div>
-
             </div>
             <br>
+            <form id="form_wishlist" action="{{route('add.wishlist')}}" method="post">
+                @csrf
+                <input type="hidden" name="produk_id" value="{{$data->id}}">
+            </form>
+
 
             <div class="row">
                 <div class="container">
@@ -411,7 +417,6 @@
             </div>
         </div>
     </div>
-    </div>
 
 @endsection
 @push('main_scipt')
@@ -421,6 +426,10 @@
         $(document).ready(function () {
             $('#hasil_qty').val("1")
         })
+
+        function wishlist_pro() {
+            $('#form_wishlist').submit()
+        }
 
         function question(q) {
             var input = $('#tanya_ta');

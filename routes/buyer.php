@@ -53,7 +53,23 @@ Route::group(['prefix' => 'page/','middleware' => ['buyer']], function () {
             'as' => 'cart'
         ]);
     });
+    Route::group(['prefix' => 'wishlist/'], function () {
 
+        Route::get('daftar',[
+            'uses' => 'Guest\PageController@wishlist',
+            'as' => 'wishlist'
+        ]);
+
+        Route::post('wish',[
+            'uses' => 'Guest\BuyingController@add_wishlist',
+            'as' => 'add.wishlist'
+        ]);
+
+        Route::post('remove_wish',[
+            'uses' => 'Guest\BuyingController@remove_wishlist',
+            'as' => 'add.wishlist.remove'
+        ]);
+    });
 
     Route::post('remove_cart',[
         'uses' => 'Guest\BuyingController@cancel_cart',
@@ -65,15 +81,7 @@ Route::group(['prefix' => 'page/','middleware' => ['buyer']], function () {
         'as' => 'add.cart.buy'
     ]);
 
-    Route::post('wish',[
-        'uses' => 'Guest\BuyingController@add_wishlist',
-        'as' => 'add.wishlist'
-    ]);
 
-    Route::post('remove_wish',[
-        'uses' => 'Guest\BuyingController@remove_wishlist',
-        'as' => 'add.wishlist.remove'
-    ]);
 
     Route::post('comment',[
         'uses' => 'Guest\ReviewCommentController@comment_store',

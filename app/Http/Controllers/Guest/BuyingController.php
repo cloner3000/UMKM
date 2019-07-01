@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Model\Cart;
+use App\Model\Order;
 use App\Model\Produk;
 use App\Model\Wishlist;
 use Illuminate\Http\Request;
@@ -34,13 +35,25 @@ class BuyingController extends Controller
     public function buy(Request $request)
     {
 
+        $detail = \App\Model\DetailUser::where('user_id',\Illuminate\Support\Facades\Auth::user()->id)->first();
+        if ($detail->first_name == null || $detail->alamat == null || $detail->kecamatan == null
+            || $detail->kelurahan == null || $detail->zip_code == null || $detail->no_telp == null ){
+            return redirect()->route('account')->with('warning', 'Mohon untuk melengkapi biodata anda terlebih dahulu!');
+        }
+
         $cart = Cart::where('user_id', Auth::user()->id)->where('isCart', true)->get();
+//        dd($cart->pluck('id')->toArray());
         foreach ($cart as $item) {
             $item->update([
                 'isCart' => false,
                 'isPaid' => true
             ]);
         }
+        Order::create([
+            'user_id' => Auth::user()->id,
+            'order_item_ids' => $cart->pluck('id')->toArray(),
+            'status' => 'baru'
+        ]);
         return back()->with('success_cart', 'Pembelian anda akan diproses oleh pihak Dinas Koperasi Kota Madiun');
 
 
@@ -63,12 +76,19 @@ class BuyingController extends Controller
 
     public function add_wishlist(Request $request)
     {
-        Wishlist::create([
-           'user_id' => Auth::user()->id,
-            'produk_id' => $request->produk_id
-        ]);
+        $wish = Wishlist::where('produk_id',$request->produk_id)->first();
+        if (empty($wish)){
+            Wishlist::create([
+                'user_id' => Auth::user()->id,
+                'produk_id' => $request->produk_id
+            ]);
 
-        return back()->with('success_cart', 'Daftar ingin dibeli bertambah');
+            return back()->with('success_cart', 'Daftar ingin dibeli bertambah');
+        }
+        else{
+            return back()->with('error', 'Produk ini sudah anda favoritkan');
+        }
+
     }
 
     public function remove_wishlist(Request $request)

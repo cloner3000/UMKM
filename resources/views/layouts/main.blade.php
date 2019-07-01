@@ -341,7 +341,8 @@
                                             <ul>
                                                 <li><a href="#"><span class="fa fa-history"></span> Riwayat
                                                         Pembelian</a></li>
-                                                <li><a href="{{route('account')}}"><span class="fa fa-cog"></span> Pengaturan Akun</a></li>
+                                                <li><a href="{{route('account')}}"><span class="fa fa-cog"></span>
+                                                        Pengaturan Akun</a></li>
                                                 <li class="float-right">
                                                     <a href="{{ route('logout') }}"
                                                        onclick="event.preventDefault();
@@ -370,14 +371,20 @@
         <div class="header_main">
             <div class="container">
                 @auth()
-                    <div class="row" >
-                        <div class="col-lg-12 ">
-                            <div class="alert alert-info" role="alert">
-                                Satu Langkah lagi. Ayo lengkapi datamu klik <a href="{{route('account')}}" class="alert-link" >Disini</a>
+                    <?php
+                    $detail = \App\Model\DetailUser::where('user_id',\Illuminate\Support\Facades\Auth::user()->id)->first();
+                    ?>
+                    @if($detail->first_name == null || $detail->alamat == null || $detail->kecamatan == null
+                    || $detail->kelurahan == null || $detail->zip_code == null || $detail->no_telp == null )
+                        <div class="row">
+                            <div class="col-lg-12 ">
+                                <div class="alert alert-info" role="alert">
+                                    Satu Langkah lagi. Ayo lengkapi datamu klik <a href="{{route('account')}}"
+                                                                                   class="alert-link">Disini</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
+                    @endif
                 @endauth
                 <div class="row">
                     <!-- Logo -->
@@ -422,9 +429,10 @@
                     @guest()
                     @else
                         <?php
-                        $cart = \App\Model\Cart::where('user_id',Auth::user()->id)->where('isPaid',false)->get();
+                        $cart = \App\Model\Cart::where('user_id', Auth::user()->id)->where('isPaid', false)->get();
+                        $wish = \App\Model\Wishlist::where('user_id', Auth::user()->id)->get();
                         $paid = 0;
-                        foreach ($cart as $item){
+                        foreach ($cart as $item) {
                             $paid = $paid + $item->harga;
                         }
 
@@ -436,8 +444,8 @@
                                         <span class="fa fa-heart" style="font-size: 32pt"></span>
                                     </div>
                                     <div class="wishlist_content">
-                                        <div class="wishlist_text"><a href="#">Wishlist</a></div>
-                                        <div class="wishlist_count">115</div>
+                                        <div class="wishlist_text"><a href="{{route('wishlist')}}">Wishlist</a></div>
+                                        <div class="wishlist_count">{{count($wish)}}</div>
                                     </div>
                                 </div>
 

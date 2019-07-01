@@ -6,6 +6,7 @@ use App\Model\Cart;
 use App\Model\Comment;
 use App\Model\Produk;
 use App\Model\Review;
+use App\Model\Wishlist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -49,6 +50,14 @@ class PageController extends Controller
         return view('_guest.cart',[
             'data' => $data,
             'id' => $id
+        ]);
+    }
+
+    public function wishlist()
+    {
+        $data = Wishlist::where('user_id',Auth::user()->id)->get();
+        return view('_guest.wish',[
+            'data' => $data
         ]);
     }
 }
