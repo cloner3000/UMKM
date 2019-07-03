@@ -130,7 +130,14 @@
                             @endforeach
                         </div>
                         <div class="product_name">{{$data->nama}}</div>
-                        <p class="lead">{{\App\Model\Umkm::find($data->umkm_id)->nama}}</p>
+                        <p class="lead">{{\App\Model\Umkm::find($data->umkm_id)->nama}}
+                            @if(\App\Model\Umkm::find($data->umkm_id)->is_verified == true)
+                                <button type="button"
+                                        data-toggle="tooltip" title="Umkm ini telah terverifikasi"
+                                        class="product_fav btn-success"><i class="fas fa-check "></i></button>
+                                @else
+                            @endif
+                        </p>
                         {{--<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>--}}
                         <div class="product_text"></div>
                         <div class="order_info d-flex flex-row">

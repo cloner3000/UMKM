@@ -318,11 +318,11 @@
                     <div class="col d-flex flex-row">
                         <div class="top_bar_contact_item">
                             <div class="top_bar_icon"><span class="fa fa-phone"></span></div>
-                            +38 068 005 3570
+                            (0351) 464195
                         </div>
                         <div class="top_bar_contact_item">
-                            <div class="top_bar_icon"><span class="fa fa-envelope"></span></div>
-                            <a href="mailto:fastsales@gmail.com">fastsales@gmail.com</a></div>
+                            <div class="top_bar_icon"></div>
+                            <a href=""></a></div>
                         <div class="top_bar_content ml-auto">
                             @guest()
                                 <div class="top_bar_user">
@@ -372,7 +372,7 @@
             <div class="container">
                 @auth()
                     <?php
-                    $detail = \App\Model\DetailUser::where('user_id',\Illuminate\Support\Facades\Auth::user()->id)->first();
+                    $detail = \App\Model\DetailUser::where('user_id', \Illuminate\Support\Facades\Auth::user()->id)->first();
                     ?>
                     @if($detail->first_name == null || $detail->alamat == null || $detail->kecamatan == null
                     || $detail->kelurahan == null || $detail->zip_code == null || $detail->no_telp == null )
@@ -483,40 +483,14 @@
                             <div class="cat_menu_container">
                                 <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
                                     <div class="cat_burger"><span></span><span></span><span></span></div>
-                                    <div class="cat_menu_text">categories</div>
+                                    <div class="cat_menu_text">Kategori</div>
                                 </div>
 
                                 <ul class="cat_menu">
-                                    <li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a>
-                                    </li>
-                                    <li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-                                    <li class="hassubs">
-                                        <a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
-                                        <ul>
-                                            <li class="hassubs">
-                                                <a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                                <ul>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                                    </li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                                    </li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                                    </li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Smartphones & Tablets<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-                                    <li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
+                                    @foreach(\App\Model\Kategori::all()->take(9) as $item)
+                                        <li><a href="#">{{$item->name}} <i class="fas fa-chevron-right ml-auto"></i></a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
 
@@ -788,13 +762,13 @@
                 <div class="col">
 
                     <div
-                        class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
+                        clasusers="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
                         <div class="copyright_content">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                            All rights reserved | This template is made with <i class="fa fa-heart"
-                                                                                aria-hidden="true"></i> by <a
-                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                            Umkm Dinas Koperasi Pemerintah Kota Madiun <i class="fa fa-heart"
+                                                                          aria-hidden="true"></i> by <a
+                                href="http://pttati.co.id" target="_blank">PT. TATI</a>
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </div>
                         <div class="logos ml-sm-auto">
