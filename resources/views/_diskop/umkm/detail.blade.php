@@ -35,9 +35,9 @@
                                                     <span class="job_post">{{$data->nama_pemilik}}</span> <br>
                                                     <span class="job_post">{{$data->alamat}}</span>
                                                     <br>
-                                                    <p>@foreach($data->jenis_id as $item)
-                                                            <span class="badge badge-info">{{\App\Model\JenisUmkm::find($item)->name}}</span>
-                                                        @endforeach
+                                                    <p>
+                                                            <span class="badge badge-info">{{\App\Model\JenisUmkm::find($data->jenis_id)->name}}</span>
+
                                                     </p>
                                                     <div>
                                                         @if($data->is_verified == true)
