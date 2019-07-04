@@ -455,8 +455,7 @@
 
     <div class="footer">
         <div class="container">
-            Made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com">Creative Tim</a>. Free
-            download <a href="http://www.creative-tim.com/product/bootstrap-wizard">here.</a>
+            Made <i class="fa fa-heart heart"></i> by <a href="http://pttati.co.id">PT TATI</a>.
         </div>
     </div>
 
