@@ -136,10 +136,7 @@
                                             <label for="">Jenis UMKM</label>
                                             <select class="form-control show-tick z-index" name="jenis_id[]" multiple
                                                     data-live-search="true" required>
-                                                @foreach($umkm->jenis_id as $data)
-                                                    <option value="{{$data}}"
-                                                            selected>{{\App\Model\JenisUmkm::find($data)->name}}</option>
-                                                @endforeach
+
                                                 @foreach($jenis_all as $item)
                                                     <option value="{{$item->id}}">{{$item->name}}</option>
                                                 @endforeach
