@@ -26,7 +26,7 @@ class PageController extends Controller
     public function list_umkm()
     {
         $verify = VerifyUmkm::all()->pluck('umkm_id')->toArray();
-        $umkm = Umkm::whereNotIn('id',$verify)->get();
+        $umkm = Umkm::whereNotIn('id',$verify)->where('is_verified',false)->get();
         return view('_diskop.umkm.list',[
             'umkm' =>$umkm
         ]);
