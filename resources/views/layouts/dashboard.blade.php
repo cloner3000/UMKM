@@ -52,10 +52,7 @@
 
 
         <li class="hidden-sm-down">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search...">
-                <span class="input-group-addon"><i class="zmdi zmdi-search"></i></span>
-            </div>
+
         </li>
         <li class="float-right">
             <a href="{{ route('logout') }}"
