@@ -15,7 +15,6 @@ class ProductController extends Controller
 {
     public function store(Request $request)
     {
-
         if ($request->hasFile('photos')) {
             $umkm_id = Umkm::where('user_id', Auth::user()->id)->first();
             $produk = Produk::create([
@@ -28,6 +27,8 @@ class ProductController extends Controller
                 'harga' => $request->harga,
                 'purchase_order' => $request->preorder,
                 'pic1' => $request->key,
+                'bukalapak_link' => $request->bukalapak_link,
+                'tokped_link' => $request->tokped_link,
                 'status' => 'ensf',
             ]);
 
@@ -82,6 +83,8 @@ class ProductController extends Controller
                 'persediaan' => $request->stock,
                 'isDiscount' => false,
                 'discount' => $request->discount,
+                'bukalapak_link' => $request->bukalapak_link,
+                'tokped_link' => $request->tokped_link,
             ]);
 
             if ($request->isDiscount == true) {
@@ -138,6 +141,8 @@ class ProductController extends Controller
                 'persediaan' => $request->stock,
                 'isDiscount' =>false,
                 'discount' => $request->discount,
+                'bukalapak_link' => $request->bukalapak_link,
+                'tokped_link' => $request->tokped_link,
             ]);
 
             if ($request->isDiscount == true) {
