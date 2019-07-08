@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
-    public function review_filter(Request $request)
+    public function comment_filter(Request $request)
     {
 
         $data = Comment::when($request->start, function ($query) use ($request) {
