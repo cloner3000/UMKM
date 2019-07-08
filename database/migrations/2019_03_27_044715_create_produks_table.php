@@ -33,6 +33,8 @@ class CreateProduksTable extends Migration
             $table->boolean('isHide')->default(false);
             $table->boolean('isDiscount')->default(false);
             $table->string('discount')->default(0);
+            $table->text('tokped_link')->nullable();
+            $table->text('bukalapak_link')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
