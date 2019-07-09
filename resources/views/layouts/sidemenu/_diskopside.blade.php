@@ -7,6 +7,7 @@
     <ul class="ml-menu">
         <li><a href="{{route('diskop.show.umkm')}}">Umkm Baru</a></li>
         <li><a href="{{route('diskop.show.umkm.nonvalid')}}">Umkm Tidak Valid</a></li>
+        <li><a href="{{route('diskop.show.umkm.all')}}">Umkm Valid</a></li>
     </ul>
 </li>
 
@@ -14,7 +15,7 @@
     </a>
     <ul class="ml-menu">
         <li><a href="{{route('diskop.order')}}">Pesanan Baru</a></li>
-        <li><a href="{{route('diskop.show.umkm.nonvalid')}}">Pemesanan keseluruhan</a></li>
+        <li><a href="{{route('diskop.order.all')}}">Pemesanan keseluruhan</a></li>
     </ul>
 </li>
 

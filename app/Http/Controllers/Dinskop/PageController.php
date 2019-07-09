@@ -40,6 +40,14 @@ class PageController extends Controller
         ]);
     }
 
+    public function umkm_all()
+    {
+        $umkm = Umkm::wherehas('getVerify')->where('is_verified',true)->orderBy('updated_at','DESC')->get();
+        return view('_diskop.umkm.list_all',[
+            'umkm' =>$umkm
+        ]);
+    }
+
     public function detail_umkm($id)
     {
         $id = decrypt($id);
@@ -54,6 +62,14 @@ class PageController extends Controller
         $data = Cart::where('isPaid',true)->where('isVerify',false)->where('isHandle',false)->orderBy('user_id')->paginate(10);
         return view('_diskop.order',[
            'data' => $data
+        ]);
+    }
+
+    public function order_all()
+    {
+        $data = Cart::where('isPaid',true)->where('isVerify',true)->orderBy('user_id')->paginate(10);
+        return view('_diskop.order',[
+            'data' => $data
         ]);
     }
 }

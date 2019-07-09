@@ -27,7 +27,10 @@ class ActivityController extends Controller
                     'umkm_id' => $request->umkm_id,
                     'status' => $request->status,
                 ]);
-
+                $umkm = Umkm::findOrFail($request->umkm_id);
+                $umkm->update([
+                    'is_verified' => true
+                ]);
                 if($request->hasFile('bukti')){
                     $file = $request->file('bukti');
                     $bukti = $file->getClientOriginalName();

@@ -19,6 +19,11 @@ Route::group(['prefix' => 'diskop/','middleware' => ['auth','diskop']], function
             'as' => 'diskop.show.umkm.nonvalid'
         ]);
 
+        Route::get('/list/all', [
+            'uses' => 'Dinskop\PageController@umkm_all',
+            'as' => 'diskop.show.umkm.all'
+        ]);
+
         Route::post('/verify',[
             'uses' => 'Dinskop\ActivityController@verify',
             'as' => 'diskop.verify'
@@ -31,7 +36,7 @@ Route::group(['prefix' => 'diskop/','middleware' => ['auth','diskop']], function
     });
 
     Route::group(['prefix' => 'order/'], function (){
-        Route::get('list', [
+        Route::get('list/new', [
             'uses' => 'Dinskop\PageController@order',
             'as' => 'diskop.order'
         ]);
@@ -41,6 +46,10 @@ Route::group(['prefix' => 'diskop/','middleware' => ['auth','diskop']], function
             'as' => 'diskop.order.verify'
         ]);
 
+        Route::get('list/all', [
+            'uses' => 'Dinskop\PageController@order_all',
+            'as' => 'diskop.order.all'
+        ]);
     });
 
 
