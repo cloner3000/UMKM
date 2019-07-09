@@ -45,12 +45,14 @@
 
                         <div class="form-group form-float" id="stock">
                             <label>Jumlah Produk Siap Jual</label>
-                            <input type="text" class="form-control" placeholder="Dalam jumlah pcs" name="stock" onkeypress="return isNumberKey(event)">
+                            <input type="text" class="form-control" placeholder="Dalam jumlah pcs" name="stock"
+                                   onkeypress="return isNumberKey(event)">
                         </div>
 
                         <div class="form-group form-float">
                             <label>Gambar Produk <sub>Bisa lebih dari satu</sub></label>
-                            <input type="file" class="form-control" name="photos[]" multiple accept='.jpg, .jpeg, .png'/>
+                            <input type="file" class="form-control" name="photos[]" multiple
+                                   accept='.jpg, .jpeg, .png'/>
                         </div>
 
                         <div class="form-group form-float">
@@ -83,13 +85,15 @@
                         <div class="checkbox">
                             <input id="diskon_cb" type="checkbox" onchange="shoi()" name="isDiscount">
                             <label for="diskon_cb">
-                                Diskon Produk <small>( optional )</small>
+                                Diskon Produk
+                                <small>( optional )</small>
                             </label>
                         </div>
 
                         <div class="form-group form-float" id="diskon_input">
                             <label>Diskon Produk</label>
-                            <input type="text" class="form-control" placeholder="Diskon Dalam Persen" name="discount" onkeypress="return isNumberKey(event)">
+                            <input type="text" class="form-control" placeholder="Diskon Dalam Persen" name="discount"
+                                   onkeypress="return isNumberKey(event)">
                         </div>
 
                         <div class="form-group form-float">
@@ -97,6 +101,34 @@
                             <input type="text" class="form-control" placeholder="Untuk mempermudah pencarian oleh user"
                                    name="key" required>
                         </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label>Link BukaLapak
+                                        <small>bila ada</small>
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                           <img src="{{asset('images/bl.png')}}" alt="" style="width: 32px; height: 32px">
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="https://www.bukalapak.com/......" name="bukalapak_link">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Link Tokopedia
+                                        <small>bila ada</small>
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                           <img src="{{asset('images/tokped.png')}}" alt="" style="width: 32px; height: 32px">
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="https://www.tokopedia.com/......" name="tokped_link">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
                         <button class="btn btn-raised btn-primary btn-round waves-effect" type="submit">SUBMIT</button>
                     </form>
                 </div>
@@ -111,12 +143,12 @@
 
         $(document).ready(function () {
             $('#ready').change(function () {
-                if ($(this).prop("checked",true)) {
+                if ($(this).prop("checked", true)) {
                     $('#stock').show("slow");
                 }
             });
             $('#po').change(function () {
-                if ($(this).prop("checked",true)) {
+                if ($(this).prop("checked", true)) {
                     $('#stock').hide("slow");
                 }
             });
@@ -126,10 +158,9 @@
         });
 
         function shoi() {
-            if ($('#diskon_cb').is(':checked'))
-            {
+            if ($('#diskon_cb').is(':checked')) {
                 $('#diskon_input').show("slow");
-            }else {
+            } else {
                 $('#diskon_input').hide("slow");
             }
         }

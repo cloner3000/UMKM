@@ -496,67 +496,67 @@
 
                             <!-- Main Nav Menu -->
 
-                            <div class="main_nav_menu ml-auto">
-                                <ul class="standard_dropdown main_nav_dropdown">
-                                    <li><a href="#">Home<i class="fas fa-chevron-down"></i></a></li>
-                                    <li class="hassubs">
-                                        <a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                <ul>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                    </li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                    </li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="hassubs">
-                                        <a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li>
-                                                <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                <ul>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                    </li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                    </li>
-                                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="hassubs">
-                                        <a href="#">Pages<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a>
-                                            </li>
-                                            <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a>
-                                            </li>
-                                            <li><a href="regular.html">Regular Post<i
-                                                        class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
-                                </ul>
-                            </div>
+                            {{--<div class="main_nav_menu ml-auto">--}}
+                                {{--<ul class="standard_dropdown main_nav_dropdown">--}}
+                                    {{--<li><a href="#">Home<i class="fas fa-chevron-down"></i></a></li>--}}
+                                    {{--<li class="hassubs">--}}
+                                        {{--<a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>--}}
+                                        {{--<ul>--}}
+                                            {{--<li>--}}
+                                                {{--<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>--}}
+                                                {{--<ul>--}}
+                                                    {{--<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>--}}
+                                                    {{--</li>--}}
+                                                    {{--<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>--}}
+                                                    {{--</li>--}}
+                                                    {{--<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>--}}
+                                                    {{--</li>--}}
+                                                {{--</ul>--}}
+                                            {{--</li>--}}
+                                            {{--<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>--}}
+                                            {{--<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>--}}
+                                            {{--<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>--}}
+                                        {{--</ul>--}}
+                                    {{--</li>--}}
+                                    {{--<li class="hassubs">--}}
+                                        {{--<a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>--}}
+                                        {{--<ul>--}}
+                                            {{--<li>--}}
+                                                {{--<a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>--}}
+                                                {{--<ul>--}}
+                                                    {{--<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>--}}
+                                                    {{--</li>--}}
+                                                    {{--<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>--}}
+                                                    {{--</li>--}}
+                                                    {{--<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>--}}
+                                                    {{--</li>--}}
+                                                {{--</ul>--}}
+                                            {{--</li>--}}
+                                            {{--<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>--}}
+                                            {{--<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>--}}
+                                            {{--<li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>--}}
+                                        {{--</ul>--}}
+                                    {{--</li>--}}
+                                    {{--<li class="hassubs">--}}
+                                        {{--<a href="#">Pages<i class="fas fa-chevron-down"></i></a>--}}
+                                        {{--<ul>--}}
+                                            {{--<li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>--}}
+                                            {{--<li><a href="product.html">Product<i class="fas fa-chevron-down"></i></a>--}}
+                                            {{--</li>--}}
+                                            {{--<li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>--}}
+                                            {{--<li><a href="blog_single.html">Blog Post<i class="fas fa-chevron-down"></i></a>--}}
+                                            {{--</li>--}}
+                                            {{--<li><a href="regular.html">Regular Post<i--}}
+                                                        {{--class="fas fa-chevron-down"></i></a></li>--}}
+                                            {{--<li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>--}}
+                                            {{--<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a>--}}
+                                            {{--</li>--}}
+                                        {{--</ul>--}}
+                                    {{--</li>--}}
+                                    {{--<li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>--}}
+                                    {{--<li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>--}}
+                                {{--</ul>--}}
+                            {{--</div>--}}
 
                             <!-- Menu Trigger -->
 
@@ -706,49 +706,6 @@
                     </div>
                 </div>
 
-                <div class="col-lg-2 offset-lg-2">
-                    <div class="footer_column">
-                        <div class="footer_title">Find it Fast</div>
-                        <ul class="footer_list">
-                            <li><a href="#">Computers & Laptops</a></li>
-                            <li><a href="#">Cameras & Photos</a></li>
-                            <li><a href="#">Hardware</a></li>
-                            <li><a href="#">Smartphones & Tablets</a></li>
-                            <li><a href="#">TV & Audio</a></li>
-                        </ul>
-                        <div class="footer_subtitle">Gadgets</div>
-                        <ul class="footer_list">
-                            <li><a href="#">Car Electronics</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-2">
-                    <div class="footer_column">
-                        <ul class="footer_list footer_list_2">
-                            <li><a href="#">Video Games & Consoles</a></li>
-                            <li><a href="#">Accessories</a></li>
-                            <li><a href="#">Cameras & Photos</a></li>
-                            <li><a href="#">Hardware</a></li>
-                            <li><a href="#">Computers & Laptops</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="col-lg-2">
-                    <div class="footer_column">
-                        <div class="footer_title">Customer Care</div>
-                        <ul class="footer_list">
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Order Tracking</a></li>
-                            <li><a href="#">Wish List</a></li>
-                            <li><a href="#">Customer Services</a></li>
-                            <li><a href="#">Returns / Exchange</a></li>
-                            <li><a href="#">FAQs</a></li>
-                            <li><a href="#">Product Support</a></li>
-                        </ul>
-                    </div>
-                </div>
 
             </div>
         </div>

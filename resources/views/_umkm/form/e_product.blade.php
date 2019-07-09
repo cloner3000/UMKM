@@ -144,6 +144,36 @@
                             <input type="text" class="form-control" placeholder="Untuk mempermudah pencarian oleh user"
                                    name="key" value="{{$data->keyword}}" required>
                         </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label>Link BukaLapak
+                                        <small>bila ada</small>
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                           <img src="{{asset('images/bl.png')}}" alt="" style="width: 32px; height: 32px">
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="https://www.bukalapak.com/......" name="bukalapak_link"
+                                               value="{{$data->bukalapak_link}}">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <label>Link Tokopedia
+                                        <small>bila ada</small>
+                                    </label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                           <img src="{{asset('images/tokped.png')}}" alt="" style="width: 32px; height: 32px">
+                                        </span>
+                                        <input type="text" class="form-control" placeholder="https://www.tokopedia.com/......" name="tokped_link"
+                                               value="{{$data->tokped_link}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                         <button class="btn btn-raised btn-primary btn-round waves-effect" type="submit">SUBMIT</button>
                     </form>
                 </div>
