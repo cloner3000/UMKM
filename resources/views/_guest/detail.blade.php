@@ -134,8 +134,8 @@
                             @if(\App\Model\Umkm::find($data->umkm_id)->is_verified == true)
                                 <button type="button"
                                         data-toggle="tooltip" title="Umkm ini telah terverifikasi"
-                                        class="product_fav btn-success"><i class="fas fa-check "></i></button>
-                                @else
+                                        class="product_fav btn-info"><i class="fas fa-check "></i></button>
+                            @else
                             @endif
                         </p>
                         {{--<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>--}}
@@ -245,6 +245,29 @@
                                             <br>
 
                                             {!! $data->long_desc !!}
+
+                                            <br><br>
+
+                                            <p>Check juga dilink berikut</p>
+                                            <div class="row">
+                                                @if($data->tokped_link != null)
+                                                    <div class="col-lg-3">
+                                                        <a href="{{url($data->tokped_link)}}" target="_blank">
+                                                            <img src="{{asset('images/tokped.png')}}" alt="Tokopedia"
+                                                                 style="width: 64px">
+                                                        </a>
+                                                    </div>
+                                                @endif
+                                                @if($data->bukalapak_link != null)
+                                                    <div class="col-lg-3">
+                                                        <a href="{{url($data->bukalapak_link)}}" target="_blank">
+                                                            <img src="{{asset('images/bl.png')}}" alt="Bukalapak"
+                                                                 style="width: 64px">
+                                                        </a>
+                                                    </div>
+                                                @endif
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
