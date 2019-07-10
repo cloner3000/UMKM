@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReviewsTable extends Migration
+class CreateReviewTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reviews_fail', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id')->unsigned();
-            $table->foreign( 'user_id')->references('id')
-                ->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
-            $table->integer('produk_id')->unsigned();
-            $table->foreign( 'produk_id')->references('id')
-                ->on('produks')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->integer('carts_id')->unsigned();
+            $table->foreign( 'carts_id')->references('id')
+                ->on('carts')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->decimal('star');
             $table->text('konten');
             $table->text('attachment')->nullable();
@@ -35,6 +32,6 @@ class CreateReviewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('review');
     }
 }

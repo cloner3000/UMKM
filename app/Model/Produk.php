@@ -25,11 +25,6 @@ class Produk extends Model
         return $this->belongsTo('App\Model\Umkm','umkm_id');
     }
 
-    public function getReview()
-    {
-        return $this->hasMany('App\Model\Review','produk_id');
-    }
-
     public function getLike()
     {
         return $this->hasMany('App\Model\Like','produk_id');

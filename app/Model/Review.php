@@ -11,6 +11,6 @@ class Review extends Model
 
     public function getProduct()
     {
-        return $this->belongsTo('App\Model\Produk','produk_id');
+        return $this->belongsTo('App\Model\Cart','carts_id');
     }
 }

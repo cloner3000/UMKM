@@ -19,4 +19,9 @@ class Cart extends Model
         return $this->belongsTo('App\Produk','user_id');
     }
 
+    public function getReview()
+    {
+        return $this->hasOne('App\Model\Review','carts_id');
+    }
+
 }
