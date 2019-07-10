@@ -19,9 +19,11 @@ class PageController extends Controller
     public function index()
     {
         $umkm = Umkm::where('user_id',Auth::user()->id)->first();
-        $review = Review::whereHas('getProduct', function ($query){
-            $query->whereHas('getUmkm',function ($query){
-                $query->where('user_id',Auth::user()->id);
+        $review = Review::whereHas('getCart', function ($query){
+            $query->whereHas('getProduct', function ($query){
+                $query->whereHas('getUmkm',function ($query){
+                    $query->where('user_id',Auth::user()->id);
+                });
             });
         })->get()->take(10);
         $comment = Comment::whereHas('getProduct', function ($query){
