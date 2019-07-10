@@ -22,6 +22,18 @@ Route::get('detail/{id}',[
 
 Route::group(['prefix' => 'page/','middleware' => ['buyer']], function () {
 
+    Route::group(['prefix' => 'history/'], function () {
+
+        Route::get('list', [
+            'uses' => 'Guest\PageController@history',
+            'as' => 'history'
+        ]);
+
+        Route::post('review', [
+            'uses' => 'Guest\ReviewCommentController@review_store',
+            'as' => 'history.review'
+        ]);
+    });
 
     Route::post('add_cart',[
         'uses' => 'Guest\BuyingController@add_cart',

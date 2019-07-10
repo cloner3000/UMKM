@@ -39,6 +39,14 @@ class PageController extends Controller
         ]);
     }
 
+    public function history()
+    {
+        $data = Cart::where('isHandle',true)->get();
+        return view('_guest.history',[
+            'data' => $data
+        ]);
+    }
+
     public function account()
     {
         return view('_guest.pengaturan');

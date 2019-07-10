@@ -92,14 +92,30 @@
                                     <a href="javascript:void(0)" class="m-r-10">Velit a labore</a>
                                     <a href="{{route('umkm.produk.detail',[ 'id' => encrypt($item->id)])}}"
                                        target="_blank">
+                                        <?php
+                                        $cart = \App\Model\Cart::find($item->carts_id);
+                                        $produk = \App\Model\Produk::find($cart->produk_id);
+                                        ?>
                                     <span
-                                        class="badge bg-blue">{{\App\Model\Produk::find($item->produk_id)->nama}}</span>
+                                        class="badge bg-blue">{{$produk->nama}}</span>
                                     </a>
                                     <small class="float-right text-muted">
                                         <time class="hidden-sm-down"
                                               datetime="2017">{{\Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</time>
                                         <i class="zmdi zmdi-attachment-alt"></i></small>
                                 </div>
+                                <span class="m-l-10">
+                                        <?php
+                                    $selisih = 5 - $item->star
+                                    ?>
+                                    @for($i=1 ; $i <= $item->star ; $i++)
+                                        <a href="javascript:void(0);"><i class="zmdi zmdi-star col-amber"></i></a>
+                                    @endfor
+                                    @for($i=1 ; $i <= $selisih ; $i++)
+                                        <a href="javascript:void(0);"><i
+                                                class="zmdi zmdi-star-outline text-muted"></i></a>
+                                    @endfor
+                                    </span>
                                 <p class="msg">{{$item->konten}} </p>
                             </div>
                         </div>

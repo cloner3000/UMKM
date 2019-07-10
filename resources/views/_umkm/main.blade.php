@@ -199,10 +199,14 @@
                         @foreach($review as $item)
                             <li class="col-12">
                                 <div class="comment-action">
-                                    <h6 class="c_name">Hossein Shams</h6>
+                                    <h6 class="c_name">{{\App\User::find($item->user_id)->username}}</h6>
                                     <p class="c_msg m-b-0">{{$item->konten}} </p>
+                                    <?php
+                                    $cart = \App\Model\Cart::find($item->carts_id);
+                                    $produk = \App\Model\Produk::find($cart->produk_id);
+                                    ?>
                                     <div
-                                        class="badge badge-info">{{\App\Model\Produk::find($item->produk_id)->nama}}</div>
+                                        class="badge badge-info">{{$produk->nama}} </div>
                                     <span class="m-l-10">
                                         <?php
                                         $selisih = 5 - $item->star

@@ -339,7 +339,7 @@
                                             <a href="#">{{Auth::user()->username}} <span
                                                     class="fa fa-caret-down"></span></a>
                                             <ul>
-                                                <li><a href="#"><span class="fa fa-history"></span> Riwayat
+                                                <li><a href="{{route('history')}}"><span class="fa fa-history"></span> Riwayat
                                                         Pembelian</a></li>
                                                 <li><a href="{{route('account')}}"><span class="fa fa-cog"></span>
                                                         Pengaturan Akun</a></li>

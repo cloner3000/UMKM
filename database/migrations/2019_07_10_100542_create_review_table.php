@@ -18,6 +18,9 @@ class CreateReviewTable extends Migration
             $table->integer('carts_id')->unsigned();
             $table->foreign( 'carts_id')->references('id')
                 ->on('carts')->onUpdate('CASCADE')->onDelete('CASCADE');
+            $table->integer('user_id')->unsigned();
+            $table->foreign( 'user_id')->references('id')
+                ->on('users')->onUpdate('CASCADE')->onDelete('CASCADE');
             $table->decimal('star');
             $table->text('konten');
             $table->text('attachment')->nullable();
