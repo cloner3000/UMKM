@@ -28,7 +28,9 @@ class PageController extends Controller
     {
         $id = decrypt($request->id);
         $data = Produk::findOrFail($id);
-        $review = Review::where('produk_id',$data->id)->get();
+        $review = Review::whereHas('getCart', function ($query) use($data){
+            $query->where('produk_id',$data->id);
+        })->get();
         $comment = Comment::where('produk_id',$data->id)->where('isAnswer',false)->get();
         return view('_guest.detail',[
             'data' => $data,
