@@ -21,9 +21,11 @@ class ReviewController extends Controller
             });
         })->when($request->produk, function ($query) use ($request) {
             $query->whereIn('produk_id', $request->produk);
-        })->whereHas('getProduct', function ($query) {
-            $query->whereHas('getUmkm', function ($query) {
-                $query->where('user_id', Auth::user()->id);
+        })->whereHas('getCart', function ($query){
+            $query->whereHas('getProduct', function ($query){
+                $query->whereHas('getUmkm',function ($query){
+                    $query->where('user_id',Auth::user()->id);
+                });
             });
         })->orderBy('id', "DESC")->paginate(10);
 

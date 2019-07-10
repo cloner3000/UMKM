@@ -88,9 +88,11 @@ class PageController extends Controller
 
     public function review()
     {
-        $data = Review::whereHas('getProduct', function ($query){
-            $query->whereHas('getUmkm',function ($query){
-                $query->where('user_id',Auth::user()->id);
+        $data = Review::whereHas('getCart', function ($query){
+            $query->whereHas('getProduct', function ($query){
+                $query->whereHas('getUmkm',function ($query){
+                    $query->where('user_id',Auth::user()->id);
+                });
             });
         })->paginate(10);
 
