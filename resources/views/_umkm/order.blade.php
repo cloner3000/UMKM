@@ -118,22 +118,27 @@
                                             onclick="modal('{{$detail->first_name}}','{{$detail->gender}}',
                                                 '{{$detail->alamat}}','{{$detail->kecamatan}}','{{$detail->kelurahan}}',
                                                 '{{$detail->zip_code}}','{{$detail->no_telp}}',
-                                                '{{\App\Model\Produk::find($item->produk_id)->nama}}','{{$item->qty}}','{{$item->harga}}')">
+                                                '{{\App\Model\Produk::find($item->produk_id)->nama}}','{{$item->qty}}','{{$item->harga}}','{{$item->id}}')">
                                         <i class="zmdi zmdi-shopping-cart"></i>
                                     </button>
-                                    <form action="{{route('umkm.order.handle')}}" method="post">
-                                        @csrf
-                                        <input type="hidden" value="{{$item->id}}" name="id">
-                                        <button class="btn btn-primary btn-icon  btn-icon-mini btn-round" type="submit"
-                                                data-toggle="tooltip"
-                                                title="Proses pesanan ini">
-                                            <i class="zmdi zmdi-check-circle"></i>
-                                        </button>
-                                    </form>
                                 </div>
-                                <p class="msg">{{$detail->alamat}} <br>
-                                    Kec. {{$detail->kecamatan}} ,Kel. {{$detail->kelurahan}} <br>
-                                    {{$detail->zip_code}}</p>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label for=""><b> Alamat :</b> </label>
+                                        <p class="msg"> {{$detail->alamat}} <br>
+                                            Kec. {{$detail->kecamatan}} ,Kel. {{$detail->kelurahan}} <br>
+                                            {{$detail->zip_code}} <br>
+                                        No. telp : <b> {{$detail->no_telp}}</b></p>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label for=""><b> Pembelian :</b> </label>
+                                        <p class="msg"> {{\App\Model\Produk::find($item->produk_id)->nama}} ( {{$item->qty}} unit ) <br>
+                                            Rp. {{number_format($item->harga)}}
+                                          </p>
+                                    </div>
+
+                                </div>
+
                             </div>
                         </div>
                     </li>
@@ -214,11 +219,15 @@
                         </div>
                     </div>
                 </div>
-                <input type="hidden" id="idproduk" name="produk_id">
-                <input type="hidden" id="idcomment" name="comment_id">
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Tutup</button>
-                </div>
+                <form action="{{route('umkm.order.handle')}}" method="post">
+                    @csrf
+                    <input type="hidden" value="" name="id" id="id_order">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">Tutup</button>
+                        <button type="submit" class="btn btn-secondary waves-effect">Proses
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -237,7 +246,7 @@
             $('.media-hidden').hide();
         });
 
-        function modal(nama, gender, alamat, kec, kel, kp, telp, produk_name, qty, price) {
+        function modal(nama, gender, alamat, kec, kel, kp, telp, produk_name, qty, price, id_order) {
             $("#largeModalLabel").text("Profile " + nama);
             $("#nama_pembeli").text(nama + " ( " + gender + " )");
             $("#notelp_pembeli").text(telp);
@@ -245,6 +254,7 @@
             $("#kodepos").text(kp);
             $("#produk").text(produk_name);
             $("#jumlah").text(qty);
+            $("#id_order").val(id_order);
             $("#harga").text(Intl.NumberFormat('id-ID', {style: 'currency', currency: 'IDR'}).format(price));
             $("#largeModal").modal('show');
         }

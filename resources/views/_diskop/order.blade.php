@@ -8,67 +8,67 @@
 @section('content')
 
     {{--<div class="row clearfix">--}}
-        {{--<div class="col-lg-12">--}}
-            {{--<div class="card action_bar">--}}
-                {{--<div class="body">--}}
-                    {{--<form action="{{route('umkm.comment.filter')}}" method="get">--}}
-                        {{--<div class="row clearfix">--}}
-                            {{--<div class="col-lg-10 col-md-5 col-6">--}}
-                                {{--<div class="row">--}}
-                                    {{--<div class="col-md-4">--}}
-                                        {{--<div class="form-group">--}}
-                                            {{--<label>Kategori produk <sub>Bisa lebih dari satu</sub></label>--}}
-                                            {{--<select class="form-control show-tick z-index" multiple data-placeholder=""--}}
-                                                    {{--data-live-search="true"--}}
-                                                    {{--name="produk[]">--}}
-                                                {{--<option value="">Semua Produk</option>--}}
-                                                {{--@foreach($produk as $item)--}}
-                                                {{--<option value="{{$item->id}}">{{$item->nama}}</option>--}}
-                                                {{--@endforeach--}}
-                                            {{--</select>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col-md-4">--}}
-                                        {{--<div class="form-group">--}}
-                                            {{--<label for="start">Mulai Tanggal</label>--}}
-                                            {{--<div class="input-group search">--}}
-                                                {{--<input type="date" class="form-control" placeholder="Start from"--}}
-                                                       {{--name="start"--}}
-                                                       {{--id="start">--}}
-                                                {{--<span class="input-group-addon">--}}
-                                        {{--<i class="zmdi zmdi-calendar"></i>--}}
-                                    {{--</span>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                    {{--<div class="col-md-4">--}}
-                                        {{--<div class="form-group">--}}
-                                            {{--<label for="start">Sampai Tanggal</label>--}}
-                                            {{--<div class="input-group search">--}}
-                                                {{--<input type="date" class="form-control" placeholder="till form"--}}
-                                                       {{--name="end"--}}
-                                                       {{--id="end">--}}
-                                                {{--<span class="input-group-addon">--}}
-                                        {{--<i class="zmdi zmdi-calendar"></i>--}}
-                                    {{--</span>--}}
-                                            {{--</div>--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<div class="col-lg-2">--}}
-                                {{--<br>--}}
-                                {{--<button class="btn btn-info btn-round" data-toggle="tooltip"--}}
-                                        {{--type="submit"--}}
-                                        {{--title="Filter Data">--}}
-                                    {{--<i class="zmdi zmdi-filter-list"></i>--}}
-                                {{--</button>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</form>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
+    {{--<div class="col-lg-12">--}}
+    {{--<div class="card action_bar">--}}
+    {{--<div class="body">--}}
+    {{--<form action="{{route('umkm.comment.filter')}}" method="get">--}}
+    {{--<div class="row clearfix">--}}
+    {{--<div class="col-lg-10 col-md-5 col-6">--}}
+    {{--<div class="row">--}}
+    {{--<div class="col-md-4">--}}
+    {{--<div class="form-group">--}}
+    {{--<label>Kategori produk <sub>Bisa lebih dari satu</sub></label>--}}
+    {{--<select class="form-control show-tick z-index" multiple data-placeholder=""--}}
+    {{--data-live-search="true"--}}
+    {{--name="produk[]">--}}
+    {{--<option value="">Semua Produk</option>--}}
+    {{--@foreach($produk as $item)--}}
+    {{--<option value="{{$item->id}}">{{$item->nama}}</option>--}}
+    {{--@endforeach--}}
+    {{--</select>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--<div class="col-md-4">--}}
+    {{--<div class="form-group">--}}
+    {{--<label for="start">Mulai Tanggal</label>--}}
+    {{--<div class="input-group search">--}}
+    {{--<input type="date" class="form-control" placeholder="Start from"--}}
+    {{--name="start"--}}
+    {{--id="start">--}}
+    {{--<span class="input-group-addon">--}}
+    {{--<i class="zmdi zmdi-calendar"></i>--}}
+    {{--</span>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--<div class="col-md-4">--}}
+    {{--<div class="form-group">--}}
+    {{--<label for="start">Sampai Tanggal</label>--}}
+    {{--<div class="input-group search">--}}
+    {{--<input type="date" class="form-control" placeholder="till form"--}}
+    {{--name="end"--}}
+    {{--id="end">--}}
+    {{--<span class="input-group-addon">--}}
+    {{--<i class="zmdi zmdi-calendar"></i>--}}
+    {{--</span>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--<div class="col-lg-2">--}}
+    {{--<br>--}}
+    {{--<button class="btn btn-info btn-round" data-toggle="tooltip"--}}
+    {{--type="submit"--}}
+    {{--title="Filter Data">--}}
+    {{--<i class="zmdi zmdi-filter-list"></i>--}}
+    {{--</button>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</form>--}}
+    {{--</div>--}}
+    {{--</div>--}}
+    {{--</div>--}}
     {{--</div>--}}
 
     <div class="row clearfix">
@@ -107,15 +107,19 @@
                                                 '{{$detail->zip_code}}','{{$detail->no_telp}}')">
                                         <i class="zmdi zmdi-account"></i>
                                     </button>
-                                    <form action="{{route('diskop.order.verify')}}" method="post">
-                                        @csrf
-                                        <input type="hidden" value="{{$item->id}}" name="cart_id">
-                                        <button class="btn btn-primary btn-icon  btn-icon-mini btn-round" type="submit"
-                                                data-toggle="tooltip"
-                                                title="Kirim data ke Umkm">
-                                            <i class="zmdi zmdi-check-circle"></i>
-                                        </button>
-                                    </form>
+                                    @if (Route::currentRouteName() == 'diskop.order.all')
+                                    @else
+                                        <form action="{{route('diskop.order.verify')}}" method="post">
+                                            @csrf
+                                            <input type="hidden" value="{{$item->id}}" name="cart_id">
+                                            <button class="btn btn-primary btn-icon  btn-icon-mini btn-round"
+                                                    type="submit"
+                                                    data-toggle="tooltip"
+                                                    title="Kirim data ke Umkm">
+                                                <i class="zmdi zmdi-check-circle"></i>
+                                            </button>
+                                        </form>
+                                    @endif
                                 </div>
                                 <p class="msg">{{$detail->alamat}} <br>
                                     Kec. {{$detail->kecamatan}} ,Kel. {{$detail->kelurahan}} <br>
@@ -203,11 +207,11 @@
             $('.media-hidden').hide();
         });
 
-        function modal(nama,gender,alamat,kec,kel,kp,telp) {
-            $("#largeModalLabel").text("Profile "+nama);
-            $("#nama_pembeli").text(nama+" ( "+gender+" )");
+        function modal(nama, gender, alamat, kec, kel, kp, telp) {
+            $("#largeModalLabel").text("Profile " + nama);
+            $("#nama_pembeli").text(nama + " ( " + gender + " )");
             $("#notelp_pembeli").text(telp);
-            $("#alamat_pembeli").text(alamat + ", Kec. " + kec + " Kel. "+ kel);
+            $("#alamat_pembeli").text(alamat + ", Kec. " + kec + " Kel. " + kel);
             $("#kodepos").text(kp);
             $("#largeModal").modal('show');
         }
