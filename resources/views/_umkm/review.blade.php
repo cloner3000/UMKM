@@ -89,7 +89,7 @@
                             </div>
                             <div class="media-body">
                                 <div class="media-heading">
-                                    <a href="javascript:void(0)" class="m-r-10">Velit a labore</a>
+                                    <a href="javascript:void(0)" class="m-r-10">{{\App\User::find($item->user_id)->username}}</a>
                                     <a href="{{route('umkm.produk.detail',[ 'id' => encrypt($item->id)])}}"
                                        target="_blank">
                                         <?php
