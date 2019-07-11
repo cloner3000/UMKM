@@ -132,7 +132,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Rating</label>
+                            <label for="exampleInputEmail1">Rating <small style="color: red;">Wajib</small></label>
                             <div class="rate">
                                 <i class="btn p-0 m-0 fa fa-star star s1" getvalue='1' aria-hidden="true"></i>
                                 <i class="btn p-0 m-0 fa fa-star star s2" getvalue='2' aria-hidden="true"></i>
@@ -151,8 +151,7 @@
                                    name="carts_id">
                             <input type="hidden" id="rating" aria-describedby="emailHelp" placeholder="Enter email"
                                    name="star">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else.
+                            <small id="emailHelp" class="form-text text-muted">Pastikan Sesuai dengan produk yang anda terima
                             </small>
                         </div>
 
