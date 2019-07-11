@@ -144,7 +144,7 @@
                             <small id="erating"></small>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Komentar</label>
+                            <label for="exampleInputEmail1">Komentar<small style="color: red;">Wajib</small></label>
                             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                                    placeholder="Review anda" name="konten" required>
                             <input type="hidden" id="id_cart" aria-describedby="emailHelp" placeholder="Enter email"
