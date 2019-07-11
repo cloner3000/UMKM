@@ -89,6 +89,22 @@
             color: #12b5e5;
         }
 
+        #thumbwrap {
+            position: relative;
+        }
+
+        .thumb span {
+            position: absolute;
+            visibility: hidden;
+        }
+
+        .thumb:hover,
+        .thumb:hover span {
+            visibility: visible;
+            top: 0;
+            left: 100px;
+            z-index: 1;
+        }
 
         @media (max-width: 650px) {
             .nav-tabs {
@@ -293,8 +309,66 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         @else
+                                            @foreach($review as $item)
+                                                <div class="container">
+                                                    <div class="media">
+                                                        <div class="pr-3" href="#">
+                                                            <div class="vote up">
+                                                                <i class="fas fa-chevron-up"></i>
+                                                            </div>
+                                                            <div class="vote inactive">
+                                                                <i class="fas fa-chevron-down"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <div class="row">
+                                                                <div class="col-lg-2">
+                                                                    <h5 class="mt-0">
+                                                                        {{\App\User::find($item->user_id)->username}}
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="col-lg-2">
+                                                                    {{\Carbon\Carbon::parse($item->created_at)->format('d-M-y')}}
+                                                                </div>
+                                                            </div>
+
+
+                                                            <span class="m-l-10">
+                                                                <?php
+                                                                $selisih = 5 - $item->star
+                                                                ?>
+                                                                @for($i=1 ; $i <= $item->star ; $i++)
+                                                                    <a href="javascript:void(0);"><i
+                                                                            class="fa fa-star text-warning"></i></a>
+                                                                @endfor
+                                                                @for($i=1 ; $i <= $selisih ; $i++)
+                                                                    <a href="javascript:void(0);"><i
+                                                                            class="fa fa-star text-secondary"></i></a>
+                                                                @endfor
+                                                            </span>
+                                                            <br>
+
+                                                            {{$item->konten}}
+                                                            <br>
+                                                            @if($item->attachment != null)
+                                                                <div id="thumbwrap">
+                                                                    <a class="thumb" href="#">
+                                                                        <img src="{{asset($item->attachment)}}" alt=""
+                                                                             style="width: 128px; height: 50%">
+                                                                        <span>
+                                                                          <img src="{{asset($item->attachment)}}"
+                                                                               alt=""></span>
+                                                                    </a>
+                                                                </div>
+                                                            @else
+                                                            @endif
+                                                            <br>
+                                                            <br>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
                                         @endif
                                     </div>
                                 </div>
