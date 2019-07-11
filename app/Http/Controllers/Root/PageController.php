@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Root;
 use App\Model\JenisUmkm;
 use App\Model\Kategori;
 use App\Model\Umkm;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -44,6 +45,9 @@ class PageController extends Controller
 
     public function petugas_list()
     {
-
+        $data = User::where('role_id',2)->get();
+        return view('_root.petugas',[
+            'umkm' =>$data
+        ]);
     }
 }
