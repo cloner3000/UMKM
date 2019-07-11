@@ -8,7 +8,7 @@
         <li><a href="{{route('root.fav.umkm')}}">Umkm Favorit</a></li>
         <li><a href="{{route('root.jenis.umkm')}}">Jenis UMkm</a></li>
         <li><a href="{{route('root.kategori')}}">Kategori</a></li>
-        <li><a href="{{route('root.role')}}">Role</a></li>
+        {{--<li><a href="{{route('root.role')}}">Role</a></li>--}}
     </ul>
 </li>
 
