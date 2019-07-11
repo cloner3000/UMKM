@@ -58,4 +58,17 @@ Route::group(['prefix' => 'root/','middleware' => ['auth','root']], function () 
         ]);
 
     });
+
+    Route::group(['prefix' => 'user/'], function () {
+
+        Route::get('petugas', [
+            'uses' => 'Root\PageController@petugas_list',
+            'as' => 'root.petugas'
+        ]);
+
+        Route::get('umkm', [
+            'uses' => 'Root\PageController@umkm_list',
+            'as' => 'root.umkm'
+        ]);
+    });
 });

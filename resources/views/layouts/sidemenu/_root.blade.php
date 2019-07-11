@@ -15,9 +15,8 @@
 <li><a href="javascript:void(0);" class="menu-toggle "><i class="zmdi zmdi-account"></i><span>Data User</span>
     </a>
     <ul class="ml-menu">
-        <li><a href="">Data Petugas Diskop</a></li>
-        <li><a href="">Data Umkm</a></li>
-        <li><a href="ec-product-List.html">Product List</a></li>
+        <li><a href="{{route('root.petugas')}}">Data Petugas Diskop</a></li>
+        <li><a href="{{route('root.umkm')}}">Data Umkm</a></li>
     </ul>
 </li>
 
