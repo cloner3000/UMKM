@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="{{asset('onetech/plugins/jquery-ui-1.12.1.custom/jquery-ui.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('onetech/styles/shop_styles.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('onetech/styles/shop_responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('js/bootstrap-select/css/bootstrap-select.min.css')}}">
 @endpush
 @section('main_title','Cari barang sesuai kebutuhan mu')
 @section('main_content')
@@ -25,23 +26,18 @@
 
                     <!-- Shop Sidebar -->
                     <div class="shop_sidebar">
-                        <div class="sidebar_section">
-                            <div class="sidebar_title">Categories</div>
-                            <ul class="sidebar_categories">
-                                <li><a href="#">Computers & Laptops</a></li>
-                                <li><a href="#">Cameras & Photos</a></li>
-                                <li><a href="#">Hardware</a></li>
-                                <li><a href="#">Smartphones & Tablets</a></li>
-                                <li><a href="#">TV & Audio</a></li>
-                                <li><a href="#">Gadgets</a></li>
-                                <li><a href="#">Car Electronics</a></li>
-                                <li><a href="#">Video Games & Consoles</a></li>
-                                <li><a href="#">Accessories</a></li>
-                            </ul>
+                        <div class="form-group">
+                            <label class="sidebar_title">Kategori produk</label><br>
+                            <select name="jenis_id" multiple class="form-control my-select"
+                                    data-live-search="true" required>
+                                @foreach(\App\Model\Kategori::all() as $item)
+                                    <option value="{{$item->id}}"> {{$item->name}} </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="sidebar_section filter_by_section">
                             <div class="sidebar_title">Filter By</div>
-                            <div class="sidebar_subtitle">Price</div>
+                            <div class="sidebar_subtitle">Harga</div>
                             <div class="filter_price">
                                 <div id="slider-range" class="slider_range"></div>
                                 <p>Range: </p>
@@ -50,31 +46,7 @@
                                           style="border:0; font-weight:bold;"></p>
                             </div>
                         </div>
-                        <div class="sidebar_section">
-                            <div class="sidebar_subtitle color_subtitle">Color</div>
-                            <ul class="colors_list">
-                                <li class="color"><a href="#" style="background: #b19c83;"></a></li>
-                                <li class="color"><a href="#" style="background: #000000;"></a></li>
-                                <li class="color"><a href="#" style="background: #999999;"></a></li>
-                                <li class="color"><a href="#" style="background: #0e8ce4;"></a></li>
-                                <li class="color"><a href="#" style="background: #df3b3b;"></a></li>
-                                <li class="color"><a href="#"
-                                                     style="background: #ffffff; border: solid 1px #e1e1e1;"></a></li>
-                            </ul>
-                        </div>
-                        <div class="sidebar_section">
-                            <div class="sidebar_subtitle brands_subtitle">Brands</div>
-                            <ul class="brands_list">
-                                <li class="brand"><a href="#">Apple</a></li>
-                                <li class="brand"><a href="#">Beoplay</a></li>
-                                <li class="brand"><a href="#">Google</a></li>
-                                <li class="brand"><a href="#">Meizu</a></li>
-                                <li class="brand"><a href="#">OnePlus</a></li>
-                                <li class="brand"><a href="#">Samsung</a></li>
-                                <li class="brand"><a href="#">Sony</a></li>
-                                <li class="brand"><a href="#">Xiaomi</a></li>
-                            </ul>
-                        </div>
+
                     </div>
 
                 </div>
@@ -87,7 +59,7 @@
                         <div class="shop_bar clearfix">
                             <div class="shop_product_count"><span>{{$counter}}</span> Produk Ditemukan</div>
                             <div class="shop_sorting">
-                                <span>Sort by:</span>
+                                <span>Urutkan Berdasarkan:</span>
                                 <ul>
                                     <li>
                                         <span class="sorting_text">highest rated
@@ -97,10 +69,10 @@
                                                 data-isotope-option='{ "sortBy": "original-order" }'>highest rated
                                             </li>
                                             <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>
-                                                name
+                                                Nama
                                             </li>
                                             <li class="shop_sorting_button" data-isotope-option='{ "sortBy": "price" }'>
-                                                price
+                                                Harga
                                             </li>
                                         </ul>
                                     </li>
@@ -142,7 +114,8 @@
                                             class="product_image d-flex flex-column align-items-center justify-content-center">
                                             <img src="images/featured_2.png" alt=""></div>
                                         <div class="product_content">
-                                            <div class="product_price">Rp. {{$item->harga}}</div>
+
+                                            <div class="product_price" >Rp. {{$item->harga}}</div>
                                             <div class="product_name">
                                                 <div><a href="{{route('detail.product',['id' => encrypt($item->id)])}}" tabindex="0">{{$item->nama}}</a></div>
                                             </div>
@@ -179,7 +152,10 @@
     <script src="{{asset('onetech/plugins/Isotope/isotope.pkgd.min.js')}}"></script>
     <script src="{{asset('onetech/plugins/jquery-ui-1.12.1.custom/jquery-ui.js')}}"></script>
     <script src="{{asset('onetech/js/shop_custom.js')}}"></script>
+
+    <script src="{{asset('js/bootstrap-select/js/bootstrap-select.min.js')}}"></script>
     <script>
+        $('.my-select').selectpicker();
         initPriceSlider();
         function initPriceSlider()
         {
